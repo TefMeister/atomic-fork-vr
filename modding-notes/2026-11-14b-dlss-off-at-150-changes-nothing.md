@@ -87,3 +87,16 @@ hidden from a depth one frame old while the head moves); Begin Again's `Fog-base
 The game's own `bEnableBoundingVolumeOcclusion=1` is the same in every rung, the debug one included, so it alone does
 not explain "sharp at first". Test B says whether Begin Again's culling plays a part; TTWVR's own switch is not in
 TTWVR.ini (a DLL table, as with `bFogCull`).
+
+## The water: underwater parts drawn shifted (Tefa's screenshot of 2026-11-13 21:23)
+
+Tefa: *"things underwater are shifted wrong, like the tyre and the rocks that should just be the tips above
+waterline"*. In the picture each submerged object has a darker copy of its outline shifted up and to the left of the
+part above the water (the tyre by about 40 px, the stones less), on the olive sheet, with the flat bright green beside it
+`[measured, one still]`. A copy shifted by an amount that changes across the picture fits the water reading a depth or
+refraction picture made at a DIFFERENT SIZE from the eye it is drawn into `[hypothesis]`. Two Begin Again rung-2 plugins
+make such pictures: Depth Resolve (logs a 2944x2208 depth texture on the Quest, whose eye is not that size) and High
+Resolution Water Fog (`HighResWaterDepth.dll`, the water's own depth). The 2026-11-13 flat-vs-VR comparison showed the
+fault is VR-only, which does not clear these two: a plugin written for one flat screen can go wrong only in VR.
+High Resolution Water Fog is now OFF in `rung-05 test B drawing plugins off` too (with Depth Resolve); `ladder.py check`
+clean. Test B therefore also asks: is the water right there?
