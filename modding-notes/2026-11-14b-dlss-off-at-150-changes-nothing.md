@@ -128,3 +128,18 @@ Tefa: *"ran just A, looks beautiful, no smudge, no blinking, things still wrong 
 - **The puddle is NOT that group**: the underwater parts are still drawn shifted. Test B (High Resolution Water Fog,
   Fog-based Object Culling and three more off) is the next for it; TTWVR's own water drawing stays the other suspect.
 - **The far skyline did not swim either** (Tefa, asked "did the far skyline still swim": *"no"*) `[verified-live 2026-11-14, n=1]`: the swim is the same group, most likely LOD Flicker Fix itself (it changes how the far view is drawn).
+
+## Tests C and B worn (2026-11-14 20:17-20:19, Tefa): "both b and c smudge is back but in b the puddle is correct"
+
+`[verified-live 2026-11-14, n=1 each]`. Logs of B kept (`runs/2026-11-14 2018 test B headset ...`); C's were overwritten
+by B's start (two starts back to back; a gap in the keeping, noted).
+- **C (only Vanilla Plus AO off): the smudge is back**, so ambient occlusion alone is not it.
+- **B: the puddle is correct**, so the shifted underwater parts come from one of B's five: Fog-based Object Culling,
+  Alpha Rendering Tweaks, Depth of Field Fix, Real Time Reflections, High Resolution Water Fog. Smudge back in B, as
+  expected (the LOD Flicker Fix group is on there).
+
+Next split, three new copies of rung 5 (`needs_check.py`, `ladder.py check` clean on each):
+- `rung-05 test D depth resolve group off`: Depth Resolve, Vanilla Plus AO, Vanilla Plus Particles off.
+- `rung-05 test E vanilla plus skin and terrain off`: Vanilla Plus Skin and Terrain off.
+- `rung-05 test F water fog off`: only High Resolution Water Fog off (the puddle).
+If neither D nor E clears the smudge, it is LOD Flicker Fix itself (A minus D minus E).
