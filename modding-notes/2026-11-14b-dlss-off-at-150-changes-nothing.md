@@ -117,3 +117,14 @@ The three tests, all copies of rung 5, `needs_check.py` and `ladder.py check` cl
 - `rung-05 test B drawing plugins off`: Fog-based Object Culling, Alpha Rendering Tweaks, Depth of Field Fix, Real Time
   Reflections, High Resolution Water Fog off; Depth Resolve back on (blinking, water).
 - `rung-05 test C ambient occlusion off` (new): only Vanilla Plus AO off (smudge, dark outlines). Wear first.
+
+## Test A worn (2026-11-14 20:07-20:14, Tefa, Quest 3): "looks beautiful, no smudge, no blinking"
+
+Tefa: *"ran just A, looks beautiful, no smudge, no blinking, things still wrong in the puddle"* `[verified-live
+2026-11-14, n=1]`. Logs: `runs/2026-11-14 1955 test A headset/`; clean exit, no Windows errors.
+- **The smudge and the blinking come from the LOD Flicker Fix group**: LOD Flicker Fix, Depth Resolve, Vanilla Plus AO,
+  Particles, Skin, Terrain (Begin Again's drawing add-ons, written for one flat screen). Which one(s): test C (AO alone
+  off) next; then the others one at a time if C does not do it.
+- **The puddle is NOT that group**: the underwater parts are still drawn shifted. Test B (High Resolution Water Fog,
+  Fog-based Object Culling and three more off) is the next for it; TTWVR's own water drawing stays the other suspect.
+- The far skyline's swim: not said; asked.

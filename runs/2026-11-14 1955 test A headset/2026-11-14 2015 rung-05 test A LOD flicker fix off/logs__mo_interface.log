@@ -1,0 +1,36 @@
+[2026-11-14 17:54:39.550 D] command line: '"C:\Modlists\Begin Again\ModOrganizer.exe" '
+[2026-11-14 17:54:39.551 I] starting Mod Organizer version 2.5.2-ML1.5 revision 9c130cbf in C:/Modlists/Begin Again, usvfs: 0.5.6.1
+[2026-11-14 17:54:39.551 I] data path: C:/Modlists/Begin Again
+[2026-11-14 17:54:39.551 I] working directory: C:/Modlists/Begin Again
+[2026-11-14 17:54:39.551 D] timing: MOApplication setup() 26 ms
+[2026-11-14 17:55:01.145 I] using game plugin 'TTW' ('TTW', variant Steam, steam id '22380') at C:/Steam/steamapps/common/Fallout New Vegas
+[2026-11-14 17:55:42.095 I] [common_log.py:20] [RootBuilder] Generating root mod build data.
+[2026-11-14 17:55:44.630 I] [common_log.py:20] [RootBuilder] Updating cache.
+[2026-11-14 17:55:44.743 I] [common_log.py:20] [RootBuilder] Checking for updates to backup files.
+[2026-11-14 17:55:44.782 I] [common_log.py:20] [RootBuilder] Deploying files for Copy mode.
+[2026-11-14 17:55:45.793 I] [common_log.py:20] [RootBuilder] Deploying files for Link mode.
+[2026-11-14 17:55:45.793 I] [common_log.py:20] [RootBuilder] Saving build data.
+[2026-11-14 17:55:45.794 I] [common_log.py:20] [RootBuilder] Build complete!
+[2026-11-14 17:55:45.832 I] [common_log.py:20] [RootBuilder] Build exists, generating usvfs mappings.
+[2026-11-14 17:55:45.832 I] [common_log.py:20] [RootBuilder] Usvfs mappings generated!
+[2026-11-14 18:07:27.074 I] [common_log.py:20] [RootBuilder] Build exists, updating mod files.
+[2026-11-14 18:07:27.289 I] [common_log.py:20] [RootBuilder] Sync complete!
+[2026-11-14 18:07:27.289 I] [common_log.py:20] [RootBuilder] Clearing deployed files and links.
+[2026-11-14 18:07:27.305 I] [common_log.py:20] [RootBuilder] Restoring files from backup.
+[2026-11-14 18:07:27.336 I] [common_log.py:20] [RootBuilder] Cleaning up remaining files.
+[2026-11-14 18:07:27.336 I] [common_log.py:20] [RootBuilder] Clear complete!
+[2026-11-14 18:07:36.088 I] [common_log.py:20] [RootBuilder] Generating root mod build data.
+[2026-11-14 18:07:36.167 I] [common_log.py:20] [RootBuilder] Updating cache.
+[2026-11-14 18:07:36.199 I] [common_log.py:20] [RootBuilder] Checking for updates to backup files.
+[2026-11-14 18:07:36.230 I] [common_log.py:20] [RootBuilder] Deploying files for Copy mode.
+[2026-11-14 18:07:36.255 I] [common_log.py:20] [RootBuilder] Deploying files for Link mode.
+[2026-11-14 18:07:36.255 I] [common_log.py:20] [RootBuilder] Saving build data.
+[2026-11-14 18:07:36.255 I] [common_log.py:20] [RootBuilder] Build complete!
+[2026-11-14 18:07:36.258 I] [common_log.py:20] [RootBuilder] Build exists, generating usvfs mappings.
+[2026-11-14 18:07:36.258 I] [common_log.py:20] [RootBuilder] Usvfs mappings generated!
+[2026-11-14 18:14:04.778 I] [common_log.py:20] [RootBuilder] Build exists, updating mod files.
+[2026-11-14 18:14:04.911 I] [common_log.py:20] [RootBuilder] Sync complete!
+[2026-11-14 18:14:04.911 I] [common_log.py:20] [RootBuilder] Clearing deployed files and links.
+[2026-11-14 18:14:04.928 I] [common_log.py:20] [RootBuilder] Restoring files from backup.
+[2026-11-14 18:14:04.960 I] [common_log.py:20] [RootBuilder] Cleaning up remaining files.
+[2026-11-14 18:14:04.961 I] [common_log.py:20] [RootBuilder] Clear complete!
