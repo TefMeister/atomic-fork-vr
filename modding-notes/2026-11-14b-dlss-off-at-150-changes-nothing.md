@@ -100,3 +100,20 @@ Resolution Water Fog (`HighResWaterDepth.dll`, the water's own depth). The 2026-
 fault is VR-only, which does not clear these two: a plugin written for one flat screen can go wrong only in VR.
 High Resolution Water Fog is now OFF in `rung-05 test B drawing plugins off` too (with Depth Resolve); `ladder.py check`
 clean. Test B therefore also asks: is the water right there?
+
+## Test A stopped at a box; the tests rebuilt by what needs what (2026-11-14 19:48)
+
+Tefa's start of test A stopped at "LOD Flicker Fix not found. Depth Resolve cannot be used without it", and came back
+after OK: the game did not start (closed by Tefa). My miss: the add-ons' needs were not checked. Read from the DLLs
+(`tools/needs_check.py`, new; run it before any start of a changed profile) `[measured]`:
+- LOD Flicker Fix is needed by Depth Resolve, Vanilla Plus AO, Vanilla Plus Particles, Vanilla Plus Skin, Vanilla Plus
+  Terrain; Depth Resolve by Vanilla Plus AO and Particles; all of them need Shader Loader.
+- **Vanilla Plus AO arrives at rung 3** (off in rung 2), when Tefa's picture went soft: screen-space ambient occlusion
+  worked out from Depth Resolve's depth, which on the Quest is 2944x2208, not the eye's size. Shadows computed at the
+  wrong size would smudge bushes and draw dark outlines beside objects (the tyre) `[hypothesis]`: the top suspect now.
+
+The three tests, all copies of rung 5, `needs_check.py` and `ladder.py check` clean on each:
+- `rung-05 test A LOD flicker fix off`: LOD Flicker Fix, Depth Resolve and the four Vanilla Plus add-ons off (skyline).
+- `rung-05 test B drawing plugins off`: Fog-based Object Culling, Alpha Rendering Tweaks, Depth of Field Fix, Real Time
+  Reflections, High Resolution Water Fog off; Depth Resolve back on (blinking, water).
+- `rung-05 test C ambient occlusion off` (new): only Vanilla Plus AO off (smudge, dark outlines). Wear first.
