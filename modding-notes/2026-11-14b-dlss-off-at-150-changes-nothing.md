@@ -70,3 +70,20 @@ Two new MO2 profiles, copies of `rung-05 interface` (left untouched), shared sav
   Fix, Real Time Reflections off. For the smudging bushes and far things, and the blinking.
 Kept ON in both: LOD Fixes and Improvements (Begin Again's big far meshes may need its vertex limit fix) and Shader
 Loader. `ladder.py check` clean on both. Not in `ladder_groups.py`: a rebuild leaves them alone.
+
+## The blinking, read from Tefa's clip (rung 5, 2026-11-13 21:24, `VirtualDesktop.Android-20261113-212457-0.mp4`)
+
+Read with Flickers BeG0nE's reader through the new `tools/clip_flickers.py` (every one of the 605 frames, head motion
+lined up; the clip is one view at 60 fps). One repeated frame in 10 s (not Virtual Desktop filling in) `[measured]`.
+- **The clearest blink, frame 371 (6.2 s): two small rocks just below the big rock's edge are missing for that one frame**,
+  there before and after `[measured, n=1 clip]`. Whole objects gone for a frame is culling (the engine deciding an
+  object is hidden), not shimmer.
+- Frames 282 and 531: the ground and grass texture in the lower right flickers over a wide patch (smaller, many
+  pixels): the shimmer kind, likely fine ground detail under head motion `[hypothesis]`.
+
+Candidates for the culled rocks `[hypothesis]`: TTWVR's own occlusion culling (`bOcclusionCull`, from a coarse grid of
+the eye's depth, decided on a worker thread for both eyes: an object right next to an occluder's edge can be judged
+hidden from a depth one frame old while the head moves); Begin Again's `Fog-based Object Culling` (rung 2, in test B).
+The game's own `bEnableBoundingVolumeOcclusion=1` is the same in every rung, the debug one included, so it alone does
+not explain "sharp at first". Test B says whether Begin Again's culling plays a part; TTWVR's own switch is not in
+TTWVR.ini (a DLL table, as with `bFogCull`).
