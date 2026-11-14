@@ -127,4 +127,4 @@ Tefa: *"ran just A, looks beautiful, no smudge, no blinking, things still wrong 
   off) next; then the others one at a time if C does not do it.
 - **The puddle is NOT that group**: the underwater parts are still drawn shifted. Test B (High Resolution Water Fog,
   Fog-based Object Culling and three more off) is the next for it; TTWVR's own water drawing stays the other suspect.
-- The far skyline's swim: not said; asked.
+- **The far skyline did not swim either** (Tefa, asked "did the far skyline still swim": *"no"*) `[verified-live 2026-11-14, n=1]`: the swim is the same group, most likely LOD Flicker Fix itself (it changes how the far view is drawn).
