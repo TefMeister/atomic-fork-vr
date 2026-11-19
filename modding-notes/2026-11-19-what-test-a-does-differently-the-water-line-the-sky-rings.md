@@ -145,6 +145,33 @@ VR at all, and Begin Again's flat players have them as well; (2) a dither in our
 Shader Loader, in the VR rungs only; (3) check at full size that the upscaler does not smooth it away; if it does,
 the noise has to move with the frame or be added at both ends.
 
+## 5c. The rings, third round: the cure works on the desk
+
+Tefa, 2026-11-19: *"the rings also appear in the flat version of the game and possibly the water line too"*
+`[reported]`. So the rings are the game's / the list's own, not VR's; the flat still was not needed.
+
+`tools/dither_pso.py` (new) takes a ps_3_0 shader apart with Windows' own shader library, adds half a level of
+fine noise (made from the pixel's place on the screen) to the final colour write, and puts it together again. Run on
+Vanilla Plus Tonemapper's three `ISHDRBLENDINSHADER*.pso` (the step that brings the game's bright picture down to
+256 levels); the three results live in our own mod `Bridge - smooth sky`, which wins over Begin Again's files without
+touching them.
+
+Rung 5 with that mod, same sky, same hour, full size `[verified-live, simulator, n=1 run, 4 pictures]`:
+- the hard ring edges are gone: each edge is a speckle that fades from one level to the next
+  (`2026-11-19-pictures/sky full size - plain left, tonemapper dither right, stretched.png`; the contrast is
+  stretched about 60 times, the soft waves left in it are far below what an eye sees);
+- grain 0.066 -> 0.356 of a level; the 2%-98% spread of the crop 96-97 -> 95-98;
+- the upscaler (DLSS Quality) did NOT smooth the noise away: it is in the picture the headset gets.
+
+Not established: how it looks in the headset (noise of half a level should be invisible; through Virtual Desktop's
+video stream it could show as faint grain in dark scenes or be smoothed back into rings); whether the noise standing
+still on the screen is noticed when the head turns (if so: make it move with the frame). Strength 1.0 (half a level
+each way) is the textbook value; the tool takes another.
+
+To wear: profile `rung-05 test V clean picture and smooth sky` = test A (LOD Flicker Fix and its five add-ons off)
++ `Bridge - smooth sky`. `ladder.py check` and `needs_check.py` clean; V itself not started on the desk (A and the
+mod each were).
+
 ## 6. Tools made or mended
 
 - `tools/sim_shot.py`: one eye picture of a running rung, a part enlarged.
