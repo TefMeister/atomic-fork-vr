@@ -212,6 +212,14 @@ colours; (2) if they differ: our own small patch that gives the far water the ce
 should close the rest; (3) the same on the simulator for VR, where the far water is the plain shader (reflections
 forced off) and can be photographed without anyone aiming a camera.
 
+**Checked the same hour (`tools/water_types.py`, new):** in the winning plugins of rung 5 the Capital Wasteland
+worldspace names ONE water record (Potomac) for both its ordinary water and its far water `[measured]`. So the
+worldspace is not the difference. What is left: the lake's own cells name a water type of their own (a cell may),
+while the far water always uses the worldspace's `[hypothesis]`; or the game changes the numbers between the two
+draws. NEXT (replaces step 1 above): read the water type of the cells at the Save 4 lake (the cell records' own
+water field) and compare that record with Potomac, colour by colour; if they differ, the fade's far sum can be fed
+Potomac's own colours instead of the cell's.
+
 ## 6. Tools made or mended
 
 - `tools/sim_shot.py`: one eye picture of a running rung, a part enlarged.
