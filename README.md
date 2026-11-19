@@ -1,6 +1,8 @@
-# Begin Again Tale of Two Realities VR Bridge (`ba-ttr-vr-bridge`)
+# Atomic Fork VR (`atomic-fork-vr`)
 
-Named by Tefa 2026-11-09.
+A fork of the Begin Again modlist and also A Tale of Two Realities v1.0 - but not affiliated with either.
+
+Renamed by Tefa 2026-11-19 (until then `ba-ttr-vr-bridge`, "Begin Again Tale of Two Realities VR Bridge", named 2026-11-09). The author of the Begin Again modlist is fine with the list being forked to work in VR and does not want to be affiliated with the fork; nothing here speaks for Begin Again or for A Tale of Two Realities. Older notes in this repository keep the old name.
 
 Goal (Tefa, 2026-11-09): run the **Begin Again** Wabbajack modlist for Tale of Two Wastelands with **TTWVR / Tale of Two
 Realities** by KUPOkinz, a full VR conversion of Fallout 3 + New Vegas as one xNVSE plugin. Tefa's words: "i fully
