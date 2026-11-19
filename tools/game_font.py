@@ -24,6 +24,7 @@ from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
 ATLAS = 1024          # the picture is ATLAS x ATLAS
 PAD = 8               # room round each letter for the edge and the shadow
 EDGE = 3              # width of the dark edge
+TRACKING = EDGE + 1       # extra room after each letter, or one letter's dark edge lies on the next letter's face
 SHADOW_BLUR = 3
 ACCENT_ROOM = 3       # rows kept above the capitals (more pushes every line of text down)
 SHADOW_ALPHA = 0.75
@@ -99,7 +100,7 @@ def main():
         gx, gy, w, h, adv, left = made[ch]
         u0, v0, u1, v1 = gx / ATLAS, gy / ATLAS, (gx + w) / ATLAS, (gy + h) / ATLAS
         before = 0.0                               # as the game's own fonts: the box starts at the pen
-        after = float(round(adv) - w)
+        after = float(round(adv) - w + TRACKING)
         glyphs[code] = (0.0, u0, v0, u1, v0, u0, v1, u1, v1, float(w), float(h), before, after, a.top)
     folder = os.path.join(a.out, "textures", "fonts")
     os.makedirs(folder, exist_ok=True)

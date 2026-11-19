@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""menu_title.py -- draw a one-row, weathered title picture for the main menu.
+"""menu_title.py -- draw a one-row, weathered title picture for the main menu (the face colour is the menu's yellow).
 
     python menu_title.py <font.ttf> <out.dds> [--text "FALLOUT: TALE OF TWO WASTELANDS"] [--plain] [--seed 7]
 
-Cream letters with rust blotches, chipped edges and scratches, a dark edge and a soft shadow, on a see-through
+Yellow letters with rust blotches, chipped edges and scratches, a dark edge and a soft shadow, on a see-through
 background; --plain leaves the wear off. The picture is WIDTH x HEIGHT; the menu layout shows it at a set width.
 Uncompressed 32-bit .dds, so the wear stays crisp.
 """
@@ -15,7 +15,7 @@ from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
 
 WIDTH, HEIGHT = 2048, 160
 TEXT_WIDTH = 1960            # the row of letters is fitted to this many pixels
-CREAM, RUST, DARK_RUST, EDGE_RGB = (238, 224, 186), (168, 84, 36), (92, 44, 18), (30, 18, 10)
+FACE, RUST, DARK_RUST, EDGE_RGB = (255, 221, 103), (168, 84, 36), (92, 44, 18), (30, 18, 10)
 EDGE = 4
 RUST_SHARE = 0.12            # how much of the letters' face is rust
 CHIP_AT_EDGE = 0.22          # how much of the letters' rim is chipped away
@@ -59,7 +59,7 @@ def main():
     mask = Image.new("L", (WIDTH, HEIGHT), 0)
     ImageDraw.Draw(mask).text((WIDTH // 2, HEIGHT // 2), a.text, font=font, fill=255, anchor="mm")
     face = np.empty((HEIGHT, WIDTH, 3), np.float32)
-    face[:] = CREAM
+    face[:] = FACE
     if not a.plain:
         m = np.asarray(mask, dtype=np.float32) / 255
         rim = m - np.asarray(mask.filter(ImageFilter.MinFilter(9)), dtype=np.float32) / 255      # 1 on the letters' rim

@@ -33,9 +33,11 @@ MENU_X_SHARE = 0.041      # the menu words start this share of the screen's widt
                           # the picture on any screen shape, as the game stretches the picture to the screen)
 MENU_X_INSET = 30         # ... less the list box's own inset before its words
 SUBMENU_LIST_X = 1010     # where the list stands while Load or Settings is open (the Load panel is 750 wide)
-MENU_Y = 335              # top of the first menu word
-MENU_CAP = 43             # height of the menu font's capitals (the game's own font: about 40)
-FONT_LINE, FONT_TOP = 58.7, 56.2   # the font file's two placing numbers, tuned by picture so words sit in their rows
+ROW_PITCH = 1             # only a flag now: 1 = on the main menu (the rows keep the list's own 50)
+BOX_PAD = 9               # the highlight box reaches this far left and right of the chosen word
+MENU_Y = 325              # top of the first menu word
+MENU_CAP = 36             # height of the menu font's capitals: 36 of the 50-high row leaves a clear gap (Tefa: rows too close at 43)
+FONT_LINE, FONT_TOP = 54.2, 49.2   # the font file's two placing numbers, tuned by picture so words sit in their rows
 TITLE_SHOWN_WIDTH = 1600  # the title row's width on screen (16:9 is 1,707 wide)
 TITLE_Y = 26
 TITLE_FILE = os.path.join("textures", "interface", "atomicfork", "title_row.dds")
@@ -69,6 +71,18 @@ LIST_NEW = f"""			<!-- Atomic Fork: 1 on the main menu's top level (title showin
 				<and src="sibling(main_title)" trait="visible"/>
 			</_AtomicForkSub>
 			<_leftjustify> <copy src="me" trait="_AtomicForkLeft"/> </_leftjustify>
+			<!-- our row height on the main menu (0 = the list's own, in the pause menu) -->
+			<_AtomicForkPitch>
+				<copy> {ROW_PITCH} </copy>
+				<onlyif src="sibling(main_title)" trait="visible"/>
+			</_AtomicForkPitch>
+			<clipwindow> <not src="sibling(main_title)" trait="visible"/> </clipwindow> <!-- nothing scrolls here; clipping cut letter tops -->
+			<_line_alpha> <copy> 255 </copy> <onlyifnot src="sibling(main_title)" trait="visible"/> </_line_alpha> <!-- each row draws its own box -->
+			<_fill_alpha>
+				<copy src="globals" trait="_VUI+Highlighting" />
+				<mul> 2.5 </mul>
+				<onlyifnot src="sibling(main_title)" trait="visible"/>
+			</_fill_alpha>
 			<x>
 				<copy src="parent" trait="width"/>
 				<sub src="me" trait="width"/>
@@ -122,6 +136,31 @@ INSET_NEW = INSET_OLD.replace("<copy> 20 </copy>", """<copy> 20 </copy>
 							<copy src="grandparent" trait="_AtomicForkLeft"/>
 							<mult> 5 </mult>
 						</sub>""")
+
+ITEM_OLD = """			<brightness> <copy src="io" trait="brightness"/> </brightness>
+			<height> <copy src="io" trait="_item_height"/> </height>
+			<user0> 0 </user0> <!-- action mapping visibility: 0=none 1=button text 2=button icon -->"""
+ITEM_NEW = f"""			<brightness> <copy src="io" trait="brightness"/> </brightness>
+			<height> <copy src="io" trait="_item_height"/> </height>
+			<!-- Atomic Fork: on the main menu each row draws its own highlight box, fitted to its word. (Tried 2026-11-19 and
+			     dropped: our own row height and stacking here. MAPMO's script sets every row's height and place itself at
+			     the start and the game did not work ours out again, so the rows stay 50 apart.) -->
+			<clips> <not src="parent" trait="_AtomicForkPitch"/> </clips>
+			<rect name="AtomicForkBox">
+				<include src="box.xml"/>
+				<visible>
+					<copy src="parent" trait="_VUI+Highlighted"/>
+					<and src="grandparent" trait="_AtomicForkPitch"/>
+					<and src="grandparent" trait="_enabled"/>
+				</visible>
+				<x> <copy src="sibling(ListItemText)" trait="x"/> <sub> {BOX_PAD} </sub> </x>
+				<y> 2 </y>
+				<width> <copy src="sibling(ListItemText)" trait="width"/> <add> {2 * BOX_PAD} </add> </width>
+				<height> <copy src="parent" trait="height"/> <sub> 4 </sub> </height>
+				<_fill_alpha> 70 </_fill_alpha>
+				<depth> 1 </depth>
+			</rect>
+			<user0> 0 </user0> <!-- action mapping visibility: 0=none 1=button text 2=button icon -->"""
 
 ROW_OLD = """		<image name="main_title">"""
 ROW_NEW = """		<!-- Atomic Fork: our own title row, top centre, on the main menu -->
@@ -189,6 +228,7 @@ def main():
     with open(os.path.join(a.mo2, VUI), encoding="latin-1", newline="") as f:
         menu = change(f.read(), LIST_OLD, LIST_NEW, "the menu list's place in start_menu.xml")
         menu = change(menu, INSET_OLD, INSET_NEW, "the words' inset in start_menu.xml's list item")
+        menu = change(menu, ITEM_OLD, ITEM_NEW, "the list row's height in start_menu.xml")
     with open(os.path.join(a.mo2, TITLE), encoding="latin-1", newline="") as f:
         logo = change(f.read(), HIDE_OLD, HIDE_NEW, "the logo's 'visible' in pause_title.xml")
     title_out = os.path.join(a.out, TITLE_FILE)
