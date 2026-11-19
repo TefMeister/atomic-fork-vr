@@ -107,6 +107,12 @@ OFF_IN_VR_PLUGINS = {"360movement.esp", "360movement - diagonal movement patch.e
 BRIDGE_MODS = ["Bridge - Atomic Fork main menu", "Bridge - Stewie grabbed weight off"]   # first = on top; 2026-11-19: the menu picture and silent title music
 
 
+# 2026-11-19: our main-menu layout (title row, menu on the left, our font; built by menu_layout.py into the list's mods
+# folder) changes copies of these two mods' files, so it is on only in rungs that have both.
+LAYOUT_MOD = "Bridge - Atomic Fork main menu layout"
+LAYOUT_NEEDS = ["Vanilla UI Plus (New Vegas)", "MAPMO - Main and Pause Menus Overhaul"]
+
+
 def write_profile(mo2, name, on, lo, base_lines, with_vr, force):
     if with_vr:
         on = [m for m in on if m not in OFF_IN_VR_MODS]
@@ -133,7 +139,8 @@ def write_profile(mo2, name, on, lo, base_lines, with_vr, force):
             shutil.copy2(s, os.path.join(dst, x))
             os.chmod(os.path.join(dst, x), stat.S_IWRITE | stat.S_IREAD)
     want = set(on)
-    new = [("+" if with_vr else "-") + TTWVR] + ["+" + m for m in BRIDGE_MODS]
+    layout_on = all(m in want for m in LAYOUT_NEEDS)
+    new = [("+" if with_vr else "-") + TTWVR, ("+" if layout_on else "-") + LAYOUT_MOD] + ["+" + m for m in BRIDGE_MODS]
     for l in base_lines:
         flag, nm = l[0], l[1:]
         if nm.endswith("_separator") or flag == "*":
