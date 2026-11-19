@@ -1,0 +1,76 @@
+[13:15:43.046] INFO  TTWVR 1.0.0 loading (xNVSE 06040070), build 6AF014A8
+[13:15:43.048] INFO  Settings: built in + the VR menu's choices in C:\Steam\steamapps\common\Fallout New Vegas\Data\NVSE\Plugins\TTWVR\TTWVR.ini
+[13:15:52.319] INFO  [input] the game's control read hooked: keys count with the pad connected
+[13:15:53.166] WARN  OpenXR: 32-bit layer 'XR_APILAYER_NOVENDOR_OBSMirror' (~\AppData\Local\OpenXR-OBSMirror\.\XR_APILAYER_NOVENDOR_OBSMirror.292629488385.dll): its library is 64-bit - switched off for this game
+[13:15:53.166] WARN  OpenXR: 32-bit layer 'XR_APILAYER_ELLIOTTTATE_xrfps' (~\AppData\Local\xrFPS\.\XrApiLayer_xrfps.7070ca21200.dll): its library is 64-bit - switched off for this game
+[13:15:53.166] WARN  OpenXR: 32-bit layer 'XR_APILAYER_FLATTOVR_hand_freeze' (~\AppData\Local\Programs\HandFreeze\hand_freeze_layer.dll): its library is 64-bit - switched off for this game
+[13:15:53.166] WARN  OpenXR: 32-bit layer 'XR_APILAYER_FLATTOVR_window_view' (~\AppData\Local\Programs\WindowView\window_view_layer.dll): its library is 64-bit - switched off for this game
+[13:15:53.180] INFO  OpenXR: runtime 'OpenXR Simulator Runtime' 1.6.0
+[13:15:53.180] INFO  OpenXR: system 'OpenXR Simulator' (swapchains up to 4096x4096)
+[13:15:53.195] INFO  OpenXR: DXGI adapter 0: NVIDIA GeForce <pc> 5080 (3072 MB VRAM) = THE HEADSET RUNTIME'S
+[13:15:53.439] INFO  VR backend: OpenXR
+[13:15:57.062] INFO  OpenXR: the runtime displays a frame every 11.11 ms (90 Hz)
+[13:15:57.065] WARN  [camtrack] SteamVR: Virtual Desktop's body memory is not there (Virtual Desktop not streaming, or the headset's Forward tracking data to PC is off) - looking again every 2 s
+[13:15:57.065] INFO  [camtrack] no body tracking and no Virtual Desktop body: the body is solved from the headset and the controllers (floor from the play space); body follow radius 0.050 m, pouch accept 0.150 m
+[13:15:57.065] INFO  Head tracking active (OpenXR)
+[13:16:06.798] WARN  [hang] the game's main loop has not turned for 8.1 s (a long load screen looks the same). Main thread 31204:
+[13:16:06.798] WARN  [hang]   at EIP 77DE0F8C = ntdll.dll+0x40F8C | ESP 001AE688 EBP 001AE6B8
+[13:16:06.798] WARN  [hang]   ESP+0x34: return to ntdll.dll+0x40837 (77DE0837)
+[13:16:06.798] WARN  [hang]   ESP+0x84: return to ntdll.dll+0x921A6 (77E321A6)
+[13:16:06.798] WARN  [hang]   ESP+0xC0: return to ntdll.dll+0x3DC49 (77DDDC49)
+[13:16:06.798] WARN  [hang]   ESP+0xF4: return to ttwvr_dxvk_d3d9.dll+0x1EB6AB (714CB6AB)
+[13:16:06.798] WARN  [hang]   ESP+0x10C: return to ttwvr_dxvk_d3d9.dll+0x1D1EE3 (714B1EE3)
+[13:16:06.798] WARN  [hang]   ESP+0x118: return to ttwvr_dxvk_d3d9.dll+0xF94B4 (713D94B4)
+[13:16:06.798] WARN  [hang]   ESP+0x130: return to ttwvr_dxvk_d3d9.dll+0x2A5B6B (71585B6B)
+[13:16:06.798] WARN  [hang]   ESP+0x13C: return to ttwvr_dxvk_d3d9.dll+0xF969A (713D969A)
+[13:16:06.798] WARN  [hang]   ESP+0x160: return to ntdll.dll+0x3DC49 (77DDDC49)
+[13:16:06.798] WARN  [hang]   ESP+0x194: return to ttwvr_dxvk_d3d9.dll+0x1EB6AB (714CB6AB)
+[13:16:06.798] WARN  [hang]   ESP+0x1A0: return to ttwvr_dxvk_d3d9.dll+0x2A5BDA (71585BDA)
+[13:16:06.798] WARN  [hang]   ESP+0x1AC: return to ttwvr_dxvk_d3d9.dll+0xDB5EA (713BB5EA)
+[13:16:06.798] WARN  [hang]   ESP+0x1E0: return to ttwvr_dxvk_d3d9.dll+0x6D739 (7134D739)
+[13:16:06.798] WARN  [hang]   ESP+0x228: return to ttwvr_dxvk_d3d9.dll+0x2A150E (7158150E)
+[13:16:06.798] WARN  [hang]   ESP+0x234: return to ttwvr_dxvk_d3d9.dll+0x6DADF (7134DADF)
+[13:16:06.798] WARN  [hang]   ESP+0x250: return to ttwvr_dxvk_d3d9.dll+0x2A153D (7158153D)
+[13:16:06.798] WARN  [hang]   ESP+0x25C: return to ttwvr_dxvk_d3d9.dll+0x28B20 (71308B20)
+[13:16:06.802] WARN  [hang]   ESP+0x2B4: return to FalloutNV.exe+0xAD1846 (00ED1846)
+[13:16:06.802] WARN  [hang]   ESP+0x2CC: return to ttwvr_dxvk_d3d9.dll+0x29D814 (7157D814)
+[13:16:06.802] WARN  [hang]   ESP+0x2D8: return to TTWVR.dll+0x454D1A (71D94D1A)
+[13:16:06.802] WARN  [hang]   ESP+0x308: return to FalloutNV.exe+0xA8F2A9 (00E8F2A9)
+[13:16:06.802] WARN  [hang]   ESP+0x348: return to FalloutNV.exe+0xA722C6 (00E722C6)
+[13:16:06.802] WARN  [hang]   ESP+0x350: return to FalloutNV.exe+0xA7234C (00E7234C)
+[13:16:06.807] WARN  [hang]   ESP+0x398: return to ntdll.dll+0x95C8E (77E35C8E)
+[13:16:06.807] WARN  [hang]   ESP+0x3A4: return to FalloutNV.exe+0xA74431 (00E74431)
+[13:16:06.812] WARN  [hang]   ESP+0x3D8: return to ntdll.dll+0x6495D (77E0495D)
+[13:16:06.817] WARN  [hang]   ESP+0x3F0: return to NVTF.dll+0x15FE (076615FE)
+[13:16:06.817] WARN  [hang]   ESP+0x3FC: return to LOD Fixes.dll+0x17C2 (0CFF17C2)
+[13:16:06.817] WARN  [hang]   ESP+0x414: return to FalloutNV.exe+0x65EB88 (00A5EB88)
+[13:16:06.817] WARN  [hang]   ESP+0x424: return to KERNEL32.DLL+0x32100 (76252100)
+[13:16:06.818] WARN  [hang]   ESP+0x444: return to LOD Fixes.dll+0x3EC1 (0CFF3EC1)
+[13:16:06.818] WARN  [hang]   ESP+0x450: return to FalloutNV.exe+0x2F6016 (006F6016)
+[13:16:06.819] WARN  [hang]   ESP+0x470: return to FalloutNV.exe+0xAF10D9 (00EF10D9)
+[13:16:06.819] WARN  [hang]   ESP+0x480: return to FalloutNV.exe+0x2FE0E8 (006FE0E8)
+[13:16:06.819] WARN  [hang]   ESP+0x48C: return to FalloutNV.exe+0x2FEC6D (006FEC6D)
+[13:16:06.820] WARN  [hang]   ESP+0x498: return to FalloutNV.exe+0x884F (0040884F)
+[13:16:06.820] WARN  [hang]   ESP+0x4A0: return to FalloutNV.exe+0x4ED0 (00404ED0)
+[13:16:06.820] WARN  [hang]   ESP+0x4B8: return to FalloutNV.exe+0xB076E3 (00F076E3)
+[13:16:06.820] WARN  [hang]   ESP+0x4C4: return to FalloutNV.exe+0x2FE255 (006FE255)
+[13:16:06.820] WARN  [hang]   ESP+0x4EC: return to FalloutNV.exe+0x4ED0 (00404ED0)
+[13:16:06.820] WARN  [hang]   ESP+0x504: return to FalloutNV.exe+0xB076E3 (00F076E3)
+[13:16:06.820] WARN  [hang]   ESP+0x510: return to FalloutNV.exe+0x2FE255 (006FE255)
+[13:16:06.820] WARN  [hang]   ESP+0x528: return to FalloutNV.exe+0x2FED18 (006FED18)
+[13:16:06.820] WARN  [hang]   ESP+0x538: return to FalloutNV.exe+0x4ED0 (00404ED0)
+[13:16:06.820] WARN  [hang]   ESP+0x550: return to FalloutNV.exe+0xB076E3 (00F076E3)
+[13:16:06.820] WARN  [hang]   ESP+0x55C: return to FalloutNV.exe+0x2FE255 (006FE255)
+[13:16:06.820] WARN  [hang]   ESP+0x570: return to FalloutNV.exe+0x140464 (00540464)
+[13:16:06.820] WARN  [hang]   ESP+0x584: return to FalloutNV.exe+0x4ED0 (00404ED0)
+[13:16:06.820] WARN  [hang] the game's GPU device: alive (the freeze is not a lost device)
+[13:16:06.820] WARN  [hang] the last GPU work NVVR gave the game's device (oldest first):
+[13:16:07.465] WARN  [hang] minidump of the frozen game (8 s): ~\Documents\My Games\FalloutNV\TTWVR-hang-16343578.dmp (written)
+[13:16:07.965] WARN  [hang] the main loop is turning again (it had stopped for 9.3 s)
+[13:16:41.153] WARN  [vr] the headset's session is gone - the game is paused (its pause menu); NVVR connects again by itself
+[13:16:44.169] INFO  OpenXR: system 'OpenXR Simulator' (swapchains up to 4096x4096)
+[13:16:44.209] WARN  [camtrack] SteamVR: Virtual Desktop's body memory is not there (Virtual Desktop not streaming, or the headset's Forward tracking data to PC is off) - looking again every 2 s
+[13:16:44.209] INFO  [camtrack] no body tracking and no Virtual Desktop body: the body is solved from the headset and the controllers (floor from the play space); body follow radius 0.050 m, pouch accept 0.150 m
+[13:17:21.492] INFO  [window] the game's window was asked to close (message 0x10)
+[13:17:21.501] INFO  [window] the game's window was asked to go (message 0x2)
+[13:17:21.501] INFO  [window] the game's window was asked to go (message 0x2)

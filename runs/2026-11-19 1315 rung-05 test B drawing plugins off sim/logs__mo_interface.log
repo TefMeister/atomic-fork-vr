@@ -1,0 +1,22 @@
+[2026-11-19 11:13:52.607 D] command line: '"C:\Modlists\Begin Again\ModOrganizer.exe" -p "rung-05 test B drawing plugins off sim" "moshortcut://:Begin Again"'
+[2026-11-19 11:13:52.607 I] starting Mod Organizer version 2.5.2-ML1.5 revision 9c130cbf in C:/Modlists/Begin Again, usvfs: 0.5.6.1
+[2026-11-19 11:13:52.607 I] data path: C:/Modlists/Begin Again
+[2026-11-19 11:13:52.607 I] working directory: C:/Modlists/Begin Again
+[2026-11-19 11:13:52.607 D] timing: MOApplication setup() 0 ms
+[2026-11-19 11:13:53.078 I] using game plugin 'TTW' ('TTW', variant Steam, steam id '22380') at C:/Steam/steamapps/common/Fallout New Vegas
+[2026-11-19 11:13:53.283 W] not saving lists during directory update
+[2026-11-19 11:13:53.755 I] [common_log.py:20] [RootBuilder] Generating root mod build data.
+[2026-11-19 11:13:53.820 I] [common_log.py:20] [RootBuilder] Updating cache.
+[2026-11-19 11:13:53.845 I] [common_log.py:20] [RootBuilder] Checking for updates to backup files.
+[2026-11-19 11:13:53.871 I] [common_log.py:20] [RootBuilder] Deploying files for Copy mode.
+[2026-11-19 11:13:53.894 I] [common_log.py:20] [RootBuilder] Deploying files for Link mode.
+[2026-11-19 11:13:53.894 I] [common_log.py:20] [RootBuilder] Saving build data.
+[2026-11-19 11:13:53.895 I] [common_log.py:20] [RootBuilder] Build complete!
+[2026-11-19 11:13:53.896 I] [common_log.py:20] [RootBuilder] Build exists, generating usvfs mappings.
+[2026-11-19 11:13:53.897 I] [common_log.py:20] [RootBuilder] Usvfs mappings generated!
+[2026-11-19 11:15:37.011 I] [common_log.py:20] [RootBuilder] Build exists, updating mod files.
+[2026-11-19 11:15:37.137 I] [common_log.py:20] [RootBuilder] Sync complete!
+[2026-11-19 11:15:37.137 I] [common_log.py:20] [RootBuilder] Clearing deployed files and links.
+[2026-11-19 11:15:37.155 I] [common_log.py:20] [RootBuilder] Restoring files from backup.
+[2026-11-19 11:15:37.188 I] [common_log.py:20] [RootBuilder] Cleaning up remaining files.
+[2026-11-19 11:15:37.188 I] [common_log.py:20] [RootBuilder] Clear complete!

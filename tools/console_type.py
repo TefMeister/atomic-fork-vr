@@ -23,10 +23,10 @@ def cb(h, l):
         wins.append((h, t.value, c.value))
     return True
 u.EnumWindows(cb, 0)
-for x in wins: print(x)
+for x in wins: print(ascii(x))   # ascii(): a window title with an arrow in it stopped the tool on a cp1252 console (2026-11-19)
 if len(sys.argv) < 2: sys.exit()
 game = [x for x in wins if "simulator" not in x[1].lower() and "openxr" not in x[1].lower()][0]
-print("using", game)
+print("using", ascii(game))
 class KI(ctypes.Structure): _fields_=[("wVk",w.WORD),("wScan",w.WORD),("dwFlags",w.DWORD),("time",w.DWORD),("dwExtraInfo",ctypes.c_size_t)]
 class IN(ctypes.Structure): _fields_=[("type",w.DWORD),("ki",KI),("pad",ctypes.c_byte*8)]
 def key(sc, up=False):
