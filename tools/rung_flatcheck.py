@@ -116,6 +116,7 @@ def grab(hwnd, out):
         g.GetDIBits(ctypes.c_void_p(mdc), ctypes.c_void_p(bmp), 0, H, buf, ctypes.byref(bi), 0)
         g.DeleteObject(ctypes.c_void_p(bmp)); g.DeleteDC(ctypes.c_void_p(mdc)); u.ReleaseDC(ctypes.c_void_p(hwnd), ctypes.c_void_p(dc))
         im = Image.frombuffer("RGBA", (W, H), buf, "raw", "BGRA", 0, 1).convert("RGB")
+        im.save(out[:-4] + "-full.png")          # 2026-11-20: the full size too (the water line is not readable at 640)
         im.thumbnail((640, 640))
         im.save(out)
         return True
