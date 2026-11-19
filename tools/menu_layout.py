@@ -32,9 +32,10 @@ FONT = os.path.join(HERE, "fonts", "AlfaSlabOne-Regular.ttf")
 MENU_X_SHARE = 0.041      # the menu words start this share of the screen's width from the left (the same spot of
                           # the picture on any screen shape, as the game stretches the picture to the screen)
 MENU_X_INSET = 30         # ... less the list box's own inset before its words
+SUBMENU_LIST_X = 1010     # where the list stands while Load or Settings is open (the Load panel is 750 wide)
 MENU_Y = 335              # top of the first menu word
 MENU_CAP = 43             # height of the menu font's capitals (the game's own font: about 40)
-FONT_LINE, FONT_TOP = 58.0, 55.0   # the font file's two placing numbers, tuned by picture so words sit in their rows
+FONT_LINE, FONT_TOP = 58.7, 56.2   # the font file's two placing numbers, tuned by picture so words sit in their rows
 TITLE_SHOWN_WIDTH = 1600  # the title row's width on screen (16:9 is 1,707 wide)
 TITLE_Y = 26
 TITLE_FILE = os.path.join("textures", "interface", "atomicfork", "title_row.dds")
@@ -61,35 +62,74 @@ LIST_NEW = f"""			<!-- Atomic Fork: 1 on the main menu's top level (title showin
 				<not src="sibling(main_back_button)" trait="visible"/>
 				<and src="sibling(main_title)" trait="visible"/>
 			</_AtomicForkLeft>
+			<!-- Atomic Fork: 1 on the main menu inside a sub-menu (Load, Settings): the list stands right of the panel,
+			     which MAPMO's script puts to the LEFT of the list, so both end up on the left of the screen -->
+			<_AtomicForkSub>
+				<copy src="sibling(main_back_button)" trait="visible"/>
+				<and src="sibling(main_title)" trait="visible"/>
+			</_AtomicForkSub>
 			<_leftjustify> <copy src="me" trait="_AtomicForkLeft"/> </_leftjustify>
 			<x>
 				<copy src="parent" trait="width"/>
 				<sub src="me" trait="width"/>
 				<sub src="parent" trait="_x_buffer"/>
-				<onlyifnot src="me" trait="_AtomicForkLeft"/>
+				<onlyifnot src="sibling(main_title)" trait="visible"/>
 				<add>
 					<copy src="screen" trait="width"/>
 					<mult> {MENU_X_SHARE} </mult>
 					<sub> {MENU_X_INSET} </sub>
 					<onlyif src="me" trait="_AtomicForkLeft"/>
 				</add>
+				<add>
+					<copy> {SUBMENU_LIST_X} </copy>
+					<onlyif src="me" trait="_AtomicForkSub"/>
+				</add>
 			</x>
 			<y>
 				<copy src="parent" trait="height"/>
 				<sub src="me" trait="height"/>
 				<div> 2 </div>
-				<onlyifnot src="me" trait="_AtomicForkLeft"/>
+				<onlyifnot src="sibling(main_title)" trait="visible"/>
 				<add>
 					<copy> {MENU_Y} </copy>
-					<onlyif src="me" trait="_AtomicForkLeft"/>
+					<onlyif src="sibling(main_title)" trait="visible"/>
 				</add>
 			</y>
 			<width> 300 </width>"""
 
+INSET_OLD = """					<add>
+						<copy> 20 </copy>
+						<onlyif>
+							<copy src="me" trait="justify"/>
+							<eq> &left; </eq>
+						</onlyif>
+					</add>
+				</x>
+				<y>
+					<copy src="parent" trait="height" />
+					<sub src="me" trait="height" />
+					<div> 2 </div>
+					<add>
+						<copy src="me" trait="font" />
+						<copy src="globals" trait="_VUI+FontY_"/>
+					</add>
+				</y>
+			</text>
+
+			<text name="lb_item_button_text">"""
+INSET_NEW = INSET_OLD.replace("<copy> 20 </copy>", """<copy> 20 </copy>
+						<sub> <!-- Atomic Fork: the box sits evenly round the words -->
+							<copy src="grandparent" trait="_AtomicForkLeft"/>
+							<mult> 5 </mult>
+						</sub>""")
+
 ROW_OLD = """		<image name="main_title">"""
 ROW_NEW = """		<!-- Atomic Fork: our own title row, top centre, on the main menu -->
 		<image name="AtomicForkTitle">
-			<visible> <copy src="sibling(main_title)" trait="visible"/> </visible>
+			<visible> <!-- not while Load or Settings is open: their panel reaches the top -->
+				<not src="sibling(main_back_button)" trait="visible"/>
+				<and src="sibling(main_title)" trait="visible"/>
+			</visible>
 			<alpha> <copy src="sibling(main_title)" trait="alpha"/> </alpha>
 			<depth> 2 </depth>
 			<systemcolor> &nosystemcolor; </systemcolor>
@@ -148,6 +188,7 @@ def main():
     # read and change the two layout files first: if either has moved on, nothing at all is written
     with open(os.path.join(a.mo2, VUI), encoding="latin-1", newline="") as f:
         menu = change(f.read(), LIST_OLD, LIST_NEW, "the menu list's place in start_menu.xml")
+        menu = change(menu, INSET_OLD, INSET_NEW, "the words' inset in start_menu.xml's list item")
     with open(os.path.join(a.mo2, TITLE), encoding="latin-1", newline="") as f:
         logo = change(f.read(), HIDE_OLD, HIDE_NEW, "the logo's 'visible' in pause_title.xml")
     title_out = os.path.join(a.out, TITLE_FILE)

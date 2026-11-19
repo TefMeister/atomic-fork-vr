@@ -17,10 +17,11 @@ WIDTH, HEIGHT = 2048, 160
 TEXT_WIDTH = 1960            # the row of letters is fitted to this many pixels
 CREAM, RUST, DARK_RUST, EDGE_RGB = (238, 224, 186), (168, 84, 36), (92, 44, 18), (30, 18, 10)
 EDGE = 4
-RUST_SHARE = 0.34            # how much of the letters' face is rust
-CHIP_AT_EDGE = 0.40          # how much of the letters' rim is chipped away
-CHIP_INSIDE = 0.035
-SCRATCHES = 34
+RUST_SHARE = 0.12            # how much of the letters' face is rust
+CHIP_AT_EDGE = 0.22          # how much of the letters' rim is chipped away
+CHIP_INSIDE = 0.015
+SCRATCHES = 18
+SPECK_SHARE = 0.04           # fine dark specks on the face
 
 
 def noise(rng, size, blur):
@@ -65,7 +66,7 @@ def main():
         blot, grain, chip = noise(rng, (WIDTH, HEIGHT), 9), noise(rng, (WIDTH, HEIGHT), 1.2), noise(rng, (WIDTH, HEIGHT), 3.5)
         rust = np.clip((blot - (1 - RUST_SHARE)) / 0.08, 0, 1)[..., None]
         face = face * (1 - rust) + np.array(RUST, np.float32) * rust
-        speck = (grain > 0.90)[..., None]
+        speck = (grain > 1 - SPECK_SHARE)[..., None]
         face = np.where(speck, face * 0.45 + np.array(DARK_RUST, np.float32) * 0.55, face)
         face *= (0.86 + 0.14 * noise(rng, (WIDTH, HEIGHT), 20))[..., None]                        # uneven fading
         face *= np.linspace(1.06, 0.88, HEIGHT, dtype=np.float32)[:, None, None]                 # lighter at the top

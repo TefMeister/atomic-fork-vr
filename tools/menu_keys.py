@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """menu_keys.py -- press keys in the flat game's main menu (the game's own window is brought to the front first).
 
-    python menu_keys.py down down enter          keys in order: up down left right enter esc
+    python menu_keys.py down down enter          keys in order: up down left right enter esc tab
     python menu_keys.py quit                     six Downs (to Quit), then the caller LOOKS, then: menu_keys.py enter
 
 Keys go out as held scancodes (HOLD_S each): this game ignores a quick tap of Enter. Refuses when the window in
@@ -17,7 +17,7 @@ from ctypes import wintypes as w
 HOLD_S = 0.12
 GAP_S = 0.35
 GAME_EXE = "falloutnv.exe"
-KEYS = {"down": (0x50, True), "up": (0x48, True), "left": (0x4B, True), "right": (0x4D, True), "enter": (0x1C, False), "esc": (0x01, False)}
+KEYS = {"down": (0x50, True), "up": (0x48, True), "left": (0x4B, True), "right": (0x4D, True), "enter": (0x1C, False), "esc": (0x01, False), "tab": (0x0F, False)}
 u, k = ctypes.windll.user32, ctypes.windll.kernel32
 
 
