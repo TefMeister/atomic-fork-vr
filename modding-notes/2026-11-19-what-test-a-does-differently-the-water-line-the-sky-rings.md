@@ -172,6 +172,46 @@ To wear: profile `rung-05 test V clean picture and smooth sky` = test A (LOD Fli
 + `Bridge - smooth sky`. `ladder.py check` and `needs_check.py` clean; V itself not started on the desk (A and the
 mod each were).
 
+## 5d. Flat, with Tefa at the screen: the sky cured, the water line not yet
+
+**The sky.** Tefa in flat (`rung-05 test V flat smooth sky`, strength 1.0): *"i think it looks the same..."*, *"they
+still have sharp edges"*, although his screenshot of that run measures the mod working (grain 0.04 -> 0.49; blocks
+along the sky average to a smooth fade where the plain screenshot sits on whole levels). Strength 2.5 (1.25 levels
+each way): *"this is a whole lot better!"* `[reported, with a screenshot]`. `Bridge - smooth sky` is built at 2.5
+since then. Lesson: half a level is the textbook strength and was not enough for the eye on a real screen.
+
+**The water line** (Tefa: *"can you by any chance do this with water as well, blend that line instead of it being
+sharp and straight?"*). Both the rings and the line are in the flat game too (his two screenshots), so neither is
+the VR mod's.
+
+What the game does, read from its shader package (`water_blend.py --unpack`): 38 water pixel shaders. WATER000 to
+032 draw the near water in every mix of mirror picture / see-through / depth haze / ripples / sun; WATER033 (mirror
+picture) and 034 (one fixed mirror colour) have no wave map: the far water. Every near shader already fades its
+WAVES out between 4096 and 8192 units from the eye, and at 8192 the plainest near shader (007) is line for line the
+far one (034) `[measured, disassembly]`. With 5 x 5 loaded cells the border is 8192 to 12288 units away.
+
+`tools/water_blend.py` (new) adds a far shader's own sum to the end of each near shader and mixes by distance (all
+near up to 5120 units, all far from 8192). Three tries in flat, Tefa looking (`rung-05 test X flat water joins`):
+
+1. the near water gone altogether: MY BUG. The disassembly ends in a NUL line and the assembler stops reading
+   there, so everything added after it was dropped and the shader wrote no colour. Fixed in the tool.
+2. faded to WATER034's sum: the near water turns OLIVE before the border, the far water behind it is grey: a line.
+3. faded to WATER033's sum (for near shaders that have the mirror picture): the near water stays bright and
+   mirroring to the border, the far water behind it is a darker grey band: the line as before.
+
+**What that says:** the same far-water sums, fed with the NEAR water's numbers, give olive (plain) or bright mirror
+(with the picture); the real far water is neither. So the far water is drawn with DIFFERENT NUMBERS (its own
+colours, mirror colour or mirror amount), not only a different shader `[inferred from tries 2 and 3]`. Most likely
+the far water takes its water type from the worldspace (its "LOD water type") while the near water takes the
+cell's own, and the list's water mods changed one and not the other `[hypothesis]`. A near shader cannot see the far
+draw's numbers, so the fade has no right target yet.
+
+NEXT: (1) read which water type the Capital Wasteland worldspace names for its far water and which the lake's cells
+use, in the winning plugins (a small reader for the plugin records, or xEdit by hand), and compare the two records'
+colours; (2) if they differ: our own small patch that gives the far water the cells' type, then the fade of try 3
+should close the rest; (3) the same on the simulator for VR, where the far water is the plain shader (reflections
+forced off) and can be photographed without anyone aiming a camera.
+
 ## 6. Tools made or mended
 
 - `tools/sim_shot.py`: one eye picture of a running rung, a part enlarged.
