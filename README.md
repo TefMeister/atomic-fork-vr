@@ -2,7 +2,7 @@
 
 A fork of the Begin Again modlist and also A Tale of Two Realities v1.0 - but not affiliated with either.
 
-Renamed by Tefa 2026-11-19 (until then `ba-ttr-vr-bridge`, "Begin Again Tale of Two Realities VR Bridge", named 2026-11-09). The author of the Begin Again modlist is fine with the list being forked to work in VR and does not want to be affiliated with the fork; nothing here speaks for Begin Again or for A Tale of Two Realities. Older notes in this repository keep the old name.
+Renamed by Tefa 2026-11-19 (until then `ba-ttr-vr-bridge`, "Begin Again Tale of Two Realities VR Bridge", named 2026-11-09). Older notes in this repository keep the old name.
 
 Goal (Tefa, 2026-11-09): run the **Begin Again** Wabbajack modlist for Tale of Two Wastelands with **TTWVR / Tale of Two
 Realities** by KUPOkinz, a full VR conversion of Fallout 3 + New Vegas as one xNVSE plugin. Tefa's words: "i fully
@@ -13,10 +13,9 @@ expect this to fail miserably today, but maybe not in a few months". Parked unti
 *"strictly we will only be the middlemen for making Begin Again work in the VR mod and we have to make it sustainable
 somehow. we'll figure it out or fail spectacularily"*
 
-**Changed 2026-11-12 (Tefa's decision):** the bridge is built for one pair of versions and stays on it:
-**TTWVR 1.0.0** (the DLL of 2026-11-08) and **Begin Again V6.1.0**. No newer TTWVR is taken in. Under KUPOkinz's
-permission (below), TTWVR may now be changed by us where that is what makes Begin Again work in VR. What a new Begin
-Again release means for the bridge is decided when one comes.
+**Changed 2026-11-12 (Tefa's decision):** the fork is built for one pair of versions and stays on it:
+**TTWVR 1.0.0** (the DLL of 2026-11-08) and **Begin Again V6.1.0**. No newer TTWVR is taken in. By Tefa's decision of 2026-11-12 (below), TTWVR may be changed by us where that is what makes Begin Again work in VR. What a new Begin
+Again release means for the fork is decided when one comes.
 
 - Begin Again's own files are never edited.
 - Whatever we change, in the list or in TTWVR, lives in our own MO2 mods placed on top; the originals stay in place,
