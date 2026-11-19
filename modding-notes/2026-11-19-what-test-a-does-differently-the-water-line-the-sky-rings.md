@@ -109,6 +109,42 @@ early dither away and round again; the safe place is TTWVR's last copy to the he
 tried: `sky_bands.py` shows grain near 0.5 and no flat bands. Virtual Desktop's 10-bit stream setting cannot remove
 these rings but stops the video stream adding its own.
 
+## 5b. The rings, second round (afternoon; Tefa: carry on alone)
+
+Tefa also answered the puddle question: *"the small pool with the tyre has so far been green with no reflection
+looking at it from one side, going around it makes the water transparent but a layer of something is clearly missing
+that makes it actually look like water"* `[reported]`. Not looked at yet on the desk; board row `[ID FO-002]`.
+
+**A measuring mistake first.** The 569-pixel eye picture of section 5 is a shrunken 8-bit copy, and ANY gentle fade
+photographed that way shows flat bands one level apart. So "bands of one level" alone proves nothing; what tells a
+visible ring from an invisible one is whether the band's edge is a clean line or a speckle, at full size. The
+simulator's capture is a photo of its preview window: with `window_width` 3400, `window_height` 1400 and `zoom_scale`
+2.6 in its settings the eye picture is 1468 x 1209 (still not 1:1, but the edges can be judged). Settings put back
+afterwards (backup `settings.json.bak-2026-11-19-before-full-size`).
+
+At full size, plain rung 5, dawn (`set gamehour to 5.3`): the ring edges are clean lines, and inside a band there
+are thin lines one level darker or brighter that follow the ring: the rings are real `[measured, n=4 pictures]`.
+
+Two cures tried, both in our own desk-only mods, both WITHOUT effect:
+
+1. **Noise at the very last step** (`Bridge desk test - sky dither`: our copy of `ttwvr_dlss_host.exe`, whose two
+   final shaders are plain text; half a level of noise added to what they write, same file length). The helper
+   started and drew; grain 0.059 -> 0.117; the ring edges are as clean as before `[verified-live, n=1]`. So the
+   picture is already rounded when it reaches the helper.
+2. **Sharpening off** (`Bridge desk test - sharpness 0`: `Sharpness=0%` in an own TTWVR.ini; Tefa's is 65%): the
+   rings and the thin lines are the same `[verified-live, n=1]`. Sharpening does not draw them.
+
+**So the rings are made in the game's own picture, before the VR mod touches it**: in the sky's drawing or in the
+step that brings the game's bright picture down to 256 levels (Begin Again's Vanilla Plus Tonemapper replaces that
+shader: `ISHDRBLENDINSHADER*.pso`, three variants). The thin lines inside the bands suggest two roundings one after
+the other, or the sky dome's own rings of points `[hypothesis]`.
+
+NEXT: (1) one flat still of the same sky (the flat twin of rung 5): rings in flat too = the game / Begin Again, not
+VR at all, and Begin Again's flat players have them as well; (2) a dither in our own copy of the tonemapper shader
+(needs the shader taken apart and rebuilt: ps_3_0, screen position from `vPos`), loaded after Begin Again's by
+Shader Loader, in the VR rungs only; (3) check at full size that the upscaler does not smooth it away; if it does,
+the noise has to move with the frame or be added at both ends.
+
 ## 6. Tools made or mended
 
 - `tools/sim_shot.py`: one eye picture of a running rung, a part enlarged.
@@ -122,5 +158,5 @@ these rings but stops the video stream adding its own.
 
 No game running; VR Bench off; Mod Organizer on `rung-05 test A LOD flicker fix off`; the simulator's keyboard
 setting back on "app"; Save 4's date back to 2026-11-13; no new save files. New in the mod list's folder: profiles
-`rung-05 test G ...` and `rung-05 test W ...`, the mod `Bridge desk test - water as the game asks` (desk only, never
-for a played profile).
+`rung-05 test G ...` and `rung-05 test W ...`, `rung-05 test S sky dither`, `rung-05 test T sharpness 0`, and the mods `Bridge desk test - water as
+the game asks`, `Bridge desk test - sky dither`, `Bridge desk test - sharpness 0` (desk only, never for a played profile).
