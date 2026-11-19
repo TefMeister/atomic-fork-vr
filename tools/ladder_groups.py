@@ -104,7 +104,7 @@ OFF_IN_VR_PLUGINS = {"360movement.esp", "360movement - diagonal movement patch.e
 # On in EVERY rung, VR and flat alike (so the twins still differ only by TTWVR), just under TTWVR: our own bridge mods
 # (source in bridge-mods/). 2026-11-14: the rung-5 start crash is Stewie's Tweaks' grabbed-weight hook reading an empty
 # object during the load; this mod turns that one setting off (modding-notes/2026-11-14-the-rung-5-crash-...).
-BRIDGE_MODS = ["Bridge - Stewie grabbed weight off"]
+BRIDGE_MODS = ["Bridge - Atomic Fork main menu", "Bridge - Stewie grabbed weight off"]   # first = on top; 2026-11-19: the menu picture and silent title music
 
 
 def write_profile(mo2, name, on, lo, base_lines, with_vr, force):
