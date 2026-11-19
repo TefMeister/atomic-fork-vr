@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """menu_title.py -- draw a one-row, weathered title picture for the main menu (the face colour is the menu's yellow).
 
-    python menu_title.py <font.ttf> <out.dds> [--text "FALLOUT: TALE OF TWO WASTELANDS"] [--plain] [--seed 7]
+    python menu_title.py <font.ttf> <out.dds> [--text "FALLOUT : TALE OF TWO WASTELANDS"] [--plain] [--seed 7]
 
 Yellow letters with rust blotches, chipped edges and scratches, a dark edge and a soft shadow, on a see-through
 background; --plain leaves the wear off. The picture is WIDTH x HEIGHT; the menu layout shows it at a set width.
@@ -33,6 +33,36 @@ def noise(rng, size, blur):
     return ranks / ranks.max()
 
 
+def wear(mask, rng, face_rgb, rust_rgb, dark_rgb, scale=1.0, scratches=SCRATCHES):
+    """The worn look on letters drawn white-on-black in `mask` (an L picture): rust blotches, dark specks, uneven
+    fading, lighter at the top, a chipped rim and scratches. Returns (face colours, H x W x 3 floats; the mask with
+    the chips and scratches taken out). `scale` shrinks every feature for smaller letters (game_font.py uses it for
+    the menu words, so they wear the same way as the title)."""
+    w, h = mask.size
+    m = np.asarray(mask, dtype=np.float32) / 255
+    face = np.empty((h, w, 3), np.float32)
+    face[:] = face_rgb
+    rim_px = max(3, int(round(9 * scale)) | 1)
+    rim = m - np.asarray(mask.filter(ImageFilter.MinFilter(rim_px)), dtype=np.float32) / 255      # 1 on the letters' rim
+    blot, grain, chip = noise(rng, (w, h), 9 * scale), noise(rng, (w, h), max(0.6, 1.2 * scale)), noise(rng, (w, h), 3.5 * scale)
+    rust = np.clip((blot - (1 - RUST_SHARE)) / 0.08, 0, 1)[..., None]
+    face = face * (1 - rust) + np.array(rust_rgb, np.float32) * rust
+    speck = (grain > 1 - SPECK_SHARE)[..., None]
+    face = np.where(speck, face * 0.45 + np.array(dark_rgb, np.float32) * 0.55, face)
+    face *= (0.86 + 0.14 * noise(rng, (w, h), 20 * scale))[..., None]                         # uneven fading
+    face *= np.linspace(1.06, 0.88, h, dtype=np.float32)[:, None, None]                       # lighter at the top
+    gone = ((chip > 1 - CHIP_AT_EDGE) & (rim > 0.5)) | (chip > 1 - CHIP_INSIDE)
+    scratch = Image.new("L", (w, h), 0)
+    d = ImageDraw.Draw(scratch)
+    for _ in range(scratches):
+        x, y = rng.integers(0, w), rng.integers(0, h)
+        ln, tilt = rng.integers(max(8, int(40 * scale)), max(9, int(260 * scale))), rng.uniform(-0.25, 0.25)
+        d.line((x, y, x + ln, y + ln * tilt), fill=255, width=int(rng.integers(1, 3)) if scale >= 1 else 1)
+    gone |= np.asarray(scratch) > 0
+    mask = Image.fromarray((m * ~gone * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(0.6 if scale >= 1 else 0.4))
+    return face, mask
+
+
 def fit_font(path, text):
     size = 20
     while ImageFont.truetype(path, size + 1).getlength(text) <= TEXT_WIDTH:
@@ -51,33 +81,18 @@ def write_dds(im, path):
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("ttf"); ap.add_argument("out")
-    ap.add_argument("--text", default="FALLOUT: TALE OF TWO WASTELANDS")
+    ap.add_argument("--text", default="FALLOUT : TALE OF TWO WASTELANDS")  # the space before the colon: Tefa 2026-11-19
     ap.add_argument("--plain", action="store_true"); ap.add_argument("--seed", type=int, default=7)
     a = ap.parse_args()
     rng = np.random.default_rng(a.seed)
     font = fit_font(a.ttf, a.text)
     mask = Image.new("L", (WIDTH, HEIGHT), 0)
     ImageDraw.Draw(mask).text((WIDTH // 2, HEIGHT // 2), a.text, font=font, fill=255, anchor="mm")
-    face = np.empty((HEIGHT, WIDTH, 3), np.float32)
-    face[:] = FACE
-    if not a.plain:
-        m = np.asarray(mask, dtype=np.float32) / 255
-        rim = m - np.asarray(mask.filter(ImageFilter.MinFilter(9)), dtype=np.float32) / 255      # 1 on the letters' rim
-        blot, grain, chip = noise(rng, (WIDTH, HEIGHT), 9), noise(rng, (WIDTH, HEIGHT), 1.2), noise(rng, (WIDTH, HEIGHT), 3.5)
-        rust = np.clip((blot - (1 - RUST_SHARE)) / 0.08, 0, 1)[..., None]
-        face = face * (1 - rust) + np.array(RUST, np.float32) * rust
-        speck = (grain > 1 - SPECK_SHARE)[..., None]
-        face = np.where(speck, face * 0.45 + np.array(DARK_RUST, np.float32) * 0.55, face)
-        face *= (0.86 + 0.14 * noise(rng, (WIDTH, HEIGHT), 20))[..., None]                        # uneven fading
-        face *= np.linspace(1.06, 0.88, HEIGHT, dtype=np.float32)[:, None, None]                 # lighter at the top
-        gone = ((chip > 1 - CHIP_AT_EDGE) & (rim > 0.5)) | (chip > 1 - CHIP_INSIDE)
-        scratch = Image.new("L", (WIDTH, HEIGHT), 0)
-        d = ImageDraw.Draw(scratch)
-        for _ in range(SCRATCHES):
-            x, y, ln, tilt = rng.integers(0, WIDTH), rng.integers(0, HEIGHT), rng.integers(40, 260), rng.uniform(-0.25, 0.25)
-            d.line((x, y, x + ln, y + ln * tilt), fill=255, width=int(rng.integers(1, 3)))
-        gone |= np.asarray(scratch) > 0
-        mask = Image.fromarray((m * ~gone * 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(0.6))
+    if a.plain:
+        face = np.empty((HEIGHT, WIDTH, 3), np.float32)
+        face[:] = FACE
+    else:
+        face, mask = wear(mask, rng, FACE, RUST, DARK_RUST)
     edge = mask.filter(ImageFilter.MaxFilter(2 * EDGE + 1))
     shadow = ImageChops.offset(edge, 4, 5).filter(ImageFilter.GaussianBlur(4)).point(lambda v: int(v * 0.8))
     rgb = Image.composite(Image.fromarray(np.clip(face, 0, 255).astype(np.uint8)), Image.new("RGB", (WIDTH, HEIGHT), EDGE_RGB), mask)

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """collect_run.py -- after every launch, keep every log the next launch would overwrite.
 
-    python collect_run.py --mo2 <Begin Again folder> --game <Fallout New Vegas folder> --rung "rung-00 flat base"
+    python collect_run.py --mo2 <list folder> --game <Fallout New Vegas folder> --rung "rung-00 flat base"
                           --since "2026-11-09 21:30" [--out <repo>/runs]
 
 Copies, into runs/<date time> <rung>/: every .log / .txt the game, xNVSE, its plugins, the crash logger, Root Builder,

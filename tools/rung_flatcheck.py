@@ -3,7 +3,7 @@
 whether it is still up and what its logs say, save a small picture of its window, close it (the window's own close),
 and keep the run's logs with collect_run.py.
 
-    python rung_flatcheck.py --mo2 <Begin Again folder> --game <New Vegas folder> --rung "rung-02 fixes flat"
+    python rung_flatcheck.py --mo2 <list folder> --game <New Vegas folder> --rung "rung-02 fixes flat"
                              [--wait 80] [--shot <folder for the window picture>]
 
 It says: up or gone, how many xNVSE plugins loaded / were disabled, whether a new crash log appeared. It does not
@@ -175,7 +175,7 @@ def main():
             os.utime(f, None)
         profile_before = R.mo2_profile(a.mo2)   # 2026-11-13: MO2 keeps the last profile started; put back after
         profile = make_desk_profile(a.mo2, a.rung)
-    subprocess.Popen([os.path.join(a.mo2, "ModOrganizer.exe"), "-p", profile, "moshortcut://:Begin Again"], cwd=a.mo2)
+    subprocess.Popen([os.path.join(a.mo2, "ModOrganizer.exe"), "-p", profile, "moshortcut://:Atomic Fork VR"], cwd=a.mo2)
     t0 = time.time()
     while time.time() - t0 < 150 and not running("FalloutNV.exe"):
         time.sleep(2)

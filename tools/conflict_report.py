@@ -5,7 +5,7 @@ Run after every update of either (Tefa 2026-11-09: "we have to make it sustainab
 TTWVR archive's listing, the MO2 instance's mods folder, the profile's modlist.txt and the BSAs of the enabled mods. It
 writes one Markdown report and changes nothing.
 
-    python conflict_report.py --ttwvr <TTWVR.zip> --mo2 <Begin Again folder> [--profile "Begin Again"] [--out report.md]
+    python conflict_report.py --ttwvr <TTWVR.zip> --mo2 <list folder> [--profile "Atomic Fork VR"] [--out report.md]
 
 How a file wins in Fallout New Vegas under MO2:
   - two LOOSE files at the same path: the mod lower in MO2's left pane (higher priority) wins. modlist.txt lists the
@@ -127,7 +127,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--ttwvr", required=True)
     ap.add_argument("--mo2", required=True)
-    ap.add_argument("--profile", default="Begin Again")
+    ap.add_argument("--profile", default="Atomic Fork VR")
     ap.add_argument("--out", default="conflict-report.md")
     a = ap.parse_args()
 

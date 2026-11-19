@@ -9,8 +9,8 @@ Each rung is TWO MO2 profiles made from the list author's own order (nothing is 
 A mod whose plugin needs a master that is not on yet is left off for that rung and named in the report (it comes on
 by itself at the rung where its masters do). Settings files come from the rung-01 profile.
 
-    python ladder_groups.py plan  --mo2 <Begin Again folder>            the groups, the rungs, what would be deferred
-    python ladder_groups.py make  --mo2 <Begin Again folder> [--force] [--only 08a,08b]  write the profiles (all, or the
+    python ladder_groups.py plan  --mo2 <list folder>            the groups, the rungs, what would be deferred
+    python ladder_groups.py make  --mo2 <list folder> [--force] [--only 08a,08b]  write the profiles (all, or the
                                                                        ones named) and check each one
 """
 import argparse
@@ -22,7 +22,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ladder as L   # noqa: E402
 
-BASE = "Begin Again"
+BASE = "Atomic Fork VR"
 FILES_FROM = "rung-01 vr base"
 TTWVR = "TTWVR 1.0.0"
 # always on: the game itself and the tools every rung needs
@@ -45,7 +45,7 @@ RUNGS = [
 # mods brought down from a later group, on from this rung up (Tefa 2026-11-12: "switch the pack on from rung 3"):
 # Begin Again's own baked far view (the dense horizon). Each is a 1 KB plugin, master FalloutNV.esm only, that loads its
 # same-named archives; they sit in OPTIONAL MODS, which kept the horizon off until rung 8b.
-EARLY = {"03": ["Begin Again Object LOD", "Begin Again Terrain LOD"]}
+EARLY = {"03": ["Atomic Fork VR Object LOD", "Atomic Fork VR Terrain LOD"]}
 # side rungs: a rung's mods minus some, NOT carried into the rungs after it. 08a without the one mod TTWVR's log complains
 # about on rung 8 (the first-person skeleton): does the complaint go?
 SIDE = [
@@ -163,7 +163,7 @@ def main():
     groups, base_lines = groups_of(a.mo2)
     base_lo = [l for l in L.read_lines(os.path.join(L.profile_dir(a.mo2, BASE), "loadorder.txt")) if l and not l.startswith("#")]
     # the floor: the two always-on groups AND every mod the proven base profile has on, wherever the author filed it
-    # (rung 2 first stopped on "NVTF.ini not found": that file is in "Begin Again Configs", which sits in a late group)
+    # (rung 2 first stopped on "NVTF.ini not found": that file is in "Atomic Fork VR Configs", which sits in a late group)
     so_far = []
     for g in FLOOR:
         so_far += groups.get(g, [])

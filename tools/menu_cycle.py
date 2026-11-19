@@ -2,7 +2,7 @@
 """menu_cycle.py -- one try of the main-menu layout: (the caller has LOOKED and Quit is lit) press Enter, wait for
 everything to close, rebuild the layout mod, start the rung, light the first word, save pictures.
 
-    python menu_cycle.py --mo2 <Begin Again folder> --rung "rung-05 interface flat" --shots <folder> --name v6
+    python menu_cycle.py --mo2 <list folder> --rung "rung-05 interface flat" --shots <folder> --name v6
 
 Saves <name>.png (the whole game window) and <name>-menu.png (the menu words at full size). If Enter did not close
 the game it asks politely (never by force).

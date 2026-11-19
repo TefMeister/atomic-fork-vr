@@ -6,9 +6,9 @@ The box comes when a save was made with mods that the profile now starting does 
 loaded on a lower one, or from the full Begin Again). Every New Vegas save names the mods it was made with, so this
 is known BEFORE the game starts: no game, no window, nothing touched (the save is only read).
 
-    python save_needs.py --mo2 <Begin Again folder> --rung "rung-03 world" [--save "Save 4"]
+    python save_needs.py --mo2 <list folder> --rung "rung-03 world" [--save "Save 4"]
         one save (default: the newest) against one profile: "opens clean" or the mods the box would name
-    python save_needs.py --mo2 <Begin Again folder> --save "Save 4" --all
+    python save_needs.py --mo2 <list folder> --save "Save 4" --all
         the same save against every rung profile: the lowest rung it opens clean on
 Exit 0 = opens clean, 2 = the box would come, 1 = could not tell (the reason is printed).
 

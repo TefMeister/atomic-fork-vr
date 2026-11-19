@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """menu_layout.py -- build our main-menu layout mod (title row, menu on the left, our menu font).
 
-    python menu_layout.py --mo2 <Begin Again folder> --out <mod folder>
+    python menu_layout.py --mo2 <list folder> --out <mod folder>
 
 Part of the mod is changed copies of two of the list's own layout files (so the repo keeps this builder, not the
 copies); the rest is drawn here from our font:
@@ -12,8 +12,8 @@ copies); the rest is drawn here from our font:
      LEFT of the list, so they need the list on the right. Our own title row is added at the top, centred.
   2. MAPMO's pause_title.xml: its logo is no longer drawn on the main menu (ours is); the pause menu keeps it.
   3. MAPMO's TTW logo picture (see-through by its own making), written again with solid letters, for the pause menu.
-  4. The title row picture (menu_title.py) and the menu font (game_font.py, replacing the game's big caps font,
-     number 8: main menu, pause menu and wherever else the game writes in it), both from tools/fonts.
+  4. The title row picture (menu_title.py) and the menu font (game_font.py --worn, replacing the game's big caps font,
+     number 8: main menu, pause menu and wherever else the game writes in it), both from tools/fonts, worn alike.
 
 Fails loudly when a piece of text it changes is not found (a new version of either mod): nothing is written then.
 """
@@ -34,7 +34,7 @@ MENU_X_SHARE = 0.041      # the menu words start this share of the screen's widt
 MENU_X_INSET = 30         # ... less the list box's own inset before its words
 SUBMENU_LIST_X = 1010     # where the list stands while Load or Settings is open (the Load panel is 750 wide)
 ROW_PITCH = 1             # only a flag now: 1 = on the main menu (the rows keep the list's own 50)
-BOX_PAD = 9               # the highlight box reaches this far left and right of the chosen word
+DIM_OTHERS = 110          # on the main menu the words NOT chosen are this much darker (of 255): the chosen one stands out without a box
 MENU_Y = 325              # top of the first menu word
 MENU_CAP = 36             # height of the menu font's capitals: 36 of the 50-high row leaves a clear gap (Tefa: rows too close at 43)
 FONT_LINE, FONT_TOP = 54.2, 49.2   # the font file's two placing numbers, tuned by picture so words sit in their rows
@@ -142,25 +142,25 @@ ITEM_OLD = """			<brightness> <copy src="io" trait="brightness"/> </brightness>
 			<user0> 0 </user0> <!-- action mapping visibility: 0=none 1=button text 2=button icon -->"""
 ITEM_NEW = f"""			<brightness> <copy src="io" trait="brightness"/> </brightness>
 			<height> <copy src="io" trait="_item_height"/> </height>
-			<!-- Atomic Fork: on the main menu each row draws its own highlight box, fitted to its word. (Tried 2026-11-19 and
-			     dropped: our own row height and stacking here. MAPMO's script sets every row's height and place itself at
-			     the start and the game did not work ours out again, so the rows stay 50 apart.) -->
+			<!-- Atomic Fork: on the main menu no highlight box at all (Tefa 2026-11-19: it was too small for the word); the
+			     chosen word stays bright and the others are dimmed. (Tried 2026-11-19 and dropped: our own row height and
+			     stacking here. MAPMO's script sets every row's height and place itself at the start, so the rows stay 50 apart.) -->
 			<clips> <not src="parent" trait="_AtomicForkPitch"/> </clips>
-			<rect name="AtomicForkBox">
-				<include src="box.xml"/>
-				<visible>
-					<copy src="parent" trait="_VUI+Highlighted"/>
-					<and src="grandparent" trait="_AtomicForkPitch"/>
-					<and src="grandparent" trait="_enabled"/>
-				</visible>
-				<x> <copy src="sibling(ListItemText)" trait="x"/> <sub> {BOX_PAD} </sub> </x>
-				<y> 2 </y>
-				<width> <copy src="sibling(ListItemText)" trait="width"/> <add> {2 * BOX_PAD} </add> </width>
-				<height> <copy src="parent" trait="height"/> <sub> 4 </sub> </height>
-				<_fill_alpha> 70 </_fill_alpha>
-				<depth> 1 </depth>
-			</rect>
 			<user0> 0 </user0> <!-- action mapping visibility: 0=none 1=button text 2=button icon -->"""
+
+BRIGHT_OLD = """				<brightness>
+					<copy src="me" trait="alpha"/>
+					<add> <!--VUI+ target highlighting -->
+						<copy src="globals" trait="_VUI+Highlighting" />
+						<onlyif src="parent" trait="_VUI+Highlighted" />
+					</add>
+				</brightness>"""
+BRIGHT_NEW = BRIGHT_OLD.replace("""				</brightness>""", f"""					<sub> <!-- Atomic Fork: the words not chosen are dimmer on the main menu (there is no box) -->
+						<copy> {DIM_OTHERS} </copy>
+						<onlyifnot src="parent" trait="_VUI+Highlighted" />
+						<onlyif src="grandparent" trait="_AtomicForkPitch" />
+					</sub>
+				</brightness>""")
 
 ROW_OLD = """		<image name="main_title">"""
 ROW_NEW = """		<!-- Atomic Fork: our own title row, top centre, on the main menu -->
@@ -229,6 +229,7 @@ def main():
         menu = change(f.read(), LIST_OLD, LIST_NEW, "the menu list's place in start_menu.xml")
         menu = change(menu, INSET_OLD, INSET_NEW, "the words' inset in start_menu.xml's list item")
         menu = change(menu, ITEM_OLD, ITEM_NEW, "the list row's height in start_menu.xml")
+        menu = change(menu, BRIGHT_OLD, BRIGHT_NEW, "the list words' brightness in start_menu.xml")
     with open(os.path.join(a.mo2, TITLE), encoding="latin-1", newline="") as f:
         logo = change(f.read(), HIDE_OLD, HIDE_NEW, "the logo's 'visible' in pause_title.xml")
     title_out = os.path.join(a.out, TITLE_FILE)
@@ -248,7 +249,7 @@ def main():
     solid_logo(os.path.join(a.mo2, LOGO), os.path.join(a.out, "textures", "MAPMO", "Logos", "ba_ttw_futura.dds"))
     print("written: the solid pause logo")
     subprocess.run([sys.executable, os.path.join(HERE, "game_font.py"), FONT, a.out, "--fnt", "glow_futura_caps_large",
-                    "--tex", "AtomicFork_Menu_0_Lod_A", "--cap", str(MENU_CAP), "--line", str(FONT_LINE), "--top", str(FONT_TOP), "--caps-only"], check=True)
+                    "--tex", "AtomicFork_Menu_0_Lod_A", "--cap", str(MENU_CAP), "--line", str(FONT_LINE), "--top", str(FONT_TOP), "--caps-only", "--worn"], check=True)
 
 
 if __name__ == "__main__":

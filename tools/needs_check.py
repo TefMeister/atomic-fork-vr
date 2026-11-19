@@ -1,6 +1,6 @@
 """needs_check.py -- before a start: does every switched-on NVSE add-on have the add-ons it says it needs?
 
-    python needs_check.py --mo2 <Begin Again folder> --name <profile>     exit 1 when something is missing
+    python needs_check.py --mo2 <list folder> --name <profile>     exit 1 when something is missing
 
 Many of Begin Again's drawing add-ons refuse to load without another one and say so in a box at the start that stops
 the game ("LOD Flicker Fix not found. Depth Resolve cannot be used without it, please install it."). Each such add-on

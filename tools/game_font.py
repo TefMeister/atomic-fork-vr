@@ -2,13 +2,14 @@
 """game_font.py -- make a Fallout 3 / New Vegas menu font (.fnt + .Tex) from an ordinary font file.
 
     python game_font.py <font.ttf> <out folder> --fnt glow_futura_caps_large --tex AtomicFork_Menu_0_Lod_A
-                        [--cap 46] [--line 60] [--caps-only]
+                        [--cap 46] [--line 60] [--caps-only] [--worn]
 
 Writes <out>/textures/fonts/<fnt>.fnt and <out>/textures/fonts/<tex>.Tex. The .fnt name decides which of the game's
 fonts it replaces (the game's font list is in fallout.ini, sFontFile_1..9); the .Tex name is our own, so nobody
 else's picture is overwritten. Letters are white with a dark edge and a soft dark shadow: the game tints white to
 the menu colour and leaves dark dark. --caps-only draws capitals for small letters too (the game's caps fonts have
-no small letters at all).
+no small letters at all). --worn gives the letters the title's worn look (menu_title.py's wear: rust, chips, scratches),
+coloured so that once the game tints white to the menu yellow they match the title's colours.
 
 The .fnt layout (read off the game's own files, 14,632 bytes): float line height, two ints (1, 1), the picture's
 name in 284 bytes, then 256 letters of 14 floats each: 0, the four corners in the picture (left-top, right-top,
@@ -18,8 +19,13 @@ after), and how far the box's top is above the writing line. The .Tex is two int
 import argparse
 import os
 import struct
+import zlib
+
+import numpy as np
 
 from PIL import Image, ImageChops, ImageDraw, ImageFilter, ImageFont
+
+import menu_title
 
 ATLAS = 1024          # the picture is ATLAS x ATLAS
 PAD = 8               # room round each letter for the edge and the shadow
@@ -30,6 +36,8 @@ ACCENT_ROOM = 3       # rows kept above the capitals (more pushes every line of 
 SHADOW_ALPHA = 0.75
 EDGE_RGB = (22, 16, 10)
 NAME_BYTES = 284
+WEAR_SCALE = 0.5      # the menu capitals are about half the title's height on screen: every worn feature half as big
+WEAR_SCRATCHES = (0, 0, 1)   # scratches per letter, picked at random from these
 
 
 def font_for_cap(path, cap):
@@ -42,17 +50,30 @@ def font_for_cap(path, cap):
         size += 1
 
 
-def letter(font, ch, ascent, descent):
+def worn_colours():
+    """The title's colours divided by the menu yellow: the game multiplies our white by that yellow, so these come out
+    as the title's own rust and dark rust."""
+    return tuple(tuple(min(255, round(255 * c / f)) for c, f in zip(rgb, menu_title.FACE))
+                 for rgb in (menu_title.RUST, menu_title.DARK_RUST))
+
+
+def letter(font, ch, ascent, descent, worn=False):
     """One letter in its box: (RGBA picture, advance). The box is the letter's own width plus PAD each side."""
     left, _, right, _ = font.getbbox(ch, anchor="ls")
     w = max(1, right - left) + 2 * PAD
     h = ascent + descent + 2 * PAD
     mask = Image.new("L", (w, h), 0)
     ImageDraw.Draw(mask).text((PAD - left, PAD + ascent), ch, font=font, fill=255, anchor="ls")
+    face = Image.new("RGB", (w, h), (255, 255, 255))
+    if worn:
+        rng = np.random.default_rng(zlib.crc32(ch.encode("utf-8")))    # the same letter wears the same way on every build
+        rust, dark = worn_colours()
+        f, mask = menu_title.wear(mask, rng, (255, 255, 255), rust, dark, WEAR_SCALE, int(rng.choice(WEAR_SCRATCHES)))
+        face = Image.fromarray(np.clip(f, 0, 255).astype(np.uint8))
     edge = mask.filter(ImageFilter.MaxFilter(2 * EDGE + 1))
     shadow = edge.filter(ImageFilter.GaussianBlur(SHADOW_BLUR)).point(lambda v: int(v * SHADOW_ALPHA))
     alpha = ImageChops.lighter(edge, shadow)                         # solid inside the edge, soft outside it
-    rgb = Image.composite(Image.new("RGB", (w, h), (255, 255, 255)), Image.new("RGB", (w, h), EDGE_RGB), mask)
+    rgb = Image.composite(face, Image.new("RGB", (w, h), EDGE_RGB), mask)
     out = rgb.convert("RGBA")
     out.putalpha(alpha)
     return out, font.getlength(ch), left
@@ -68,6 +89,7 @@ def main():
                     "font: 47). The game places a line of text by it: a bigger number lifts the text. Seen 2026-11-19: with the true value "
                     "(57) and line 60 the menu words sat half a row above their boxes")
     ap.add_argument("--caps-only", action="store_true")
+    ap.add_argument("--worn", action="store_true", help="the title's worn look on every letter")
     a = ap.parse_args()
     font = font_for_cap(a.ttf, a.cap)
     ascent = a.cap + ACCENT_ROOM
@@ -89,7 +111,7 @@ def main():
                 glyphs[code] = (0.0,) * 12 + (float(round(font.getlength(" "))), 0.0)
             continue
         if ch not in made:
-            img, adv, left = letter(font, ch, ascent, descent)
+            img, adv, left = letter(font, ch, ascent, descent, a.worn)
             if x + img.width > ATLAS:
                 x, y = 0, y + row_h
             if y + row_h > ATLAS:

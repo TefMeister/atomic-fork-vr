@@ -2,7 +2,7 @@
 """rung_simcheck.py -- a desk check of one VR rung with NOBODY in the headset: the OpenXR Simulator plays the headset
 and the VR Bench layer plays the hands.
 
-    python rung_simcheck.py --mo2 <Begin Again folder> --game <New Vegas folder> --rung "rung-02 fixes"
+    python rung_simcheck.py --mo2 <list folder> --game <New Vegas folder> --rung "rung-02 fixes"
                             --sim <openxr_simulator-32.json> --vrbench <lanes tools/vrbench folder> [--wait 240]
 
 What it does: makes "<rung> sim" (the rung's own VR profile + our mod "Bridge desk test - continue on start", which
@@ -364,7 +364,7 @@ def main():
     vrlog = os.path.join(os.path.expanduser("~"), "Documents", "My Games", "FalloutNV", "TTWVR.log")
     hands()
     vb_sim.head(0, 1.7, 0, 0, 0)
-    subprocess.Popen([os.path.join(a.mo2, "ModOrganizer.exe"), "-p", sim_rung, "moshortcut://:Begin Again"],
+    subprocess.Popen([os.path.join(a.mo2, "ModOrganizer.exe"), "-p", sim_rung, "moshortcut://:Atomic Fork VR"],
                      cwd=a.mo2, env=dict(os.environ, XR_RUNTIME_JSON=a.sim))
     t0 = time.time()
     while time.time() - t0 < 150 and not running("FalloutNV.exe"):

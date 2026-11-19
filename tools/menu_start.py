@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """menu_start.py -- start one rung through Mod Organizer, wait for the main menu, save a picture of the screen.
 
-    python menu_start.py --mo2 <Begin Again folder> --rung "rung-05 interface flat" --shot OUT.png [--wait 70]
+    python menu_start.py --mo2 <list folder> --rung "rung-05 interface flat" --shot OUT.png [--wait 70]
 
 Leaves the game at its menu (close it with menu_keys.py quit, a look, then menu_keys.py enter). Refuses when the
 game or Mod Organizer is already up.
@@ -28,7 +28,7 @@ def main():
     a = ap.parse_args()
     if running("FalloutNV.exe") or running("ModOrganizer.exe"):
         sys.exit("the game or Mod Organizer is already running: close it first")
-    subprocess.Popen([os.path.join(a.mo2, "ModOrganizer.exe"), "-p", a.rung, "moshortcut://:Begin Again"], cwd=a.mo2,
+    subprocess.Popen([os.path.join(a.mo2, "ModOrganizer.exe"), "-p", a.rung, "moshortcut://:Atomic Fork VR"], cwd=a.mo2,
                      stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     t = time.time()
     while time.time() - t < START_LIMIT_S and not running("FalloutNV.exe"):
