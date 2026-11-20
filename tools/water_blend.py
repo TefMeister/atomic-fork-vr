@@ -20,6 +20,10 @@ How: Windows' own shader library takes each shader apart and puts it together ag
 constants are found by NAME in each shader's own table, so each variant keeps its own register numbers. Variants
 that lack a constant the far sum needs are left alone and listed. The game's files are only read.
 Built 2026-11-19 (Tefa: "blend that line instead of it being sharp and straight"), board row FO-002.
+2026-11-20 (fourth try, the one that works): the far sum is fed the FAR water's own numbers, measured in the game
+with water_probe.py / water_bits.py (SETTINGS far_*), not the near water's; and only near water of the Capital
+Wasteland's own types fades (SETTINGS fade_types, matched by ShallowColor), so any other water draws exactly as before.
+Save 4, flat: the step at the line 14.5 -> 1 colour level (evening and noon); VR on the simulator: 11 -> about 1.
 """
 import os
 import re
@@ -34,6 +38,17 @@ SETTINGS = {
     "fade_to": 8192.0,      # ... and where it IS the far look (the nearest the border can ever be with 5 x 5 cells)
     "need": ("EyePos", "ShallowColor", "DeepColor", "ReflectionColor", "FresnelRI", "VarAmounts", "FogParam", "FogColor"),
     "far_shaders": ("WATER033.pso", "WATER034.pso", "WATER035.pso"),   # the far water itself and the empty one
+    # 2026-11-20: what the game REALLY feeds the far water in the Capital Wasteland, read off the screen with
+    # water_bits.py (Save 4, flat, n=1): shallow and mirror colour are the Potomac record's bytes, but the deep colour
+    # and two mixing amounts are the engine's own, not in any water record. Bytes / 255.
+    "far_shallow": (52, 75, 52),
+    "far_deep": (0, 16, 28),
+    "far_reflection": (19, 37, 16),
+    "far_varamounts_yz": (0.47, 0.7),      # near water: 0.6, 0.5 (the record's reflectivity, and ?)
+    # only the near water of these types fades (their ShallowColor, bytes): the Capital Wasteland's own waters, whose
+    # far water is the Potomac look above. Any other water (the Mojave's) is left exactly as it was.
+    "fade_types": {"Potomac / DLC03TBPotomacWater": (52, 75, 52), "PotomacNRShallow": (95, 101, 48), "CreekWater01": (107, 92, 33)},
+    "type_match": 0.01,    # sum of the three colour differences that still counts as the same water type
 }
 
 # WATER034's own sum, register names as placeholders. T0..T3 temps, TL the far result, TG the mix, N the near result.
@@ -60,12 +75,12 @@ SUN
     mul {T0}.y, {T0}.y, {T0}.w
     mov {T0}.w, {K0}.w
     lrp {T1}.w, {T0}.y, {T0}.w, {FresnelRI}.x
-    lrp_sat {T2}.x, -{T0}.x, {T0}.w, {VarAmounts}.z
-    mov {T3}.xyz, {ShallowColor}
-    add {T0}.xyw, -{T3}.xyzz, {DeepColor}.xyzz
-    mad {T0}.xyw, {T2}.x, {T0}, {ShallowColor}.xyzz
+    lrp_sat {T2}.x, -{T0}.x, {T0}.w, {FV}.z
+    mov {T3}.xyz, {FS}
+    add {T0}.xyw, -{T3}.xyzz, {FD}.xyzz
+    mad {T0}.xyw, {T2}.x, {T0}, {FS}.xyzz
     mul {TL}.w, {T2}.x, {valpha}.w
-    lrp_sat {T2}.xyz, {T1}.w, {ReflectionColor}, {T0}.xyww
+    lrp_sat {T2}.xyz, {T1}.w, {FR}, {T0}.xyww
 SUNADD
     add {T1}.xyz, -{T0}.xyww, {FogColor}
     rcp {T1}.w, {FogParam}.y
@@ -73,6 +88,7 @@ SUNADD
     add {T0}.z, -{T0}.z, {K0}.w
     pow {T1}.w, {T0}.z, {FresnelRI}.y
     mad {TL}.xyz, {T1}.w, {T1}, {T0}.xyww
+GATE
     lrp oC0, {TG}.x, {N}, {TL}
 """
 SUN_LINES = """    dp3_sat {T0}.w, {T1}, {SunDir}
@@ -91,8 +107,8 @@ FAR_SUM_MIRROR = """
     dp4 {T1}.z, {vm4}, {T0}
     dp4 {T1}.w, {vm5}, {T0}
     texldp {T0}, {T1}, {ReflectionMap}
-    mov {T1}.yz, {VarAmounts}
-    lrp {T2}.xyz, {T1}.y, {T0}, {ReflectionColor}
+    mov {T1}.yz, {FV}
+    lrp {T2}.xyz, {T1}.y, {T0}, {FR}
     add {T0}.xyz, {EyePos}, -{vpos}
     dp2add {T0}.w, {T0}, {T0}, {K0}.x
     rsq {T0}.w, {T0}.w
@@ -102,10 +118,10 @@ FAR_SUM_MIRROR = """
     mad_sat {T0}.w, {T0}.w, {K0}.z, {K0}.w
     add {T0}.w, {T0}.w, -{K0}.w
     add {T1}.x, -{T1}.z, {K0}.w
-    mad_sat {T0}.w, -{T0}.w, {T1}.x, {VarAmounts}.z
-    mov {T1}.xyz, {ShallowColor}
-    add {T1}.xyz, -{T1}, {DeepColor}
-    mad {T1}.xyz, {T0}.w, {T1}, {ShallowColor}
+    mad_sat {T0}.w, -{T0}.w, {T1}.x, {FV}.z
+    mov {T1}.xyz, {FS}
+    add {T1}.xyz, -{T1}, {FD}
+    mad {T1}.xyz, {T0}.w, {T1}, {FS}
     mul {TL}.w, {T0}.w, {valpha}.w
     mad {T2}.xyz, {T2}, {FresnelRI}.w, -{T1}
     dp3 {T0}.w, {T0}, {T0}
@@ -130,6 +146,7 @@ SUNADD
     add {T0}.w, -{T0}.w, {K0}.w
     pow {T1}.w, {T0}.w, {FresnelRI}.y
     mad {TL}.xyz, {T1}.w, {T1}, {T0}
+GATE
     lrp oC0, {TG}.x, {N}, {TL}
 """
 MIRROR_SUN_LINES = """    dp3_sat {T0}.x, {T0}, {SunDir}
@@ -176,7 +193,9 @@ def blend(src, dst, fade_from, fade_to):
     if t + 6 > 31:
         return "no spare registers"
     c = max(consts) + 1
-    names.update(K0=f"c{c}", K1=f"c{c+1}", KB=f"c{c+2}")
+    types = list(SETTINGS["fade_types"].values())
+    names.update(K0=f"c{c}", K1=f"c{c+1}", KB=f"c{c+2}", FS=f"c{c+3}", FD=f"c{c+4}", FR=f"c{c+5}", FV=f"c{c+6}", KM=f"c{c+7}")
+    names.update({f"KT{i}": f"c{c+8+i}" for i in range(len(types))})
     names.update(reg)
     dcl = [i for i, ln in enumerate(lines) if ln.strip().startswith("dcl")]
     extra_dcl = []
@@ -211,6 +230,17 @@ def blend(src, dst, fade_from, fade_to):
         far = far.replace("SUN", MIRROR_SUN_LINES if sun else "    mov {T0}.xyz, {K0}.x")
     else:
         far = FAR_SUM.replace("SUNADD", SUNADD_SUN if sun else SUNADD_NONE).replace("SUN", SUN_LINES if sun else "")
+    # the gate: TG.y = 1 when this near water is one of the fade types, else 0 (then the shader draws as before)
+    gate = ["    mov {TG}.y, {K0}.x"]
+    for i in range(len(SETTINGS["fade_types"])):
+        gate += [f"    mov {{T3}}.xyz, {{ShallowColor}}",
+                 f"    add {{T3}}.xyz, {{T3}}, -{{KT{i}}}",
+                 f"    dp3 {{T3}}.w, {{T3}}_abs, {{KM}}.y",
+                 f"    add {{T3}}.w, {{T3}}.w, -{{KM}}.x",
+                 f"    cmp {{T3}}.w, {{T3}}.w, {{K0}}.x, {{K0}}.w",
+                 f"    max {{TG}}.y, {{TG}}.y, {{T3}}.w"]
+    gate += ["    mul {TG}.x, {TG}.x, {TG}.y"]
+    far = far.replace("GATE", chr(10).join(gate))
     far = far.format(**names)
     lines = [ln.replace("oC0", names["N"]) for ln in lines]
     lines += [ln for ln in far.split("\n") if ln.strip()]
@@ -219,6 +249,13 @@ def blend(src, dst, fade_from, fade_to):
     lines[ver + 1:ver + 1] = [f"    def {names['K0']}, 0, -4096, -0.000244140625, 1",
                               f"    def {names['K1']}, 0, 2, 2.40649434e-009, 0",
                               f"    def {names['KB']}, {-1.0 / span:.9f}, {fade_to / span:.9f}, 0, 0"]
+    rgb = lambda b: ", ".join(f"{v / 255.0:.9f}" for v in b) + ", 1"
+    vy, vz = SETTINGS["far_varamounts_yz"]
+    lines[ver + 1:ver + 1] = [f"    def {names['FS']}, {rgb(SETTINGS['far_shallow'])}",
+                              f"    def {names['FD']}, {rgb(SETTINGS['far_deep'])}",
+                              f"    def {names['FR']}, {rgb(SETTINGS['far_reflection'])}",
+                              f"    def {names['FV']}, 0, {vy}, {vz}, 0",
+                              f"    def {names['KM']}, {SETTINGS['type_match']}, 1, 0, 0"] +                              [f"    def {names[f'KT{i}']}, {rgb(t)}" for i, t in enumerate(types)]
     first_dcl = next(i for i, ln in enumerate(lines) if ln.strip().startswith("dcl"))
     lines[first_dcl:first_dcl] = extra_dcl
     code = asm("\n".join(lines) + "\n")

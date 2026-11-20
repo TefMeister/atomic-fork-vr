@@ -1,0 +1,22 @@
+[2026-11-20 08:46:09.598 D] command line: '"C:/Modlists/Atomic Fork VR\ModOrganizer.exe" -p "rung-05 interface flat desk" "moshortcut://:Atomic Fork VR"'
+[2026-11-20 08:46:09.599 I] starting Mod Organizer version 2.5.2-ML1.5 revision 9c130cbf in C:/Modlists/Atomic Fork VR, usvfs: 0.5.6.1
+[2026-11-20 08:46:09.599 I] data path: C:/Modlists/Atomic Fork VR
+[2026-11-20 08:46:09.599 I] working directory: C:/Modlists/Atomic Fork VR
+[2026-11-20 08:46:09.599 D] timing: MOApplication setup() 0 ms
+[2026-11-20 08:46:10.067 I] using game plugin 'TTW' ('TTW', variant Steam, steam id '22380') at C:/Steam/steamapps/common/Fallout New Vegas
+[2026-11-20 08:46:10.277 W] not saving lists during directory update
+[2026-11-20 08:46:10.760 I] [common_log.py:20] [RootBuilder] Generating root mod build data.
+[2026-11-20 08:46:10.845 I] [common_log.py:20] [RootBuilder] Updating cache.
+[2026-11-20 08:46:10.871 I] [common_log.py:20] [RootBuilder] Checking for updates to backup files.
+[2026-11-20 08:46:10.897 I] [common_log.py:20] [RootBuilder] Deploying files for Copy mode.
+[2026-11-20 08:46:10.942 I] [common_log.py:20] [RootBuilder] Deploying files for Link mode.
+[2026-11-20 08:46:10.942 I] [common_log.py:20] [RootBuilder] Saving build data.
+[2026-11-20 08:46:10.942 I] [common_log.py:20] [RootBuilder] Build complete!
+[2026-11-20 08:46:10.944 I] [common_log.py:20] [RootBuilder] Build exists, generating usvfs mappings.
+[2026-11-20 08:46:10.944 I] [common_log.py:20] [RootBuilder] Usvfs mappings generated!
+[2026-11-20 08:46:46.689 I] [common_log.py:20] [RootBuilder] Build exists, updating mod files.
+[2026-11-20 08:46:46.827 I] [common_log.py:20] [RootBuilder] Sync complete!
+[2026-11-20 08:46:46.827 I] [common_log.py:20] [RootBuilder] Clearing deployed files and links.
+[2026-11-20 08:46:46.854 I] [common_log.py:20] [RootBuilder] Restoring files from backup.
+[2026-11-20 08:46:46.885 I] [common_log.py:20] [RootBuilder] Cleaning up remaining files.
+[2026-11-20 08:46:46.885 I] [common_log.py:20] [RootBuilder] Clear complete!

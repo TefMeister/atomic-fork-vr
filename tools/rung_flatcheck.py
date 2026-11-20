@@ -20,6 +20,10 @@ import sys
 import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+try:   # 2026-11-20: without this, at 200 % display scaling the picture was the top-left quarter of the window only
+    ctypes.windll.shcore.SetProcessDpiAwareness(2)
+except OSError:
+    pass
 
 
 def running(name):
@@ -151,6 +155,9 @@ def main():
     ap.add_argument("--save", default=None, help="2026-11-13: load the save whose name contains this (through the flat desk mod "
                     "'Bridge desk test - continue on start (flat)', in a '<rung> desk' copy of the profile), answer the "
                     "'content no longer present' box, wait for the load and take the picture IN PLAY; the saves are put back after")
+    ap.add_argument("--console", default=None, help="2026-11-20: with --save, console lines (separated by ';') typed once "
+                    "the save has loaded, e.g. 'set gamehour to 12'; the picture is taken --console-wait seconds after")
+    ap.add_argument("--console-wait", type=float, default=15.0)
     a = ap.parse_args()
     if running("FalloutNV.exe") or running("ModOrganizer.exe"):
         sys.exit("the game or Mod Organizer is already running: close it first")
@@ -204,6 +211,11 @@ def main():
         print(f"  save loaded: {'yes after %d s' % round(time.time() - started) if loaded_save else 'NO'}", flush=True)
         if loaded_save:
             time.sleep(20)   # settle, as the simulator check
+            if a.console:
+                lines = [ln.strip() for ln in a.console.split(";") if ln.strip()]
+                r = subprocess.run([sys.executable, os.path.join(HERE, "console_type.py")] + lines, capture_output=True, text=True)
+                print(f"  console: {lines} -> {'typed' if r.returncode == 0 else 'FAILED: ' + (r.stderr or r.stdout)[-300:]}", flush=True)
+                time.sleep(a.console_wait)
     else:
         while time.time() - started < a.wait and running("FalloutNV.exe"):
             time.sleep(3)
