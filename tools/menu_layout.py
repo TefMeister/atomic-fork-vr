@@ -40,8 +40,8 @@ MENU_CAP = 36             # height of the menu font's capitals: 36 of the 50-hig
 FONT_LINE, FONT_TOP = 54.2, 49.2   # the font file's two placing numbers, tuned by picture so words sit in their rows
 TITLE_SHOWN_WIDTH = 1600  # the title row's width on screen (16:9 is 1,707 wide)
 TITLE_Y = 26
-TITLE_FILE = os.path.join("textures", "interface", "atomicfork", "title_row.dds")
-TITLE_GAME_PATH = "Interface" + chr(92) + "AtomicFork" + chr(92) + "title_row.dds"
+TITLE_FILE = os.path.join("textures", "interface", "nevergetsold", "title_row.dds")
+TITLE_GAME_PATH = "Interface" + chr(92) + "NeverGetsOld" + chr(92) + "title_row.dds"
 LOGO_SOLID_FROM = 190     # MAPMO's logo letters are this see-through at their most solid (of 255): made 255
 
 VUI = os.path.join("mods", "Vanilla UI Plus (New Vegas)", "Menus", "Options", "start_menu.xml")
@@ -59,23 +59,23 @@ LIST_OLD = """			<x>
 				<div> 2 </div>
 			</y>
 			<width> 300 </width>"""
-LIST_NEW = f"""			<!-- Atomic Fork: 1 on the main menu's top level (title showing, no Back button) -->
-			<_AtomicForkLeft>
+LIST_NEW = f"""			<!-- It Never Gets Old: 1 on the main menu's top level (title showing, no Back button) -->
+			<_NeverGetsOldLeft>
 				<not src="sibling(main_back_button)" trait="visible"/>
 				<and src="sibling(main_title)" trait="visible"/>
-			</_AtomicForkLeft>
-			<!-- Atomic Fork: 1 on the main menu inside a sub-menu (Load, Settings): the list stands right of the panel,
+			</_NeverGetsOldLeft>
+			<!-- It Never Gets Old: 1 on the main menu inside a sub-menu (Load, Settings): the list stands right of the panel,
 			     which MAPMO's script puts to the LEFT of the list, so both end up on the left of the screen -->
-			<_AtomicForkSub>
+			<_NeverGetsOldSub>
 				<copy src="sibling(main_back_button)" trait="visible"/>
 				<and src="sibling(main_title)" trait="visible"/>
-			</_AtomicForkSub>
-			<_leftjustify> <copy src="me" trait="_AtomicForkLeft"/> </_leftjustify>
+			</_NeverGetsOldSub>
+			<_leftjustify> <copy src="me" trait="_NeverGetsOldLeft"/> </_leftjustify>
 			<!-- our row height on the main menu (0 = the list's own, in the pause menu) -->
-			<_AtomicForkPitch>
+			<_NeverGetsOldPitch>
 				<copy> {ROW_PITCH} </copy>
 				<onlyif src="sibling(main_title)" trait="visible"/>
-			</_AtomicForkPitch>
+			</_NeverGetsOldPitch>
 			<clipwindow> <not src="sibling(main_title)" trait="visible"/> </clipwindow> <!-- nothing scrolls here; clipping cut letter tops -->
 			<_line_alpha> <copy> 255 </copy> <onlyifnot src="sibling(main_title)" trait="visible"/> </_line_alpha> <!-- each row draws its own box -->
 			<_fill_alpha>
@@ -92,11 +92,11 @@ LIST_NEW = f"""			<!-- Atomic Fork: 1 on the main menu's top level (title showin
 					<copy src="screen" trait="width"/>
 					<mult> {MENU_X_SHARE} </mult>
 					<sub> {MENU_X_INSET} </sub>
-					<onlyif src="me" trait="_AtomicForkLeft"/>
+					<onlyif src="me" trait="_NeverGetsOldLeft"/>
 				</add>
 				<add>
 					<copy> {SUBMENU_LIST_X} </copy>
-					<onlyif src="me" trait="_AtomicForkSub"/>
+					<onlyif src="me" trait="_NeverGetsOldSub"/>
 				</add>
 			</x>
 			<y>
@@ -132,8 +132,8 @@ INSET_OLD = """					<add>
 
 			<text name="lb_item_button_text">"""
 INSET_NEW = INSET_OLD.replace("<copy> 20 </copy>", """<copy> 20 </copy>
-						<sub> <!-- Atomic Fork: the box sits evenly round the words -->
-							<copy src="grandparent" trait="_AtomicForkLeft"/>
+						<sub> <!-- It Never Gets Old: the box sits evenly round the words -->
+							<copy src="grandparent" trait="_NeverGetsOldLeft"/>
 							<mult> 5 </mult>
 						</sub>""")
 
@@ -142,10 +142,10 @@ ITEM_OLD = """			<brightness> <copy src="io" trait="brightness"/> </brightness>
 			<user0> 0 </user0> <!-- action mapping visibility: 0=none 1=button text 2=button icon -->"""
 ITEM_NEW = f"""			<brightness> <copy src="io" trait="brightness"/> </brightness>
 			<height> <copy src="io" trait="_item_height"/> </height>
-			<!-- Atomic Fork: on the main menu no highlight box at all (Tefa 2026-11-19: it was too small for the word); the
+			<!-- It Never Gets Old: on the main menu no highlight box at all (Tefa 2026-11-19: it was too small for the word); the
 			     chosen word stays bright and the others are dimmed. (Tried 2026-11-19 and dropped: our own row height and
 			     stacking here. MAPMO's script sets every row's height and place itself at the start, so the rows stay 50 apart.) -->
-			<clips> <not src="parent" trait="_AtomicForkPitch"/> </clips>
+			<clips> <not src="parent" trait="_NeverGetsOldPitch"/> </clips>
 			<user0> 0 </user0> <!-- action mapping visibility: 0=none 1=button text 2=button icon -->"""
 
 BRIGHT_OLD = """				<brightness>
@@ -155,16 +155,16 @@ BRIGHT_OLD = """				<brightness>
 						<onlyif src="parent" trait="_VUI+Highlighted" />
 					</add>
 				</brightness>"""
-BRIGHT_NEW = BRIGHT_OLD.replace("""				</brightness>""", f"""					<sub> <!-- Atomic Fork: the words not chosen are dimmer on the main menu (there is no box) -->
+BRIGHT_NEW = BRIGHT_OLD.replace("""				</brightness>""", f"""					<sub> <!-- It Never Gets Old: the words not chosen are dimmer on the main menu (there is no box) -->
 						<copy> {DIM_OTHERS} </copy>
 						<onlyifnot src="parent" trait="_VUI+Highlighted" />
-						<onlyif src="grandparent" trait="_AtomicForkPitch" />
+						<onlyif src="grandparent" trait="_NeverGetsOldPitch" />
 					</sub>
 				</brightness>""")
 
 ROW_OLD = """		<image name="main_title">"""
-ROW_NEW = """		<!-- Atomic Fork: our own title row, top centre, on the main menu -->
-		<image name="AtomicForkTitle">
+ROW_NEW = """		<!-- It Never Gets Old: our own title row, top centre, on the main menu -->
+		<image name="NeverGetsOldTitle">
 			<visible> <!-- not while Load or Settings is open: their panel reaches the top -->
 				<not src="sibling(main_back_button)" trait="visible"/>
 				<and src="sibling(main_title)" trait="visible"/>
@@ -190,7 +190,7 @@ HIDE_OLD = """  <visible>
     <copy src="main_title" trait="visible"/>
     <add src="io" trait="_MAPMOShowLogoInPauseMenu"/>
   </visible>"""
-HIDE_NEW = """  <visible> <!-- Atomic Fork: not on the main menu (our title row is there) -->
+HIDE_NEW = """  <visible> <!-- It Never Gets Old: not on the main menu (our title row is there) -->
     <copy>0</copy>
     <add src="io" trait="_MAPMOShowLogoInPauseMenu"/>
   </visible>"""
@@ -223,6 +223,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     ap.add_argument("--mo2", required=True)
     ap.add_argument("--out", required=True)
+    ap.add_argument("--font", default=FONT, help="the menu font and title row's font (default: Alfa Slab One)")
     a = ap.parse_args()
     # read and change the two layout files first: if either has moved on, nothing at all is written
     with open(os.path.join(a.mo2, VUI), encoding="latin-1", newline="") as f:
@@ -234,7 +235,7 @@ def main():
         logo = change(f.read(), HIDE_OLD, HIDE_NEW, "the logo's 'visible' in pause_title.xml")
     title_out = os.path.join(a.out, TITLE_FILE)
     os.makedirs(os.path.dirname(title_out), exist_ok=True)
-    subprocess.run([sys.executable, os.path.join(HERE, "menu_title.py"), FONT, title_out], check=True)
+    subprocess.run([sys.executable, os.path.join(HERE, "menu_title.py"), a.font, title_out], check=True)
     with open(title_out, "rb") as f:
         title_w = struct.unpack_from("<I", f.read(20), 16)[0]
     row = ROW_NEW.format(path=TITLE_GAME_PATH, zoom=round(TITLE_SHOWN_WIDTH * 100 / title_w, 2), shown=TITLE_SHOWN_WIDTH, y=TITLE_Y)
@@ -248,8 +249,8 @@ def main():
         print("written:", dst)
     solid_logo(os.path.join(a.mo2, LOGO), os.path.join(a.out, "textures", "MAPMO", "Logos", "ba_ttw_futura.dds"))
     print("written: the solid pause logo")
-    subprocess.run([sys.executable, os.path.join(HERE, "game_font.py"), FONT, a.out, "--fnt", "glow_futura_caps_large",
-                    "--tex", "AtomicFork_Menu_0_Lod_A", "--cap", str(MENU_CAP), "--line", str(FONT_LINE), "--top", str(FONT_TOP), "--caps-only", "--worn"], check=True)
+    subprocess.run([sys.executable, os.path.join(HERE, "game_font.py"), a.font, a.out, "--fnt", "glow_futura_caps_large",
+                    "--tex", "NeverGetsOld_Menu_0_Lod_A", "--cap", str(MENU_CAP), "--line", str(FONT_LINE), "--top", str(FONT_TOP), "--caps-only", "--worn"], check=True)
 
 
 if __name__ == "__main__":

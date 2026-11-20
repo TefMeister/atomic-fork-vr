@@ -187,3 +187,26 @@ Claim tags: `[verified-live]` seen in the running game, `[measured]` read from f
 - **Decided (Tefa, the same morning):** no further TTWVR updates are taken in (pinned at 1.0.0, build 6AF014A8); the
   bridge only has to work with the current Begin Again (V6.1.0); TTWVR may be changed by us where needed, as our own
   MO2 mod on top; nothing about the modding goes to its author (Tefa alone keeps him posted on progress).
+
+## 2026-11-20
+
+**Night (Developer PC, Opus, no game running): the list becomes IT NEVER GETS OLD WHEN SOMETHING BLOWS UP IN VR!**
+
+- The source list's author, by Nexus message to Tefa: a fork for VR users is fine, but not under the source list's
+  name and not affiliated with it in any way. Tefa: the name may stay in the credits only. So the author's own files
+  (configs, merges, conflict patch, LOD, weathers) stay; the name and the look go. `[reported]`
+- **A full copy, not a rename in place:** `C:\Modlists\It Never Gets Old VR` (robocopy, 43,102 files, 62 GB, 0
+  failed). The Atomic Fork VR folder is untouched. Downloads are shared through a junction
+  `D:\Modlists\Downloads\It Never Gets Old VR` -> the existing folder (no second 30 GB). `[measured]`
+- `tools/ingo_rename.py` (list_rename.py's walk, new table): 802 changes; a second run finds none. Shown names
+  (the separator) carry the full title; files, folders, plugins and profiles the short "It Never Gets Old VR" (the
+  full title adds 34 characters to every path in the worldspace merge and a "!" to names passed around by launchers).
+  Checked first: no plugin has any of the renamed plugins as a master, no settings file names them, and the plugins
+  carry no author text. The conflict patch's typo is fixed on the way ("reolution" -> "Resolution"). `[measured]`
+- `tools/mo2_style_ingo.py`: Mod Organizer's look = Trosski's see-through Fallout 3 style (ships with MO2) over
+  Tefa's poster (the Two Wastelands vivid version), green swapped for the poster's amber, Racing Sans One on the big
+  labels (installed for this user). Seen in Mod Organizer opened from the new folder. `[verified-live 2026-11-20, n=1]`
+- The main menu picture and Mod Organizer's splash are the poster now (`menu_picture.py`). Not yet seen in the game:
+  the menu words sit on the left, where this poster has the TV screen.
+- Eight free American poster fonts (SIL OFL, licences beside them) in `tools/fonts/` for Tefa's pick;
+  `menu_layout.py` takes `--font` and no longer writes the old name into the menu files.
