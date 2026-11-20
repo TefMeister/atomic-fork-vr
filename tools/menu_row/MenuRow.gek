@@ -1,0 +1,77 @@
+; It Never Gets Old - the main menu row (called every frame in menus by gr_NeverGetsOldMenuRow.txt)
+; Variable names carry NGORow: short ones such as fW clash with names the game already has ("Invalid variable name").
+int iNGORowN
+int iNGORowI
+int iNGORowTop
+int iNGORowKeys
+int iNGORowNew
+float fNGORowX
+float fNGORowW
+float fNGORowMax
+float fNGORowH
+float fNGORowGap
+string_var sNGORowC
+string_var sNGORowP
+
+begin Function {}
+	if GetUIFloat "StartMenu\NOGLOW_BRANCH\main_title\visible" == 0
+		return
+	endif
+	let sNGORowC := "StartMenu\NOGLOW_BRANCH\main_container"
+	let iNGORowTop := 1
+	if GetUIFloat "StartMenu\NOGLOW_BRANCH\main_back_button\visible" > 0
+		let iNGORowTop := 0
+	endif
+	let iNGORowN := (GetUIFloatAlt (sNGORowC + "\childcount")) - 2
+	let fNGORowH := GetUIFloat "StartMenu\_item_height"
+	let fNGORowGap := GetUIFloatAlt (sNGORowC + "\_NGORowGap")
+	let fNGORowX := 0
+	let fNGORowMax := 0
+	; the rows are numbered from the bottom of the list (Quit is 0, Continue the highest): walk them top first
+	let iNGORowI := iNGORowN + 1
+	while (iNGORowI -= 1) >= 0
+		let sNGORowP := sNGORowC + "\lb_item_hotrect:" + $iNGORowI
+		if eval (GetUIFloatAlt (sNGORowP + "\visible")) > 0
+			let fNGORowW := (GetUIFloatAlt (sNGORowP + "\ListItemText\width")) + 30
+			if fNGORowW > fNGORowMax
+				let fNGORowMax := fNGORowW
+			endif
+			if iNGORowTop
+				SetUIFloatAlt (sNGORowP + "\x") fNGORowX
+				SetUIFloatAlt (sNGORowP + "\y") 0
+				SetUIFloatAlt (sNGORowP + "\width") fNGORowW
+				let fNGORowX += fNGORowW + fNGORowGap
+			else
+				SetUIFloatAlt (sNGORowP + "\x") 0
+				SetUIFloatAlt (sNGORowP + "\y") fNGORowX
+				let fNGORowX += fNGORowH
+			endif
+		endif
+	loop
+	if iNGORowTop
+		SetUIFloatAlt (sNGORowC + "\width") (fNGORowX - fNGORowGap)
+		SetUIFloatAlt (sNGORowC + "\height") fNGORowH
+		; Left and Right move the choice: they press the menu's own Up and Down once per press
+		let iNGORowKeys := GetUIFloatAlt (sNGORowC + "\_NGOKeys")
+		let iNGORowNew := 0
+		if IsKeyPressed 203
+			let iNGORowNew := 1
+		elseif IsKeyPressed 205
+			let iNGORowNew := 2
+		endif
+		if iNGORowNew == 1 && iNGORowKeys != 1
+			TapKey 200
+		elseif iNGORowNew == 2 && iNGORowKeys != 2
+			TapKey 208
+		endif
+		SetUIFloatAlt (sNGORowC + "\_NGOKeys") iNGORowNew
+	else
+		let iNGORowI := iNGORowN + 1
+		while (iNGORowI -= 1) >= 0
+			SetUIFloatAlt (sNGORowC + "\lb_item_hotrect:" + $iNGORowI + "\width") (fNGORowMax + 30)
+		loop
+		SetUIFloatAlt (sNGORowC + "\width") (fNGORowMax + 30)
+		SetUIFloatAlt (sNGORowC + "\height") (fNGORowH * (iNGORowN + 1))
+	endif
+	sv_Destruct sNGORowC sNGORowP
+end

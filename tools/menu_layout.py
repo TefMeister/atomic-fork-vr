@@ -19,6 +19,7 @@ Fails loudly when a piece of text it changes is not found (a new version of eith
 """
 import argparse
 import os
+import shutil
 import struct
 import subprocess
 import sys
@@ -35,11 +36,16 @@ MENU_X_INSET = 30         # ... less the list box's own inset before its words
 SUBMENU_LIST_X = 1010     # where the list stands while Load or Settings is open (the Load panel is 750 wide)
 ROW_PITCH = 1             # only a flag now: 1 = on the main menu (the rows keep the list's own 50)
 DIM_OTHERS = 110          # on the main menu the words NOT chosen are this much darker (of 255): the chosen one stands out without a box
-MENU_Y = 325              # top of the first menu word
+MENU_Y = 325              # top of the first menu word (in Load and Settings: the list's place on the right)
+ROW_Y = 885              # 2026-11-21 (Tefa): on the main menu's top level the words stand in ONE ROW along the bottom,
+                          # centred, chosen with left and right, so the title in the picture stays clear
+ROW_GAP = 60              # space between two words in the row
+ROW_SCRIPTS = os.path.join(HERE, "menu_row")   # our script that lays the row out after MAPMO (copied into the mod)
 MENU_CAP = 36             # height of the menu font's capitals: 36 of the 50-high row leaves a clear gap (Tefa: rows too close at 43)
 FONT_LINE, FONT_TOP = 54.2, 49.2   # the font file's two placing numbers, tuned by picture so words sit in their rows
 TITLE_SHOWN_WIDTH = 1600  # the title row's width on screen (16:9 is 1,707 wide)
 TITLE_Y = 26
+TITLE_ROW_ON = 0           # 2026-11-21: off, the main menu picture has "A Tale of Two Wastelands" painted in it
 TITLE_FILE = os.path.join("textures", "interface", "nevergetsold", "title_row.dds")
 TITLE_GAME_PATH = "Interface" + chr(92) + "NeverGetsOld" + chr(92) + "title_row.dds"
 LOGO_SOLID_FROM = 190     # MAPMO's logo letters are this see-through at their most solid (of 255): made 255
@@ -88,10 +94,10 @@ LIST_NEW = f"""			<!-- It Never Gets Old: 1 on the main menu's top level (title 
 				<sub src="me" trait="width"/>
 				<sub src="parent" trait="_x_buffer"/>
 				<onlyifnot src="sibling(main_title)" trait="visible"/>
-				<add>
+				<add> <!-- It Never Gets Old: the row, centred (its width is set by our script, menu_row/MenuRow.gek) -->
 					<copy src="screen" trait="width"/>
-					<mult> {MENU_X_SHARE} </mult>
-					<sub> {MENU_X_INSET} </sub>
+					<sub src="me" trait="width"/>
+					<div> 2 </div>
 					<onlyif src="me" trait="_NeverGetsOldLeft"/>
 				</add>
 				<add>
@@ -106,9 +112,15 @@ LIST_NEW = f"""			<!-- It Never Gets Old: 1 on the main menu's top level (title 
 				<onlyifnot src="sibling(main_title)" trait="visible"/>
 				<add>
 					<copy> {MENU_Y} </copy>
-					<onlyif src="sibling(main_title)" trait="visible"/>
+					<onlyif src="me" trait="_NeverGetsOldSub"/>
+				</add>
+				<add>
+					<copy> {ROW_Y} </copy>
+					<onlyif src="me" trait="_NeverGetsOldLeft"/>
 				</add>
 			</y>
+			<_NGOKeys> 0 </_NGOKeys> <!-- our script's memory: which of left/right was held last frame -->
+			<_NGORowGap> {ROW_GAP} </_NGORowGap>
 			<width> 300 </width>"""
 
 INSET_OLD = """					<add>
@@ -168,6 +180,7 @@ ROW_NEW = """		<!-- It Never Gets Old: our own title row, top centre, on the mai
 			<visible> <!-- not while Load or Settings is open: their panel reaches the top -->
 				<not src="sibling(main_back_button)" trait="visible"/>
 				<and src="sibling(main_title)" trait="visible"/>
+				<and> {title_on} </and> <!-- 0 since 2026-11-21: Tefa's new picture carries the title itself -->
 			</visible>
 			<alpha> <copy src="sibling(main_title)" trait="alpha"/> </alpha>
 			<depth> 2 </depth>
@@ -238,7 +251,7 @@ def main():
     subprocess.run([sys.executable, os.path.join(HERE, "menu_title.py"), a.font, title_out], check=True)
     with open(title_out, "rb") as f:
         title_w = struct.unpack_from("<I", f.read(20), 16)[0]
-    row = ROW_NEW.format(path=TITLE_GAME_PATH, zoom=round(TITLE_SHOWN_WIDTH * 100 / title_w, 2), shown=TITLE_SHOWN_WIDTH, y=TITLE_Y)
+    row = ROW_NEW.format(title_on=TITLE_ROW_ON, path=TITLE_GAME_PATH, zoom=round(TITLE_SHOWN_WIDTH * 100 / title_w, 2), shown=TITLE_SHOWN_WIDTH, y=TITLE_Y)
     menu = change(menu, ROW_OLD, row, "main_title in start_menu.xml")
     for dst, text in ((os.path.join("Menus", "Options", "start_menu.xml"), menu),
                       (os.path.join("menus", "prefabs", "mapmo", "startmenu", "pause_title.xml"), logo)):
@@ -251,6 +264,12 @@ def main():
     print("written: the solid pause logo")
     subprocess.run([sys.executable, os.path.join(HERE, "game_font.py"), a.font, a.out, "--fnt", "glow_futura_caps_large",
                     "--tex", "NeverGetsOld_Menu_0_Lod_A", "--cap", str(MENU_CAP), "--line", str(FONT_LINE), "--top", str(FONT_TOP), "--caps-only", "--worn"], check=True)
+    for rel in (os.path.join("NVSE", "Plugins", "Scripts", "gr_NeverGetsOldMenuRow.txt"),
+                os.path.join("NVSE", "user_defined_functions", "NeverGetsOld", "MenuRow.gek")):
+        dst = os.path.join(a.out, rel)
+        os.makedirs(os.path.dirname(dst), exist_ok=True)
+        shutil.copyfile(os.path.join(ROW_SCRIPTS, os.path.basename(rel)), dst)
+        print("written:", rel)
 
 
 if __name__ == "__main__":

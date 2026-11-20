@@ -1,0 +1,6 @@
+; It Never Gets Old - the main menu's words in one row along the bottom, chosen with left and right (Tefa 2026-11-21).
+; Copied into the menu layout mod by tools/menu_layout.py. MAPMO's script stacks the words when the menu starts; ours, on
+; every frame in the main menu, lays them side by side (top level) or stacks them again (inside Load or Settings), and turns
+; Left/Right into the menu's own Up/Down. Needs xNVSE and JIP LN NVSE. Touches no record.
+; Mode 2 (in menus) does run on the main menu: seen 2026-11-21, the row laid out.
+SetGameMainLoopCallback (CompileScript "NeverGetsOld\MenuRow.gek") 1 1 2

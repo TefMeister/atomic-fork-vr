@@ -210,3 +210,24 @@ Claim tags: `[verified-live]` seen in the running game, `[measured]` read from f
   the menu words sit on the left, where this poster has the TV screen.
 - Eight free American poster fonts (SIL OFL, licences beside them) in `tools/fonts/` for Tefa's pick;
   `menu_layout.py` takes `--font` and no longer writes the old name into the menu files.
+
+## 2026-11-21
+
+**Night (Developer PC, Opus, flat, Tefa's yes): the main menu in one row along the bottom (FO-016).**
+
+- Tefa's new menu picture (from the Keeper, MEGA transfer folder) went in through `tools/picture_mood.py`, mood 1
+  "tw-vivid" (Tefa: "number 1 please"). The picture carries "A Tale of Two Wastelands" itself, so our own title row
+  is off (`menu_layout.py` `TITLE_ROW_ON = 0`).
+- MAPMO's script sets every menu row's place and height when the menu starts (read from its `.esm`: `SetUIFloatAlt
+  ... main_container\lb_item_hotrect:N\y`), so the layout file alone cannot hold a row. Ours: `tools/menu_row/`
+  (`gr_NeverGetsOldMenuRow.txt` + `MenuRow.gek`, copied into the layout mod by `menu_layout.py`), JIP's main loop
+  callback in mode 2, every frame on the main menu: on the top level the words side by side, the row centred at
+  y 885; inside Load or Settings stacked again as before. `[verified-live 2026-11-21, n=1]` (picture: CONTINUE NEW
+  LOAD SETTINGS CREDITS QUIT along the bottom, under the painted title).
+- Learned: mode 2 runs on the main menu; the rows are numbered from the bottom (Quit is 0); a script variable named
+  `fW` fails to compile ("Invalid variable name", jip_ln_nvse.log): every variable carries `NGORow`. `[measured]`
+- **Left and Right: NOT proven.** The script presses the menu's own Up/Down once per Left/Right press. In the flat
+  check no word changed brightness after Left/Right, after the game's own Up/Down, or with the mouse over a word:
+  the pictures stayed identical to a tenth of a percent, so the check itself is suspect (the game likely does not
+  redraw while it is not the front window; the terminal was in front). Next: the same check with the game in front
+  (or Tefa at the keyboard), first with the game's own Down, then Right.
