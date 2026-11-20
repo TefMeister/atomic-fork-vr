@@ -1,4 +1,4 @@
-; Atomic Fork - slower days: the check (called about twice a second by ln_AtomicForkSlowerDays.txt)
+; It Never Gets Old - slower days: the check (called about twice a second by ln_NeverGetsOldSlowerDays.txt)
 float fAFSDDay
 float fAFSDTwi
 float fAFSDWant
@@ -10,8 +10,8 @@ float fAFSDSetE
 ref rAFSDClimate
 
 begin Function {}
-	let fAFSDDay := GetINIFloat "Main\fDayScale" "AtomicFork\SlowerDays.ini"
-	let fAFSDTwi := GetINIFloat "Main\fTwilightScale" "AtomicFork\SlowerDays.ini"
+	let fAFSDDay := GetINIFloat "Main\fDayScale" "NeverGetsOld\SlowerDays.ini"
+	let fAFSDTwi := GetINIFloat "Main\fTwilightScale" "NeverGetsOld\SlowerDays.ini"
 	if fAFSDDay <= 0
 		let fAFSDDay := 21
 	endif
@@ -38,12 +38,12 @@ begin Function {}
 	endif
 	if TimeScale != fAFSDWant
 		set TimeScale to fAFSDWant
-		if GetINIFloat "Main\bLog" "AtomicFork\SlowerDays.ini"
-			PrintC "Atomic Fork slower days: hour %.2f, clock now %.1f" GameHour fAFSDWant
-			SetINIFloat "Status\fHour" GameHour "AtomicFork\SlowerDays_status.ini"
-			SetINIFloat "Status\fClock" fAFSDWant "AtomicFork\SlowerDays_status.ini"
-			SetINIFloat "Status\fDawn" fAFSDRiseB "AtomicFork\SlowerDays_status.ini"
-			SetINIFloat "Status\fDuskEnd" fAFSDSetE "AtomicFork\SlowerDays_status.ini"
+		if GetINIFloat "Main\bLog" "NeverGetsOld\SlowerDays.ini"
+			PrintC "It Never Gets Old slower days: hour %.2f, clock now %.1f" GameHour fAFSDWant
+			SetINIFloat "Status\fHour" GameHour "NeverGetsOld\SlowerDays_status.ini"
+			SetINIFloat "Status\fClock" fAFSDWant "NeverGetsOld\SlowerDays_status.ini"
+			SetINIFloat "Status\fDawn" fAFSDRiseB "NeverGetsOld\SlowerDays_status.ini"
+			SetINIFloat "Status\fDuskEnd" fAFSDSetE "NeverGetsOld\SlowerDays_status.ini"
 		endif
 	endif
 end

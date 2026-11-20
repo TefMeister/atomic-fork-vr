@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """game_font.py -- make a Fallout 3 / New Vegas menu font (.fnt + .Tex) from an ordinary font file.
 
-    python game_font.py <font.ttf> <out folder> --fnt glow_futura_caps_large --tex AtomicFork_Menu_0_Lod_A
+    python game_font.py <font.ttf> <out folder> --fnt glow_futura_caps_large --tex NeverGetsOld_Menu_0_Lod_A
                         [--cap 46] [--line 60] [--caps-only] [--worn]
 
 Writes <out>/textures/fonts/<fnt>.fnt and <out>/textures/fonts/<tex>.Tex. The .fnt name decides which of the game's

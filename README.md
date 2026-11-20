@@ -1,75 +1,56 @@
-# Atomic Fork VR (`atomic-fork-vr`)
+# IT NEVER GETS OLD WHEN SOMETHING BLOWS UP IN VR!
 
-A fork of the Begin Again modlist and also A Tale of Two Realities v1.0 - but not affiliated with either.
+Tefa's own modlist for playing **Tale of Two Wastelands** (Fallout 3 and New Vegas as one game) in virtual reality,
+with **Tale of Two Realities (TTWVR)** as the VR mod underneath. This is our own work: the list's VR setup, its
+fixes, its look and every tool in this repository were made here.
 
-Renamed by Tefa 2026-11-19 (until then `ba-ttr-vr-bridge`, "Begin Again Tale of Two Realities VR Bridge", named 2026-11-09). Older notes in this repository keep the old name.
+**Built upon the work of others** (see Credits): the mod selection and the list's own patches come from
+SpringHeelJon's Begin Again modlist, which this list builds upon with his permission. This list is **not
+affiliated with or endorsed by Begin Again or its author**; please do not take questions or faults about this list
+to him, or to KUPOkinz (TTWVR) or the TTW team. Open an issue here instead.
 
-Goal (Tefa, 2026-11-09): run the **Begin Again** Wabbajack modlist for Tale of Two Wastelands with **TTWVR / Tale of Two
-Realities** by KUPOkinz, a full VR conversion of Fallout 3 + New Vegas as one xNVSE plugin. Tefa's words: "i fully
-expect this to fail miserably today, but maybe not in a few months". Parked until TTWVR is in hand.
+Earlier names of this project: `ba-ttr-vr-bridge` (2026-11-09), Atomic Fork VR (2026-11-19). Dated notes in this
+repository keep the name that was current when they were written; the raw logs in `runs/` are left as recorded.
 
-## How we work: middlemen only (Tefa 2026-11-09)
+## How we work
 
-*"strictly we will only be the middlemen for making Begin Again work in the VR mod and we have to make it sustainable
-somehow. we'll figure it out or fail spectacularily"*
+- **The VR mod and the base list are never edited in place.** Whatever we change lives in our own small mods
+  (`bridge-mods/`, the "Bridge" mods) placed on top, so every change can be seen and taken out again.
+- **Fixed versions:** TTWVR 1.0.0 (the DLL of 2026-11-08) and the base list's V6.1.0. Since 2026-11-12 TTWVR may be
+  changed by us where that is what makes the list work in VR, always as our own mod on top of the untouched original.
+- **Every step is a recipe a script can repeat** (`tools/`), and each launch's logs are kept (`runs/`, scrubbed).
+- **Tested as a ladder:** the list is switched back on group by group, each group as its own Mod Organizer profile,
+  flat and in the headset (`tools/ladder.py`, `tools/ladder_groups.py`).
 
-**Changed 2026-11-12 (Tefa's decision):** the fork is built for one pair of versions and stays on it:
-**TTWVR 1.0.0** (the DLL of 2026-11-08) and **Begin Again V6.1.0**. No newer TTWVR is taken in. By Tefa's decision of 2026-11-12 (below), TTWVR may be changed by us where that is what makes Begin Again work in VR. What a new Begin
-Again release means for the fork is decided when one comes.
+## Where it stands
 
-- Begin Again's own files are never edited.
-- Whatever we change, in the list or in TTWVR, lives in our own MO2 mods placed on top; the originals stay in place,
-  so every change can be seen and taken out again.
-- Every step is written as a recipe a script can repeat.
-- A conflict report (which files TTWVR and the list both supply, and who wins) is kept current.
-- We do not take our modding questions or faults to KUPOkinz or to the list's author.
-- Credit: TTWVR is KUPOkinz's work; Begin Again is Spring Heel John's; TTW is the TTW team's. Their support channels are not
-  ours to fill with our problems.
-
-## Where it is going, and what we may do (Tefa 2026-11-11)
-
-- **The goal: Begin Again in VR, 1:1.** The whole list as its author built it, playable in TTWVR.
-- **Maybe, on the way, some of our own:** hand poses, how guns are held, and the like. Since 2026-11-12 these may
-  also be changes to TTWVR itself (see above), always as our own mod on top of the untouched original.
-- **KUPOkinz's permission** `[reported]` (Tefa, from KUPOkinz's public Discord thread; the message itself is not yet
-  saved here): anyone may do anything with the mod as long as nobody posts it as their own work. So: every file,
-  page and note that builds on TTWVR says it is KUPOkinz's work, first and plainly.
-- **Versions (2026-11-12):** TTWVR is fixed at 1.0.0; Begin Again at V6.1.0 until its author releases a new one,
-  and then it is decided afresh. (Before this date the plan was to follow both as they updated.)
-
-
-## Where it stands (2026-11-09)
-
-- Begin Again V6.1.0 installed by Wabbajack (CLI, Nexus Premium) to `C:\Modlists\Begin Again`, downloads on D. 874
-  archives, no errors, 23 minutes.
-- TTW 3.4 installing into the list's `[NoDelete] TTW 3.4` mod (started by Tefa through the installer's Browse field).
-- Fallout 3's launcher crashes on the RTX 5080 (Windows error log: Fallout3Launcher.exe 0xc0000005); its INIs were made
-  from `Fallout_default.ini` + `VeryHigh.ini` at 3440x1440. New Vegas's launcher worked.
-- TTWVR 1.0.0 (`TTWVR.zip`, 325 MB, from the pinned message of KUPOkinz's Discord thread on the Flat2VR server) is
-  downloaded, not installed. An MO2 archive (meta.ini): `NVSE/Plugins/TTWVR.dll` (2026-11-08), its own
-  `ttwvr_dxvk_d3d9.dll`, `openvr_api.dll` (SteamVR), DLSS and FSR DLLs, a `TTWVR.ini` (165 %, DLSS Performance, full
-  body, HUD off), and 1,040 files in all: ~520 resized armor meshes, weapon meshes, `meshes/characters/_male`, wound
-  textures. Those meshes must win over Begin Again's armor, body and weapon replacers.
-
-## What TTWVR asks for, against what Begin Again has
-
-| TTWVR needs | Begin Again |
-| --- | --- |
-| xNVSE, JIP LN NVSE, lStewieAl's Tweaks | included |
-| lStewieAl's Engine Optimizations, the 4GB patch | to check |
-| "no additional mods" until it runs; mods touching the player model, Pip-Boy model or player animations "may break" it | many: 3rd Person Animation Fixpack, kNVSE weapon animations, Dri / P6 weapon replacers, Consistent Pip-Boy Icons ... |
-| custom weapons only work when their NIFs follow TTWVR's node rules | the list replaces many weapon meshes |
-| launched under Virtual Desktop (VDXR) with forward tracking data on, or SteamVR | MO2 launch only (Root Builder) |
-
-The likely route: first TTWVR on the list's **Debug Mode** profile (TTW and its required mods only), then add Begin
-Again's groups back one at a time, weapons and animations last.
+- Work in progress: the list is being switched back on group by group on top of the VR mod, with our fixes (water,
+  sky, menus, picture settings), tested on a Quest 3 through Virtual Desktop and on the desk with the OpenXR
+  Simulator. `NOTEBOOK.md` says what has been tested where.
+- **2026-11-20:** the list got its own name and look: a full copy under the new name, Tefa's poster behind Mod
+  Organizer and on the main menu, an American poster font (Racing Sans One) on the manager and the menu.
 
 ## Files
 
 - `NOTEBOOK.md`: the dated log of everything done and what came of it.
-- `FAULTS.md`: the fault ledger, in the order faults must be sorted, and questions only a mod's author can answer.
-- `tools/ladder.py`: builds each test rung as an MO2 profile and checks its masters before a launch.
-- `tools/collect_run.py`: keeps every log a launch wrote (scrubbed), in `runs/`.
-- `docs/rung-00-plan.md`: the first launch, what we expect and what each failure would mean.
-- `external-research/README.md`: where the outside facts come from (links), and what we take from them.
-- `tools/conflict_report.py`, `reports/`: which files TTWVR and the list both supply, and who wins.
+- `FAULTS.md`: the fault ledger, in the order faults must be sorted.
+- `bridge-mods/`: our own MO2 mods and what each one does.
+- `tools/`: the ladder, the run collector, the conflict report, the menu and font builders, the Mod Organizer look
+  (`mo2_style_ingo.py`), the rename (`ingo_rename.py`), the water and sky tools.
+- `modding-notes/`, `docs/`, `engine-research/`, `external-research/`: findings, plans and outside sources.
+- `reports/`: which files the VR mod and the list both supply, and who wins.
+
+## Credits
+
+- **SpringHeelJon**: the Begin Again modlist, whose mod selection, patches, merges and settings this list builds
+  upon. Thank you for allowing it.
+- **KUPOkinz**: Tale of Two Realities (TTWVR), the VR conversion this whole list runs on.
+- **The TTW team**: Tale of Two Wastelands.
+- **Every author of every mod in the list**: the list is made of your work; each mod keeps its own page and credit
+  on Nexus Mods.
+- **Trosski**: the see-through Mod Organizer style our look is built on. **Mod Organizer 2**, **xNVSE**,
+  **Wabbajack** and their teams.
+- Fonts: Racing Sans One, Alfa Slab One and the other samples in `tools/fonts/` are under the SIL Open Font License
+  (licences beside them).
+
+If you should be credited here and are not, please open an issue.

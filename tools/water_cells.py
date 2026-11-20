@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import water_types as W
 H = W.HEADER
 ap = argparse.ArgumentParser(description=__doc__.split(chr(10) * 2)[0])
-ap.add_argument("--mo2", default="C:/Modlists/Atomic Fork VR")
+ap.add_argument("--mo2", default="C:/Modlists/It Never Gets Old VR")
 ap.add_argument("--game", default="C:/Steam/steamapps/common/Fallout New Vegas")
 ap.add_argument("--name", default="rung-05 interface flat")
 a = ap.parse_args()

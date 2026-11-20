@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 """ladder.py -- build one test rung as its own MO2 profile, and check it before a launch.
 
-A rung switches mods ON and OFF; it never reorders. Everything that is on keeps the Begin Again author's order (the
+A rung switches mods ON and OFF; it never reorders. Everything that is on keeps the base list author's order (the
 order of the base profile's modlist.txt and loadorder.txt). Before every launch `check` proves that no active plugin is
 missing a master and that every master loads before the plugin that needs it.
 
     python ladder.py make  --mo2 <list folder> --name "rung-00 flat base" --enable <mod> [<mod> ...]
-                           [--base "Atomic Fork VR"] [--files-from "Debug Mode (Base TTW and req mods)"]
+                           [--base "It Never Gets Old VR"] [--files-from "Debug Mode (Base TTW and req mods)"]
                            [--inis vanilla|base] [--windowed] [--mute-music]
     python ladder.py check --mo2 <list folder> --name "rung-00 flat base"
 
@@ -224,7 +224,7 @@ def main():
     m = sub.add_parser("make")
     m.add_argument("--mo2", required=True); m.add_argument("--name", required=True)
     m.add_argument("--enable", nargs="+", required=True)
-    m.add_argument("--base", default="Atomic Fork VR"); m.add_argument("--files-from")
+    m.add_argument("--base", default="It Never Gets Old VR"); m.add_argument("--files-from")
     m.add_argument("--inis", choices=("vanilla", "base"), default="base")
     m.add_argument("--windowed", action="store_true"); m.add_argument("--mute-music", action="store_true")
     c = sub.add_parser("check")

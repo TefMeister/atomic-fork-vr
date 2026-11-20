@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
-"""mo2_style.py -- Mod Organizer 2's look in the ATOMIC FORK VR colours: night navy, cream writing, the logo's red and gold.
+"""mo2_style.py -- Mod Organizer 2's look in the IT NEVER GETS OLD WHEN SOMETHING BLOWS UP IN VR! colours: night navy, cream writing, the logo's red and gold.
 
     python mo2_style.py --mo2 <list folder> [--install-font] [--select]
 
-Reads the list's own dark style (stylesheets/Fluency Dark Atomic Fork VR Edition.qss: every widget is already
+Reads the list's own dark style (stylesheets/Fluency Dark It Never Gets Old VR Edition.qss: every widget is already
 styled there, and its icons stay where they are), swaps its colours for the logo's, puts Alfa Slab One (the font of
-our main menu) on tabs, buttons, headings, the menu bar and drop-down boxes, and writes stylesheets/Atomic Fork VR.qss
+our main menu) on tabs, buttons, headings, the menu bar and drop-down boxes, and writes stylesheets/It Never Gets Old VR.qss
 beside it. The lists keep a plain font: Alfa Slab One is a poster font and hard to read small. Mod Organizer cannot
 load a font file itself, so the font must be installed in Windows: --install-font does that for this user only (no
 administrator; undone by deleting the file and the one registry value it prints). --select makes it the style in
@@ -21,8 +21,8 @@ import sys
 HERE = os.path.dirname(os.path.abspath(__file__))
 FONT_FILE = os.path.join(HERE, "fonts", "AlfaSlabOne-Regular.ttf")
 FONT_NAME = "Alfa Slab One"
-SOURCE = os.path.join("stylesheets", "Fluency Dark Atomic Fork VR Edition.qss")
-OUT_NAME = "Atomic Fork VR.qss"
+SOURCE = os.path.join("stylesheets", "Fluency Dark It Never Gets Old VR Edition.qss")
+OUT_NAME = "It Never Gets Old VR plain.qss"   # superseded by mo2_style_ingo.py (the poster look), which owns "It Never Gets Old VR.qss"
 
 # the source style's colour -> ours (its own palette notes: main, text/button, disabled, hover, select, text, text disabled)
 COLOURS = {
@@ -43,7 +43,7 @@ COLOURS = {
 
 EXTRA = f"""
 
-/* ---- Atomic Fork VR: the poster font on the big labels (added by tools/mo2_style.py) ---- */
+/* ---- It Never Gets Old VR: the poster font on the big labels (added by tools/mo2_style.py) ---- */
 QTabBar::tab, QPushButton, QToolButton, QHeaderView::section, QGroupBox::title, QMenuBar::item, QComboBox {{
   font-family: '{FONT_NAME}';
   font-weight: normal;
@@ -102,7 +102,7 @@ def main():
     a = ap.parse_args()
     with open(os.path.join(a.mo2, SOURCE), encoding="utf-8") as f:
         text = swap(f.read())
-    text = "/* Atomic Fork VR: the dark Fluency style in the ATOMIC FORK VR colours (tools/mo2_style.py) */\n" + text + EXTRA
+    text = "/* It Never Gets Old VR: the dark Fluency style in the IT NEVER GETS OLD WHEN SOMETHING BLOWS UP IN VR! colours (tools/mo2_style.py) */\n" + text + EXTRA
     with open(os.path.join(a.mo2, "stylesheets", OUT_NAME), "w", encoding="utf-8") as f:
         f.write(text)
     print("written: stylesheets/" + OUT_NAME)

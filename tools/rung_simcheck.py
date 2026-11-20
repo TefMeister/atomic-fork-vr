@@ -364,7 +364,7 @@ def main():
     vrlog = os.path.join(os.path.expanduser("~"), "Documents", "My Games", "FalloutNV", "TTWVR.log")
     hands()
     vb_sim.head(0, 1.7, 0, 0, 0)
-    subprocess.Popen([os.path.join(a.mo2, "ModOrganizer.exe"), "-p", sim_rung, "moshortcut://:Atomic Fork VR"],
+    subprocess.Popen([os.path.join(a.mo2, "ModOrganizer.exe"), "-p", sim_rung, "moshortcut://:It Never Gets Old VR"],
                      cwd=a.mo2, env=dict(os.environ, XR_RUNTIME_JSON=a.sim))
     t0 = time.time()
     while time.time() - t0 < 150 and not running("FalloutNV.exe"):

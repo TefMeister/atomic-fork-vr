@@ -28,7 +28,7 @@ def main():
     a = ap.parse_args()
     if running("FalloutNV.exe") or running("ModOrganizer.exe"):
         sys.exit("the game or Mod Organizer is already running: close it first")
-    subprocess.Popen([os.path.join(a.mo2, "ModOrganizer.exe"), "-p", a.rung, "moshortcut://:Atomic Fork VR"], cwd=a.mo2,
+    subprocess.Popen([os.path.join(a.mo2, "ModOrganizer.exe"), "-p", a.rung, "moshortcut://:It Never Gets Old VR"], cwd=a.mo2,
                      stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     t = time.time()
     while time.time() - t < START_LIMIT_S and not running("FalloutNV.exe"):

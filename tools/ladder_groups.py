@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ladder_groups.py -- build the rest of the ladder: Begin Again's own groups back on top of the VR base, a few at a
+"""ladder_groups.py -- build the rest of the ladder: the base list's own groups back on top of the VR base, a few at a
 time, weapons and animations last (KUPOkinz: mods touching the player model, the Pip-Boy or the player's animations
 "may break" TTWVR).
 
@@ -22,7 +22,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ladder as L   # noqa: E402
 
-BASE = "Atomic Fork VR"
+BASE = "It Never Gets Old VR"
 FILES_FROM = "rung-01 vr base"
 TTWVR = "TTWVR 1.0.0"
 # always on: the game itself and the tools every rung needs
@@ -43,9 +43,9 @@ RUNGS = [
     ("08c", "optional mods", ["OPTIONAL MODS"]),
 ]
 # mods brought down from a later group, on from this rung up (Tefa 2026-11-12: "switch the pack on from rung 3"):
-# Begin Again's own baked far view (the dense horizon). Each is a 1 KB plugin, master FalloutNV.esm only, that loads its
+# the base list's own baked far view (the dense horizon). Each is a 1 KB plugin, master FalloutNV.esm only, that loads its
 # same-named archives; they sit in OPTIONAL MODS, which kept the horizon off until rung 8b.
-EARLY = {"03": ["Atomic Fork VR Object LOD", "Atomic Fork VR Terrain LOD"]}
+EARLY = {"03": ["It Never Gets Old VR Object LOD", "It Never Gets Old VR Terrain LOD"]}
 # side rungs: a rung's mods minus some, NOT carried into the rungs after it. 08a without the one mod TTWVR's log complains
 # about on rung 8 (the first-person skeleton): does the complaint go?
 SIDE = [
@@ -104,12 +104,12 @@ OFF_IN_VR_PLUGINS = {"360movement.esp", "360movement - diagonal movement patch.e
 # On in EVERY rung, VR and flat alike (so the twins still differ only by TTWVR), just under TTWVR: our own bridge mods
 # (source in bridge-mods/). 2026-11-14: the rung-5 start crash is Stewie's Tweaks' grabbed-weight hook reading an empty
 # object during the load; this mod turns that one setting off (modding-notes/2026-11-14-the-rung-5-crash-...).
-BRIDGE_MODS = ["Bridge - Atomic Fork main menu", "Bridge - Stewie grabbed weight off"]   # first = on top; 2026-11-19: the menu picture and silent title music
+BRIDGE_MODS = ["Bridge - It Never Gets Old main menu", "Bridge - Stewie grabbed weight off"]   # first = on top; 2026-11-19: the menu picture and silent title music
 
 
 # 2026-11-19: our main-menu layout (title row, menu on the left, our font; built by menu_layout.py into the list's mods
 # folder) changes copies of these two mods' files, so it is on only in rungs that have both.
-LAYOUT_MOD = "Bridge - Atomic Fork main menu layout"
+LAYOUT_MOD = "Bridge - It Never Gets Old main menu layout"
 LAYOUT_NEEDS = ["Vanilla UI Plus (New Vegas)", "MAPMO - Main and Pause Menus Overhaul"]
 
 
@@ -163,7 +163,7 @@ def main():
     groups, base_lines = groups_of(a.mo2)
     base_lo = [l for l in L.read_lines(os.path.join(L.profile_dir(a.mo2, BASE), "loadorder.txt")) if l and not l.startswith("#")]
     # the floor: the two always-on groups AND every mod the proven base profile has on, wherever the author filed it
-    # (rung 2 first stopped on "NVTF.ini not found": that file is in "Atomic Fork VR Configs", which sits in a late group)
+    # (rung 2 first stopped on "NVTF.ini not found": that file is in "It Never Gets Old VR Configs", which sits in a late group)
     so_far = []
     for g in FLOOR:
         so_far += groups.get(g, [])

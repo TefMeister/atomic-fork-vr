@@ -1,5 +1,0 @@
-; Atomic Fork - slower days (2026-11-20, for Tefa)
-; The game clock runs at fDayScale (21 = 30 % slower than the game's 30) and at fTwilightScale (10.5) while the current
-; climate's dawn or dusk is on, so day to night takes longer. Settings: config\AtomicFork\SlowerDays.ini
-; Needs xNVSE and JIP LN NVSE. Touches no record: only the TimeScale global, set while the game runs.
-SetGameMainLoopCallback (CompileScript "AtomicFork\SlowerDays.gek") 1 30 1

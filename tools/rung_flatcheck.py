@@ -183,7 +183,7 @@ def main():
             os.utime(f, None)
         profile_before = R.mo2_profile(a.mo2)   # 2026-11-13: MO2 keeps the last profile started; put back after
         profile = make_desk_profile(a.mo2, a.rung)
-    subprocess.Popen([os.path.join(a.mo2, "ModOrganizer.exe"), "-p", profile, "moshortcut://:Atomic Fork VR"], cwd=a.mo2)
+    subprocess.Popen([os.path.join(a.mo2, "ModOrganizer.exe"), "-p", profile, "moshortcut://:It Never Gets Old VR"], cwd=a.mo2)
     t0 = time.time()
     while time.time() - t0 < 150 and not running("FalloutNV.exe"):
         time.sleep(2)

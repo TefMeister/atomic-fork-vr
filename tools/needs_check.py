@@ -2,7 +2,7 @@
 
     python needs_check.py --mo2 <list folder> --name <profile>     exit 1 when something is missing
 
-Many of Begin Again's drawing add-ons refuse to load without another one and say so in a box at the start that stops
+Many of the base list's drawing add-ons refuse to load without another one and say so in a box at the start that stops
 the game ("LOD Flicker Fix not found. Depth Resolve cannot be used without it, please install it."). Each such add-on
 carries those sentences inside its DLL, so they are read from the DLL: every "<Name> not found." whose next sentence
 is "... cannot be used without it". <Name> is matched to a mod of the list by its words (ignoring "Fallout", "NVSE",

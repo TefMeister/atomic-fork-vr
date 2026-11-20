@@ -12,7 +12,7 @@ for round in 1 2 3; do
   for r in "rung-05 interface" "rung-06 armor and people" "rung-07 weapons" "rung-08a skeleton and animation" "rung-08b late loaders" "rung-08c optional mods"; do
     f="$OUT/fix${round}_$(echo "$r" | cut -d' ' -f1).txt"
     echo "=== fix round $round $r $(date +%H:%M:%S)" > "$f"
-    timeout 600 python tools/rung_simcheck.py --mo2 "C:\Modlists\Atomic Fork VR" --game "C:\Steam\steamapps\common\Fallout New Vegas" \
+    timeout 600 python tools/rung_simcheck.py --mo2 "C:\Modlists\It Never Gets Old VR" --game "C:\Steam\steamapps\common\Fallout New Vegas" \
       --rung "$r" --sim "$LOCALAPPDATA\Programs\OpenXR-Simulator\openxr_simulator-32.json" --vrbench "$(cygpath -w "$VB")" >> "$f" 2>&1
     echo "exit=$? $(date +%H:%M:%S)" >> "$f"
     for i in $(seq 20); do tasklist | grep -qi "FalloutNV.exe" || break; sleep 3; done

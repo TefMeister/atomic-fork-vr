@@ -14,7 +14,7 @@ import sys
 import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-MOD = "Bridge - Atomic Fork main menu layout"
+MOD = "Bridge - It Never Gets Old main menu layout"
 
 
 def running(name):

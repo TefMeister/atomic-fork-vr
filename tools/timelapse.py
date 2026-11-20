@@ -5,7 +5,7 @@ speed time up so 24 game hours take RECORD_S seconds, record the game window wit
 import os, sys, subprocess, time
 TOOLS = os.path.expanduser("~/github-backups/atomic-fork-vr/tools")
 OBS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rec_hq.py")
-MO2, GAME = "C:/Modlists/Atomic Fork VR", "C:/Steam/steamapps/common/Fallout New Vegas"
+MO2, GAME = "C:/Modlists/It Never Gets Old VR", "C:/Steam/steamapps/common/Fallout New Vegas"
 RECORD_S = 360
 TIMESCALE = round(24 * 3600 / RECORD_S)          # 240: one game day in six minutes
 prof, label = sys.argv[1], sys.argv[2]
@@ -14,7 +14,7 @@ def running(n): return n.lower() in subprocess.run(["tasklist"], capture_output=
 def console(*lines): print(" console", lines, subprocess.run([sys.executable, os.path.join(TOOLS, "console_type.py"), *lines], capture_output=True, text=True).returncode, flush=True)
 assert not running("FalloutNV.exe") and not running("ModOrganizer.exe"), "game or MO2 already running"
 start = time.time()
-subprocess.Popen([MO2 + "/ModOrganizer.exe", "-p", prof, "moshortcut://:Atomic Fork VR"], cwd=MO2)
+subprocess.Popen([MO2 + "/ModOrganizer.exe", "-p", prof, "moshortcut://:It Never Gets Old VR"], cwd=MO2)
 log = GAME + "/nvse.log"
 while time.time() - start < 240:
     try:

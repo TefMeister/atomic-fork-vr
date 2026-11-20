@@ -3,7 +3,7 @@
 
 Tefa, 2026-11-13 (a picture of that box): "is there a way you can check for those, they do keep popping up".
 The box comes when a save was made with mods that the profile now starting does not have on (a save from a higher rung
-loaded on a lower one, or from the full Begin Again). Every New Vegas save names the mods it was made with, so this
+loaded on a lower one, or from the full base list). Every New Vegas save names the mods it was made with, so this
 is known BEFORE the game starts: no game, no window, nothing touched (the save is only read).
 
     python save_needs.py --mo2 <list folder> --rung "rung-03 world" [--save "Save 4"]
