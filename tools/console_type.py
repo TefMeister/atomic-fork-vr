@@ -29,7 +29,15 @@ game = [x for x in wins if "simulator" not in x[1].lower() and "openxr" not in x
 print("using", ascii(game))
 class KI(ctypes.Structure): _fields_=[("wVk",w.WORD),("wScan",w.WORD),("dwFlags",w.DWORD),("time",w.DWORD),("dwExtraInfo",ctypes.c_size_t)]
 class IN(ctypes.Structure): _fields_=[("type",w.DWORD),("ki",KI),("pad",ctypes.c_byte*8)]
+GAME_HWND = None
 def key(sc, up=False):
+    # 2026-11-20: the game crashed between two lines and the rest of the keys went into Tefa's Claude window (they
+    # arrived there as chat messages). Every key now checks the game is still in front; a key-up is always let through
+    # so no key is left held down.
+    if not up and GAME_HWND is not None and u.GetForegroundWindow() != GAME_HWND:
+        for held in (0x2A,):                                  # let go of Shift if it was down for this letter
+            j = IN(1, KI(0, held, 0x8 | 0x2, 0, 0)); u.SendInput(1, ctypes.byref(j), ctypes.sizeof(IN))
+        sys.exit("STOPPED: the game window is no longer in front (crashed or covered); nothing more typed")
     i = IN(1, KI(0, sc, 0x8 | (0x2 if up else 0), 0, 0)); u.SendInput(1, ctypes.byref(i), ctypes.sizeof(IN))
 def tap(sc, shift=False):
     if shift: key(0x2A)
@@ -53,6 +61,7 @@ for _ in range(3):
 fg = u.GetForegroundWindow()
 fg = u.GetForegroundWindow(); p = w.DWORD(); u.GetWindowThreadProcessId(fg, ctypes.byref(p))
 if fg != game[0]: sys.exit("the game window itself is not in front; nothing typed")
+GAME_HWND = game[0]
 for line in sys.argv[1:]:
     tap(0x29); time.sleep(0.6); typ(line); time.sleep(0.2); tap(0x1C); time.sleep(0.8); tap(0x29); time.sleep(1.5)
 print("typed", len(sys.argv)-1)

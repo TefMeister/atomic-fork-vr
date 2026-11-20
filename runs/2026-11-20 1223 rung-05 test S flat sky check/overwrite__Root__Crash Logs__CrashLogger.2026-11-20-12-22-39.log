@@ -1,0 +1,736 @@
+Nobark's Bugthesda Ls Logger: Born To Crash / GameBryo is a F*CK / Fix Em All version 5.17 at 2026-11-20 12:21:53
+If this file is empty, then your game didn't crash or something went so wrong even crash logger was useless! :snig:
+Topmost stack module is NOT ALWAYS the crash reason! Exercise caution when speculating!
+
+When asking for help, please send the whole log file!
+
+
+Exception: EXCEPTION_ACCESS_VIOLATION (C0000005)
+
+Thread: [FNV] Main
+
+Calltrace:
+     ebp    |                   Address                 |                 Function                 |  Source
+ 0x001AF4AC |                    FalloutNV (0x00877C6D) |                                          | 
+ 0x001AF4C0 |                    FalloutNV (0x009054DF) |                                          | 
+ 0x001AF4D0 |                    FalloutNV (0x0087A8A8) |                                          | 
+ 0x001AF4E0 |                    FalloutNV (0x0087D185) |                                          | 
+ 0x001AF514 |                    FalloutNV (0x0087B1C2) |                                          | 
+ 0x001AF6F8 |                    FalloutNV (0x008AD7DF) |                                          | 
+ 0x001AF71C |                    FalloutNV (0x008AD95B) |                                          | 
+ 0x001AF7EC |                    FalloutNV (0x00912907) |                                          | 
+ 0x001AF810 |                    FalloutNV (0x009122AD) |                                          | 
+ 0x001AFA00 |                    FalloutNV (0x0090BD78) |                                          | 
+ 0x001AFA6C |                    FalloutNV (0x00886799) |                                          | 
+ 0x001AFA98 |           nvse_stewie_tweaks (0x1002AD00) | Process::ProcessManager__UpdateLowActors_UpdateProcessLists+0x140 | C:\Bethesda Modding\New Vegas\NV-Stewie-Tweaks\code\Features\Inlines\Process.cpp:228
+ 0x001AFAD0 |                    FalloutNV (0x0096DA4D) |                                          | 
+ 0x001AFADC |                    FalloutNV (0x0086F90A) |                                          | 
+ 0x001AFAE8 |                    FalloutNV (0x008705E7) |                                          | 
+ 0x001AFB40 |                    FalloutNV (0x0086EDF5) |                                          | 
+ 0x001AFEC4 |                    FalloutNV (0x0086B3E8) |                                          | 
+ 0x001AFEE4 |            nvse_steam_loader (0x100026D4) | OnHook+0x64                              | C:\Users\<user>\source\repos\xNVSE\NVSE\nvse\steam_loader\main.cpp:62
+ 0x001AFF74 |                    FalloutNV (0x00ECC470) |                                          | 
+ 0x001AFF84 |                     KERNEL32 (0x10015D49) | BaseThreadInitThunk+0x19                 | 
+ 0x001AFFDC |                        ntdll (0x1006C88B) | RtlInitializeExceptionChain+0x6B         | 
+ 0x001AFFEC |                        ntdll (0x1006C811) | RtlGetAppContainerNamedObjectPath+0x231  | 
+
+Registry:
+ REG |    Value   | DEREFERENCE INFO
+ ebp | 0x001AF4AC |
+ ebx | 0x0000065E |
+ eax | 0x00000000 |
+ edx | 0x00000000 |
+ ecx | 0x00000008 |
+ esi | 0x001AF4F0 |
+ edi | 0x00000004 |
+ eip | 0x00877C6D |
+ esp | 0x001AF480 |
+
+Stack:
+  # |    Value   | DEREFERENCE INFO
+ 00 | 0x1F29FD1D |
+ 01 | 0x4E097960 | 0x01086A6C => Class: Character
+					Full Name: "Chauncey"
+					FormID: 0010D4EE ("VMS18ChaunceyREF")
+					Flags: MASTER | INITIALIZED | PERSISTENT
+					Plugin: "FalloutNV.esm"
+					BaseForm: NPC
+					 Full Name: "Chauncey"
+					 FormID: 0010D4EA ("VMS18Chauncey")
+					 Flags: MASTER | INITIALIZED | ON_LOCAL_MAP | QUEST_ITEM
+					 Plugin: "FalloutNV.esm"
+					Cell:
+					 Full Name: "Ultra-Luxe Casino Floor"
+					 FormID: 0010D4ED ("ULCasino")
+					 Flags: MASTER | INITIALIZED
+					 Plugin: "FalloutNV.esm"
+					 Last modified by: "SUPER Lively New Vegas.esm"
+					 Type: Interior
+					 State: Not Loaded
+					Model:
+					 Model Path: "Characters\_Male\Skeleton.NIF"
+					Process: Low
+					 Current Package:
+					  Full Name: None
+					  FormID: 0011BAE8 ("VMS18ChaunceyPatrol")
+					  Flags: MASTER | INITIALIZED
+					  Plugin: "FalloutNV.esm"
+ 02 | 0x00000026 |
+ 04 | 0x18088E98 | 0x01082F04 => RTTI: BSTCommonScrapHeapMessageQueue<struct BSPackedTask>
+ 08 | 0x001AF6EC |
+ 09 | 0x00F144D1 |
+ 0A | 0xFFFFFFFF |
+ 0B | 0x001AF4C0 |
+ 0C | 0x009054DF |
+ 0D | 0x001AF4F0 |
+ 42 | 0x4E097D20 | 0x01086A6C => Class: Character
+					Full Name: "White Glove"
+					FormID: 0011B1AB ("WhiteGlove2REF")
+					Flags: MASTER | INITIALIZED | PERSISTENT
+					Plugin: "FalloutNV.esm"
+					BaseForm: NPC
+					 Full Name: "White Glove"
+					 FormID: 00118345 ("VMS18WhiteGloveAAF")
+					 Flags: MASTER | INITIALIZED | ON_LOCAL_MAP
+					 Plugin: "FalloutNV.esm"
+					Cell:
+					 Full Name: "Ultra-Luxe Casino Floor"
+					 FormID: 0010D4ED ("ULCasino")
+					 Flags: MASTER | INITIALIZED
+					 Plugin: "FalloutNV.esm"
+					 Last modified by: "SUPER Lively New Vegas.esm"
+					 Type: Interior
+					 State: Not Loaded
+					Model:
+					 Model Path: "Characters\_Male\Skeleton.NIF"
+					Process: Low
+					 Current Package:
+					  Full Name: None
+					  FormID: 0017153E ("DefaultPatrolCasualLinkedRef")
+					  Flags: MASTER | INITIALIZED
+					  Plugin: "FalloutNV.esm"
+ 59 | 0x4700C340 | 0x01067A2C => Class: ActorValueInfo
+ 73 | 0x4506D780 | 0x010886E4 => Class: LowProcess
+					Current Package:
+					 Full Name: None
+					 FormID: 0011BAE8 ("VMS18ChaunceyPatrol")
+					 Flags: MASTER | INITIALIZED
+					 Plugin: "FalloutNV.esm"
+					Owner:
+					 Full Name: "Chauncey"
+					 FormID: 0010D4EE ("VMS18ChaunceyREF")
+					 Flags: MASTER | INITIALIZED | PERSISTENT
+					 Plugin: "FalloutNV.esm"
+ 77 | 0x500CE6C0 | 0x0104A2F4 => Class: TESNPC
+					Full Name: "Chauncey"
+					FormID: 0010D4EA ("VMS18Chauncey")
+					Flags: MASTER | INITIALIZED | ON_LOCAL_MAP | QUEST_ITEM
+					Plugin: "FalloutNV.esm"
+					Model:
+					 Model Path: "Characters\_Male\Skeleton.NIF"
+ 7C | 0x4E097A04 | 0x010869A4 => RTTI: Character
+ A2 | 0x1924352C | 0x0102E9B4 => Class: TESObjectCELL
+					Full Name: "Ultra-Luxe Casino Floor"
+					FormID: 0010D4ED ("ULCasino")
+					Flags: MASTER | INITIALIZED
+					Plugin: "FalloutNV.esm"
+					Last modified by: "SUPER Lively New Vegas.esm"
+					Type: Interior
+					State: Not Loaded
+ A9 | 0x4105E618 | 0x0102F55C => Class: TESObjectREFR
+					Full Name: None
+					FormID: 0011BACE
+					Flags: MASTER | INITIALIZED | PERSISTENT | TARGETED
+					Plugin: "FalloutNV.esm"
+					BaseForm: Idle Marker
+					 Full Name: None
+					 FormID: 000BE7E0 ("DefaultShoppingIdleMarker")
+					 Flags: MASTER | INITIALIZED | ON_LOCAL_MAP
+					 Plugin: "FalloutNV.esm"
+					Cell:
+					 Full Name: "Ultra-Luxe Casino Floor"
+					 FormID: 0010D4ED ("ULCasino")
+					 Flags: MASTER | INITIALIZED
+					 Plugin: "FalloutNV.esm"
+					 Last modified by: "SUPER Lively New Vegas.esm"
+					 Type: Interior
+					 State: Not Loaded
+ AD | 0x0E347390 | 0x01015F70 => Class: ExtraPatrolRefInUseData
+ BA | 0x4105E65C | 0x010143E8 => Class: ExtraDataList
+ BB | 0x390E51F8 | 0x01093418 => Class: PatrolActorPackageData
+					Exception occurred while logging
+ D2 | 0x43092D80 | 0x0106847C => Class: TESPackage
+					Full Name: None
+					FormID: 0011BAE8 ("VMS18ChaunceyPatrol")
+					Flags: MASTER | INITIALIZED
+					Plugin: "FalloutNV.esm"
+ E9 | 0x4506D900 | 0x010886E4 => Class: LowProcess
+					Current Package:
+					 Full Name: None
+					 FormID: 0017153E ("DefaultPatrolCasualLinkedRef")
+					 Flags: MASTER | INITIALIZED
+					 Plugin: "FalloutNV.esm"
+					Owner:
+					 Full Name: "White Glove"
+					 FormID: 0011B1AB ("WhiteGlove2REF")
+					 Flags: MASTER | INITIALIZED | PERSISTENT
+					 Plugin: "FalloutNV.esm"
+ EC | 0x43091580 | 0x0106847C => Class: TESPackage
+					Full Name: None
+					FormID: 0011AFD7 ("DefaultTravelToLinkedPackage")
+					Flags: MASTER | INITIALIZED
+					Plugin: "FalloutNV.esm"
+ F8 | 0x500CE6F0 | 0x0104A284 => RTTI: TESNPC
+ FF | 0x4E0979F4 | 0x010869D4 => RTTI: Character
+
+--------------------------------------------------------------------------------
+
+Device:
+ OS:  "Windows 11 Enterprise - 26200 (25H2)"
+ CPU: "Intel(R) Core(TM) i5-14600K"
+ GPU: "NVIDIA GeForce <pc> 5080"
+ RAM: "32.00 GB"
+
+--------------------------------------------------------------------------------
+
+Process' Memory:
+ Physical Usage:   1.30 GiB /  31.78 GiB (4.08%)
+ Virtual  Usage:   2.21 GiB /   4.00 GiB (55.32%)
+
+Graphics Memory:
+ GPU 0 - NVIDIA GeForce <pc> 5080
+  Local Memory:       3.15 GiB /  14.85 GiB (21.21%)
+  Non-Local Memory:  12.31 MiB /  15.14 GiB (0.08%) 
+ GPU 1 - Intel(R) UHD Graphics 770
+  Local Memory:          0 B /  15.14 GiB (0.00%)   
+ GPU 2 - NVIDIA GeForce <pc> 5080
+  Local Memory:       3.15 GiB /  14.85 GiB (21.21%)
+  Non-Local Memory:  12.31 MiB /  15.14 GiB (0.08%) 
+
+--------------------------------------------------------------------------------
+
+Game's Heaps:
+ Default Heap     188.48 MiB / 500.00 MiB (37.70%)  (18070000 - 37470000)
+ Static Heap      638.88 KiB /   1.51 MiB (41.22%)  (0792B020 - 07AAE820)
+ File Heap          6.44 MiB /  64.00 MiB (10.07%)  (07AB0000 - 0BAB0000)
+
+Game's Total Memory:
+ Total Heap Memory:   195.55 MiB / 565.51 MiB (34.58%)
+ Total Pool Memory:   102.62 MiB / 132.00 MiB (77.74%)
+ Total Memory:        298.17 MiB / 697.51 MiB (42.75%)
+ Malloc Memory:        16.55 KiB
+
+--------------------------------------------------------------------------------
+
+Playtime: 00:00:46
+
+Player Data:
+ Cell:       06001AE2 ("Wilderness")
+ World:      0607EA1F ("Wasteland")
+ Position:   X: 8415.26 Y: -7606.42 Z: 12340.90
+ Rotation:   X: -0.25 Y: 0.00 Z: 1.25
+
+Currently running script:
+  None
+
+Loaded assets:
+ Textures:       1286
+   <= 128:  207
+   <= 256:  312
+   <= 512:  160
+   <= 1024: 254
+   <= 2048: 302
+   <= 4096: 51
+   <= 8192: 0
+ Models:         1354
+ FaceGen Models: 17
+ Animations:     1578
+
+Process Lists:
+ High:        14
+ Middle High: 0
+ Middle Low:  21
+ Low:         9111
+Total: 9146
+
+--------------------------------------------------------------------------------
+
+Mods:
+  # |                                        Mod                                       |                            Author                           
+ 00 | FalloutNV.esm                                                                    | ipely                                                       
+ 01 | DeadMoney.esm                                                                    | jfader                                                      
+ 02 | HonestHearts.esm                                                                 | jfader                                                      
+ 03 | OldWorldBlues.esm                                                                | jfader                                                      
+ 04 | LonesomeRoad.esm                                                                 | jfader                                                      
+ 05 | GunRunnersArsenal.esm                                                            | jfader                                                      
+ 06 | Fallout3.esm                                                                     | ipely                                                       
+ 07 | Anchorage.esm                                                                    | jduvall                                                     
+ 08 | ThePitt.esm                                                                      | jduvall                                                     
+ 09 | BrokenSteel.esm                                                                  | bchapin                                                     
+ 0A | PointLookout.esm                                                                 | jburgess                                                    
+ 0B | Zeta.esm                                                                         | ipely                                                       
+ 0C | CaravanPack.esm                                                                  | jfader                                                      
+ 0D | ClassicPack.esm                                                                  | jfader                                                      
+ 0E | MercenaryPack.esm                                                                | jfader                                                      
+ 0F | TribalPack.esm                                                                   | jfader                                                      
+ 10 | TaleOfTwoWastelands.esm                                                          | Tale of Two Wastelands Team                                 
+ 11 | YUPTTW.esm                                                                       | Yukichigai - sandbox6 - miguick - Roy Batty - Kazopert      
+ 12 | Strip Lights Region Fix.esm                                                      | Nehred                                                      
+ 13 | Landscape Texture Improvements TTW.esm                                           |                                                             
+ 14 | NavmeshOverhaul.esm                                                              | Inthegrave                                                  
+ 15 | PerformanceOfTheTitans.esm                                                       |                                                             
+ 16 | PerformanceOfTheTitans - TTW Patch.esm                                           |                                                             
+ 17 | TweaksTTW.esm                                                                    |                                                             
+ 18 | fixy crap ttw.esp                                                                |                                                             
+ 19 | Placement Fixes.esm                                                              |                                                             
+ 1A | ExtraGoodies.esp                                                                 |                                                             
+ 1B | Goodies.esp                                                                      |                                                             
+ 1C | ExtraGoodies - TTW.esp                                                           |                                                             
+ 1D | Goodies - TTW.esp                                                                |                                                             
+ 1E | Main And Pause Menus Overhaul.esm                                                | Nehred                                                      
+ 1F | Repeatable Quests Rewards Rebalanced.esm                                         |                                                             
+ 20 | Gun Runners' Arsenal - Unique Weapons Relocated for TTW.esm                      |                                                             
+ 21 | Better Weapon Restrictions & Fixes.esm                                           | Lime                                                        
+ 22 | TTW - Capital Wasteland Adjustments.esm                                          | ScarletArdere                                               
+ 23 | Bad Touch.esm                                                                    |                                                             
+ 24 | Home and Safehouse Tweaks.esm                                                    | AVeryUncreativeUsername                                     
+ 25 | HiddenValleyOverhauled.esm                                                       |                                                             
+ 26 | Bathroom Doors Overhaul.esm                                                      | Nehred                                                      
+ 27 | Sierra Madre Suite Windows.esp                                                   | PlatinumShad0w                                              
+ 28 | Lived-In Freeside.esm                                                            |                                                             
+ 29 | Freeside Facelift.esm                                                            |                                                             
+ 2A | Lived-In Freeside - Freeside Facelift Patch.esm                                  |                                                             
+ 2B | Assigned Living.esm                                                              | Lime                                                        
+ 2C | Simple Open Strip.esm                                                            |                                                             
+ 2D | The Strip - 2023 Lite.esm                                                        | EmployeesMustWashHands                                      
+ 2E | FO3_Optimization.esm                                                             |                                                             
+ 2F | SSTImprovedHighways.esm                                                          | Spifferino                                                  
+ 30 | Wasted Return of LOD.esm                                                         |                                                             
+ 31 | Restored Physics Sounds.esm                                                      |                                                             
+ 32 | AfterglowNeonIllumination.esp                                                    | Gosh                                                        
+ 33 | Mojave Scenery Overhaul.esm                                                      | Biggie404                                                   
+ 34 | Mojave Scenery Overhaul - TTW.esm                                                |                                                             
+ 35 | Mojave Scenery Overhaul - TTW Activators.esm                                     |                                                             
+ 36 | AguaFria.esm                                                                     |                                                             
+ 37 | Simple Mojave Urbanization.esm                                                   | irishbutcher                                                
+ 38 | urbanoverhaul.esp                                                                |                                                             
+ 39 | Better Factories.esm                                                             | Slick                                                       
+ 3A | Simple Mojave Urbanization + Better Factories.esm                                |                                                             
+ 3B | Simple Mojave Urbanization + Mojave Scenery Overhaul Patch.esm                   |                                                             
+ 3C | SSTScrapyardServiceBuildings.esm                                                 | Spifferino                                                  
+ 3D | FNV_Optimization.esm                                                             |                                                             
+ 3E | McCarranConcourse_opt.esm                                                        |                                                             
+ 3F | ThePlatinumVault.esm                                                             | Lime                                                        
+ 40 | ThePlatinumVault_opt.esm                                                         |                                                             
+ 41 | SUPER Lively New Vegas.esm                                                       | zebumper                                                    
+ 42 | SUPER Lively New Vegas_opt.esm                                                   |                                                             
+ 43 | Lived-In New Vegas.esm                                                           |                                                             
+ 44 | The High Road - Building Density.esm                                             |                                                             
+ 45 | 2023 Strip Lite Trees.esm                                                        |                                                             
+ 46 | Skylines_Exteriors.esm                                                           |                                                             
+ 47 | Skylines_LightCore.esm                                                           | FireKahuna                                                  
+ 48 | Skylines_LightPollution.esm                                                      | FireKahuna                                                  
+ 49 | Skylines_LightSigns.esm                                                          | FireKahuna                                                  
+ 4A | Skylines_LightMSO.esp                                                            | FireKahuna                                                  
+ 4B | StripCinematicLighting.esp                                                       |                                                             
+ 4C | StripCinematic_2023Lite.esp                                                      |                                                             
+ 4D | Lucky38LightingOverhaul.esp                                                      | Slick                                                       
+ 4E | Lucky38ExtRemasterNew.esm                                                        |                                                             
+ 4F | MojaveMountainRanges.esm                                                         | GeraldMods                                                  
+ 50 | MojaveMountainRanges LOD.esm                                                     | GeraldMods                                                  
+ 51 | SSTMojaveMountains.esm                                                           | Spifferino                                                  
+ 52 | RedOnTheRocks.esm                                                                | Diegonom                                                    
+ 53 | AnimatedMonorail-Luck38ext-SLRF.esm                                              |                                                             
+ 54 | Lived-In Strip Courtyard.esm                                                     |                                                             
+ 55 | BiRepChecks.esm                                                                  |                                                             
+ 56 | Follower Formula Redone.esp                                                      |                                                             
+ 57 | Vault 21 Unbadene.esm                                                            |                                                             
+ 58 | Vault21 Goodies.esp                                                              |                                                             
+ 59 | Vault 21 Unbadene_opt.esm                                                        |                                                             
+ 5A | MFGBetaRestoration.esm                                                           | MrFunnyguy901                                               
+ 5B | Functional Post Game Ending Lite.esm                                             | Kazopert and AVeryUncreativeUsername                        
+ 5C | Functional Post Game Ending Lite TTW Patch.esm                                   | AVeryUncreativeUsername                                     
+ 5D | FNV_Optimization YUPTTW.esm                                                      |                                                             
+ 5E | SouthVegasRuins.esm                                                              | GeraldMods                                                  
+ 5F | PFTP - JUST Freeside.esp                                                         | KaptainCnucklz                                              
+ 60 | TTTW_SMIM.esp                                                                    |                                                             
+ 61 | GasTrapPerformanceFix.esp                                                        |                                                             
+ 62 | MadrePass.esp                                                                    |                                                             
+ 63 | The Mod Configuration Menu.esp                                                   | Pelinor                                                     
+ 64 | TTW Trait Menu Change.esp                                                        |                                                             
+ 65 | McCarranFieldSignScheduleFix.esp                                                 | xanthumn                                                    
+ 66 | Vanilla UI Plus.esp                                                              | Axonis                                                      
+ 67 | Vanilla UI Plus - Max Carry Weight Patch.esp                                     |                                                             
+ 68 | Enhanced FOV.esp                                                                 |                                                             
+ 69 | TTWLessMapMarkers.esp                                                            |                                                             
+ 6A | JIP Improved Recipe Menu.esp                                                     | jazzisparis                                                 
+ 6B | Atomic Fork VR Worldspace Merge.esp                                              |                                                             
+ 6C | Less Tedious TTW.esp                                                             |                                                             
+ 6D | Less Tedious TTW - Armor Balance for Creatures.esp                               |                                                             
+ 6E | Special Ammo for Special Enemies.esp                                             |                                                             
+ 6F | SMAC - Simple Melee Attack Cancel and Parry.esp                                  |                                                             
+ 70 | Blitz.esp                                                                        | Goldbartender                                               
+ 71 | Supplemental Ammo Crafting.esp                                                   | Audixas                                                     
+ 72 | RQRR - TweaksTTW.esp                                                             |                                                             
+ 73 | B42Bash.esp                                                                      |                                                             
+ 74 | JustAssortedMods.esp                                                             | yvileapsis and others                                       
+ 75 | JAM - JLM Hide Fix.esp                                                           |                                                             
+ 76 | WeaponRequirementSystem.esp                                                      | Migck                                                       
+ 77 | RAD.esp                                                                          |                                                             
+ 78 | TTW - Less Super Mutant Overlords.esp                                            | TPFradeN                                                    
+ 79 | TTW Ammo Press Rebalanced.esp                                                    |                                                             
+ 7A | TTW No Mojave Start Option.esp                                                   |                                                             
+ 7B | TTW Quick NV Train Start.esp                                                     |                                                             
+ 7C | Benny Humbles You and Steals Your Stuff.esp                                      |                                                             
+ 7D | QwibHeadBandage.esp                                                              |                                                             
+ 7E | CourierPatientClothing.esp                                                       |                                                             
+ 7F | A Friend to Animals - Optional Moira Objectives Alternative.esp                  |                                                             
+ 80 | NoRandomHellfireSpawns.esp                                                       |                                                             
+ 81 | Root 'n Loot.esp                                                                 | Roy Batty                                                   
+ 82 | Goodies - RootnLoot Patch.esp                                                    |                                                             
+ 83 | VegasPlasticSurgeons.esp                                                         |                                                             
+ 84 | Quick Disarm.esp                                                                 |                                                             
+ 85 | Casino Exchange All.esp                                                          |                                                             
+ 86 | No Naked Caravaneers.esp                                                         |                                                             
+ 87 | Zion landscape enhanced.esp                                                      | Osip                                                        
+ 88 | STDG.esp                                                                         | theicedevil & Manan6619                                     
+ 89 | Misc Windows.esp                                                                 | TheKraken                                                   
+ 8A | The Strip - 2023 Lite - TTW Patch.esp                                            |                                                             
+ 8B | (Patch) SUPER Lively New Vegas - Bathroom Doors Overhaul Patch.esp               | zebumper                                                    
+ 8C | Gomorrah Imposter.esp                                                            | irishbutcher                                                
+ 8D | Strip Wall Billboards.esp                                                        | sandbox6                                                    
+ 8E | ultra luxe expanded fountain.esp                                                 |                                                             
+ 8F | Lucky 38 Lights Redone.esp                                                       | Nehred                                                      
+ 90 | Windows of the Mojave v1.2.1.esp                                                 | Gisli                                                       
+ 91 | Vault21 Windows of the Mojave.esp                                                |                                                             
+ 92 | Simple Mojave Urbanization + New Vegas Suburban Overhaul.esp                     |                                                             
+ 93 | Simple Mojave Urbanization + Ruins of South Vegas.esp                            |                                                             
+ 94 | Wasted LOD rocks.esp                                                             |                                                             
+ 95 | Wasted Quarry Rock LOD.esp                                                       |                                                             
+ 96 | TTW Fallout 3 LOD.esp                                                            |                                                             
+ 97 | VNV LOD Plugins.esp                                                              | ModdingLinked                                               
+ 98 | DesertOutskirts.esp                                                              |                                                             
+ 99 | TTW No Hardcore Sacrifice.esp                                                    |                                                             
+ 9A | TTWUSMarkerAlt.esp                                                               |                                                             
+ 9B | ImmersivePickupSoundsRemastered.esp                                              | TheKetzku                                                   
+ 9C | Immersive Pickup Sounds Remastered TTW.esp                                       |                                                             
+ 9D | SAS.esp                                                                          |                                                             
+ 9E | AWSOMER.esp                                                                      | Audixas                                                     
+ 9F | PAMS Light.esp                                                                   |                                                             
+ A0 | TTW - Megaton Lighting Overhaul.esp                                              |                                                             
+ A1 | Afterglow_MonorailLights.esp                                                     |                                                             
+ A2 | Longer Weather Transitions.esp                                                   | doodlez                                                     
+ A3 | Mojave Lights Windows fix.esp                                                    |                                                             
+ A4 | ModernISFX.esp                                                                   |                                                             
+ A5 | SFX.esp                                                                          |                                                             
+ A6 | Weathers Revised.esp                                                             | ConfidenceMan and doodlez                                   
+ A7 | Atomic Fork VR Weathers.esp                                                      |                                                             
+ A8 | Interior Rain.esp                                                                |                                                             
+ A9 | Interior Rain - TTW.esp                                                          |                                                             
+ AA | CC - Rain.esp                                                                    |                                                             
+ AB | CC - 3D Rain.esp                                                                 |                                                             
+ AC | Atomic Fork VR Terrain LOD.esp                                                   |                                                             
+ AD | Atomic Fork VR Object LOD.esp                                                    |                                                             
+
+Script Runners:
+  # |                                     Filename                                    
+ 00 | gl_disable_scope_scissoring.txt                                                 
+ 01 | gl_EssentialCaravan.txt                                                         
+ 02 | gl_LargeWastelandTequila.txt                                                    
+ 03 | gl_Nut_Water.txt                                                                
+ 04 | gl_ReputationIcons.txt                                                          
+ 05 | gl_rum&nuka.txt                                                                 
+ 06 | gr_0KEYWORDS.txt                                                                
+ 07 | gr_accman.txt                                                                   
+ 08 | gr_AnimatedMoments.txt                                                          
+ 09 | gr_BHYSYSFixes.txt                                                              
+ 0A | gr_BHYSYSStartupLoadedCheck.txt                                                 
+ 0B | gr_ClipDistanceSetter.txt                                                       
+ 0C | gr_CondDamFix.txt                                                               
+ 0D | gr_ConsumablesWidget.txt                                                        
+ 0E | gr_CooperHoward.txt                                                             
+ 0F | gr_CPI.txt                                                                      
+ 10 | gr_dialemoman.txt                                                               
+ 11 | gr_disable_scope_scissoring.txt                                                 
+ 12 | gr_Dri10MMVanillaROF.txt                                                        
+ 13 | gr_DT-bypass.txt                                                                
+ 14 | gr_DustyDistance.txt                                                            
+ 15 | gr_DustyDistanceTTW.txt                                                         
+ 16 | gr_EFOV.txt                                                                     
+ 17 | gr_ExtraGoodies.txt                                                             
+ 18 | gr_FastVATSCameras.txt                                                          
+ 19 | gr_Gun Runners' Arsenal - Unique Weapons Relocated for TTW_Cleansing Flame.txt  
+ 1A | gr_Gun Runners' Arsenal - Unique Weapons Relocated for TTW_Vendors.txt          
+ 1B | gr_HonestHeartsCaveRainFix.txt                                                  
+ 1C | gr_JWHFontY.txt                                                                 
+ 1D | gr_lf1r.txt                                                                     
+ 1E | gr_Lucky38WindowView.txt                                                        
+ 1F | gr_LUMEN-LightMod.txt                                                           
+ 20 | gr_main_and_pause_menus_overhaul.txt                                            
+ 21 | gr_MCMExtender.txt                                                              
+ 22 | gr_ModernNightVision.txt                                                        
+ 23 | gr_NailGunFixer.txt                                                             
+ 24 | gr_Neglected Weapontype Buff.txt                                                
+ 25 | gr_NoStealthBoyPA.txt                                                           
+ 26 | gr_NPCsSprint.txt                                                               
+ 27 | gr_peripheral_depth_blur.txt                                                    
+ 28 | gr_poolcue.txt                                                                  
+ 29 | gr_PSRO Time of Day Change.txt                                                  
+ 2A | gr_PTI_Blood.txt                                                                
+ 2B | gr_Recipe Menu ySI.txt                                                          
+ 2C | gr_SFFInit.txt                                                                  
+ 2D | gr_SILE.txt                                                                     
+ 2E | gr_SleepWaitHardcoreNeeds.txt                                                   
+ 2F | gr_TrueVendorSpecializationTTW.txt                                              
+ 30 | gr_TTWLoadScnsDeadMoney.txt                                                     
+ 31 | gr_UII.txt                                                                      
+ 32 | gr_weapon reqs loadscreen.txt                                                   
+ 33 | gr_worthlesswater.txt                                                           
+ 34 | gr_zpipboypanelmini.txt                                                         
+ 35 | gr_zpipboypanelminiglove.txt                                                    
+ 36 | gr_zzz_SneezePSRO.txt                                                           
+ 37 | gx_MCMExtender.txt                                                              
+ 38 | ln_3DGrenadeIndicator.txt                                                       
+ 39 | ln_AguaFria.txt                                                                 
+ 3A | ln_autumn10mmplacement.txt                                                      
+ 3B | ln_B42Leaning.txt                                                               
+ 3C | ln_Bad Touch.txt                                                                
+ 3D | ln_BarrelCooker.txt                                                             
+ 3E | ln_BulletBeltFramework.txt                                                      
+ 3F | ln_cHUD.txt                                                                     
+ 40 | ln_ConditionMeterIcons.txt                                                      
+ 41 | ln_DrowningVisuals.txt                                                          
+ 42 | ln_EFOV.txt                                                                     
+ 43 | ln_ExtraGoodies.txt                                                             
+ 44 | ln_faction_armor.txt                                                            
+ 45 | ln_FeminineSounds.txt                                                           
+ 46 | ln_FollowerFormulaRedone.txt                                                    
+ 47 | ln_Goodies.txt                                                                  
+ 48 | ln_HPControl.txt                                                                
+ 49 | ln_HUDInertia.txt                                                               
+ 4A | ln_ISControl.txt                                                                
+ 4B | ln_LivedInAIO.txt                                                               
+ 4C | ln_LivedInFreeside.txt                                                          
+ 4D | ln_LocalMapOverhaul.txt                                                         
+ 4E | ln_Lucky38Relit.txt                                                             
+ 4F | ln_Lucky38WindowViewSetEvent.txt                                                
+ 50 | ln_MCMExtender.txt                                                              
+ 51 | ln_MDRPipBoyLightIndicator.txt                                                  
+ 52 | ln_MDRVATSResistances.txt                                                       
+ 53 | ln_ModernNightVision.txt                                                        
+ 54 | ln_NotifySmoothly.txt                                                           
+ 55 | ln_OwnerlessTrash.txt                                                           
+ 56 | ln_PipBoyUITweaks.txt                                                           
+ 57 | ln_SimpleBottleWater.txt                                                        
+ 58 | ln_SinclairsOutfit.txt                                                          
+ 59 | ln_SneakVignette.txt                                                            
+ 5A | ln_TTW-CWA-V2.txt                                                               
+ 5B | ln_WeaponISFoley.txt                                                            
+ 5C | ln_ySIAssortedFixes.txt                                                         
+ 5D | ln_zpipboypanelmini.txt                                                         
+
+--------------------------------------------------------------------------------
+
+Module bases:
+      Address Range      |    Size    |                  Module                  |        Version       |                                 Filepath
+ 0x036F0000 - 0x03702000 |  72.00 KiB | Cell Offset Generator                    | 106                  | C:/Modlists/Atomic Fork VR/mods/Cell Offset Generator - NVSE/nvse/plugins/CellOffsetGenerator.dll
+ 0x03840000 - 0x03847000 |  28.00 KiB | MLF                                      | 6                    | C:/Modlists/Atomic Fork VR/mods/FNV Mod Limit Fix/NVSE/Plugins/mlf.dll
+ 0x07870000 - 0x0787A000 |  40.00 KiB | NVTF                                     | 1061                 | C:/Modlists/Atomic Fork VR/mods/NVTF - New Vegas Tick Fix/NVSE/Plugins/NVTF.dll
+ 0x03A10000 - 0x03A40000 | 192.00 KiB | CrashLogger                              | 517                  | C:/Modlists/Atomic Fork VR/mods/Yvile's Crash Logger/nvse/plugins/CrashLogger.dll
+ 0x07760000 - 0x0786A000 |   1.04 MiB | lStewieAl's Tweaks                       | 987                  | C:/Modlists/Atomic Fork VR/mods/lStewieAl's Tweaks and Engine Fixes/NVSE/plugins/nvse_stewie_tweaks.dll
+ 0x72AE0000 - 0x72C67000 |   1.53 MiB | usvfs_x86                                | 0.5.6.1              | C:/Modlists/Atomic Fork VR/usvfs_x86.dll
+ 0x707A0000 - 0x707C1000 | 132.00 KiB | CSERHelper                               | 4.50.0.0             | C:/Steam/CSERHelper.dll
+ 0x70610000 - 0x707A0000 |   1.56 MiB | GameOverlayRenderer                      | 11.23.65.88          | C:/Steam/GameOverlayRenderer.dll
+ 0x70810000 - 0x70919000 |   1.04 MiB | steam                                    | Unknown              | C:/Steam/steam.dll
+ 0x0CBE0000 - 0x0CBF7000 |  92.00 KiB | ActorCauseSaveBloatFix                   | 1                    | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/ActorCauseSaveBloatFix.dll
+ 0x0CC00000 - 0x0CC09000 |  36.00 KiB | Fallout Alpha Rendering Tweaks           | 252                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/Alpha Fixes.dll
+ 0x0CC20000 - 0x0CC4F000 | 188.00 KiB | AnhNVSE                                  | 131                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/AnhNVSE.dll
+ 0x0CC60000 - 0x0CC68000 |  32.00 KiB | Audio Region Fix                         | 132                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/AudioRegionFix.dll
+ 0x0CC80000 - 0x0CD09000 | 548.00 KiB | BaseObjectSwapper                        | 2                    | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/BaseObjectSwapper.dll
+ 0x0CD20000 - 0x0CD56000 | 216.00 KiB | Better Caravan                           | 160                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/BetterCaravan.dll
+ 0x720A0000 - 0x720BA000 | 104.00 KiB | ClimateControl                           | 0                    | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/ClimateControl.dll
+ 0x72080000 - 0x720A0000 | 128.00 KiB | CloudUpgrade                             | 0                    | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/CloudUpgrade.dll
+ 0x72070000 - 0x72076000 |  24.00 KiB | ColMarkerFix                             | 100                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/ColMarkerFix.dll
+ 0x0CD90000 - 0x0CDA6000 |  88.00 KiB | Controller Support                       | 9                    | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/Controller Support.dll
+ 0x0CDC0000 - 0x0CDD2000 |  72.00 KiB | Depth Resolve                            | 131                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/DepthResolve.dll
+ 0x0CDF0000 - 0x0CDF6000 |  24.00 KiB | DoF Fix                                  | 120                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/DoF-Fix.dll
+ 0x0CE10000 - 0x0CE21000 |  68.00 KiB | Dynamic Reflections                      | 138                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/DynamicReflections.dll
+ 0x0CE40000 - 0x0CE59000 | 100.00 KiB | Engine Optimizations                     | 100                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/EngineOptimizations.dll
+ 0x0CE70000 - 0x0CE84000 |  80.00 KiB | Enhanced Console Autocomplete            | 1                    | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/EnhancedConsoleAutocomplete.dll
+ 0x0CEA0000 - 0x0CEA6000 |  24.00 KiB | External Emittance Fix                   | 131                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/ExternalEmittanceFix.dll
+ 0x0CEC0000 - 0x0CECA000 |  40.00 KiB | Shader Loader                            | 140                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/Fallout Shader Loader.dll
+ 0x0CEE0000 - 0x0CEFB000 | 108.00 KiB | FogCulling                               | 2                    | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/FogCulling.dll
+ 0x0CF10000 - 0x0CF16000 |  24.00 KiB | HDPipboy                                 | 12                   | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/HDPipboy.dll
+ 0x0CF30000 - 0x0CF46000 |  88.00 KiB | HighResLocalMaps                         | 12                   | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/HighResLocalMaps.dll
+ 0x0CF60000 - 0x0CF66000 |  24.00 KiB | HighResWaterDepth                        | 12                   | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/HighResWaterDepth.dll
+ 0x0D6B0000 - 0x0D6BC000 |  48.00 KiB | LOD Fixes                                | 133                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/LOD Fixes.dll
+ 0x0D6D0000 - 0x0D6D7000 |  28.00 KiB | LOD Flicker Fix                          | 121                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/LODFlickerFix.dll
+ 0x0D6F0000 - 0x0D722000 | 200.00 KiB | MCM Extensions                           | 1                    | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/MCM.dll
+ 0x0D7B0000 - 0x0D7B6000 |  24.00 KiB | MuzzleFlashFix                           | 2                    | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/MuzzleFlashFix.dll
+ 0x71FF0000 - 0x72020000 | 192.00 KiB | OneTweak                                 | 4                    | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/OneTweak.dll
+ 0x0DC20000 - 0x0DD30000 |   1.06 MiB | ShowOffNVSE Plugin                       | 184                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/ShowOffNVSE.dll
+ 0x0DF30000 - 0x0DF36000 |  24.00 KiB | SlowMotionPhysicsFix                     | 1                    | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/SlowMotionPhysicsFix.dll
+ 0x0E5F0000 - 0x0E609000 | 100.00 KiB | VATS Lag Fix                             | 100                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/VATSLagFix.dll
+ 0x0DFA0000 - 0x0DFAF000 |  60.00 KiB | Vanilla Plus AO                          | 103                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/VanillaPlusAO.dll
+ 0x0DFC0000 - 0x0DFCC000 |  48.00 KiB | Vanilla Plus Particles                   | 103                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/VanillaPlusParticles.dll
+ 0x0DFE0000 - 0x0DFED000 |  52.00 KiB | Vanilla Plus Skin                        | 131                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/VanillaPlusSkin.dll
+ 0x0E5D0000 - 0x0E5D8000 |  32.00 KiB | Vanilla Plus Terrain                     | 101                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/VanillaPlusTerrain.dll
+ 0x0E620000 - 0x0E627000 |  28.00 KiB | ViewmodelShadingFix                      | 220                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/Viewmodel Shading Fix.dll
+ 0x0E640000 - 0x0E646000 |  24.00 KiB | Viewmodel Shake Fix                      | 121                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/ViewmodelShakeFix.dll
+ 0x72030000 - 0x72067000 | 220.00 KiB | hNVSE                                    | 120                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/hNVSE.dll
+ 0x0CF90000 - 0x0CFF9000 | 420.00 KiB | Improved Console                         | 3                    | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/improved_console.dll
+ 0x0D510000 - 0x0D590000 | 512.00 KiB | JIP LN NVSE                              | 5730                 | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/jip_nvse.dll
+ 0x0D5A0000 - 0x0D5E5000 | 276.00 KiB | JohnnyGuitarNVSE                         | 525                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/johnnyguitar.dll
+ 0x0D600000 - 0x0D697000 | 604.00 KiB | kNVSE                                    | 37                   | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/kNVSE.dll
+ 0x72020000 - 0x72026000 |  24.00 KiB | Console Autocomplete                     | 1                    | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/nvse_console_autocomplete.dll
+ 0x0D7E0000 - 0x0D848000 | 416.00 KiB | Console Clipboard                        | 2                    | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/nvse_console_clipboard.dll
+ 0x0DBE0000 - 0x0DC1C000 | 240.00 KiB | Race Preset Menu                         | 100                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/race_menu_presets.dll
+ 0x0E400000 - 0x0E52E000 |   1.18 MiB | SUP NVSE Plugin                          | 855                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/supNVSE.dll
+ 0x0DF60000 - 0x0DF70000 |  64.00 KiB | ttw_nvse                                 | 333                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/ttw_nvse.dll
+ 0x0DF80000 - 0x0DF8B000 |  44.00 KiB | UI Organizer Plugin                      | 230                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/ui_organizer.dll
+ 0x0E660000 - 0x0E666000 |  24.00 KiB | Fast Weapon Lag Fix                      | 100                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/weapon_lag_fix.dll
+ 0x0E680000 - 0x0E6E8000 | 416.00 KiB | yUI                                      | 140                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/yUI.dll
+ 0x0E700000 - 0x0E70C000 |  48.00 KiB | zlib                                     | 131                  | C:/Steam/steamapps/common/Fallout New Vegas/Data/NVSE/Plugins/zlibUpdate.dll
+ 0x00400000 - 0x0147B000 |  16.48 MiB | FalloutNV                                | 1.4.0.525            | C:/Steam/steamapps/common/Fallout New Vegas/FalloutNV.exe
+ 0x18000000 - 0x18068000 | 416.00 KiB | binkw32                                  | 1.7.3.0              | C:/Steam/steamapps/common/Fallout New Vegas/binkw32.dll
+ 0x72C90000 - 0x72D51000 | 772.00 KiB | libvorbis                                | 1.3.7.0              | C:/Steam/steamapps/common/Fallout New Vegas/libvorbis.dll
+ 0x72EA0000 - 0x72EC1000 | 132.00 KiB | libvorbisfile                            | 1.3.7.0              | C:/Steam/steamapps/common/Fallout New Vegas/libvorbisfile.dll
+ 0x0CA80000 - 0x0CBDB000 |   1.36 MiB | nvse_1_4                                 | 0.6.4.7              | C:/Steam/steamapps/common/Fallout New Vegas/nvse_1_4.dll
+ 0x72850000 - 0x72860000 |  64.00 KiB | nvse_steam_loader                        | 0.6.4.7              | C:/Steam/steamapps/common/Fallout New Vegas/nvse_steam_loader.dll
+ 0x3B400000 - 0x3B41D000 | 116.00 KiB | steam_api                                | 7.9.87.40            | C:/Steam/steamapps/common/Fallout New Vegas/steam_api.dll
+ 0x70A40000 - 0x71F5D000 |  21.11 MiB | steamclient                              | 11.23.65.88          | C:/Steam/steamclient.dll
+ 0x709A0000 - 0x70A3F000 | 636.00 KiB | tier0_s                                  | 11.23.65.88          | C:/Steam/tier0_s.dll
+ 0x70930000 - 0x70998000 | 416.00 KiB | vstdlib_s                                | 11.23.65.88          | C:/Steam/vstdlib_s.dll
+ 0x86A90000 - 0x86E3B000 |   3.67 MiB | DiscordHook                              | Unknown              | C:/Users/<user>/AppData/Local/Discord/app-1.0.9269/modules/discord_hook-1/discord_hook/1843b8dd948b30/DiscordHook.dll
+ 0x87690000 - 0x87878000 |   1.91 MiB | nvse_dbghelp                             | 10.0.26100.9818      | C:/Users/<user>/AppData/Local/Temp/nvse_dbghelp.dll
+ 0x6FD50000 - 0x6FEBF000 |   1.43 MiB | AUDIOSES                                 | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/AUDIOSES.DLL
+ 0x72860000 - 0x7286A000 |  40.00 KiB | CRYPTBASE                                | 6.2.26100.9711       | C:/WINDOWS/SYSTEM32/CRYPTBASE.DLL
+ 0x703A0000 - 0x703B4000 |  80.00 KiB | CRYPTSP                                  | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/CRYPTSP.dll
+ 0x72870000 - 0x72951000 | 900.00 KiB | CoreMessaging                            | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/CoreMessaging.dll
+ 0x6FED0000 - 0x70165000 |   2.58 MiB | CoreUIComponents                         | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/CoreUIComponents.dll
+ 0x87190000 - 0x87585000 |   3.96 MiB | D3DCompiler_47                           | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/D3DCompiler_47.dll
+ 0x70170000 - 0x701D8000 | 416.00 KiB | D3DREF9                                  | 10.0.26100.7705      | C:/WINDOWS/SYSTEM32/D3DREF9.DLL
+ 0x705D0000 - 0x705F5000 | 148.00 KiB | DEVOBJ                                   | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/DEVOBJ.dll
+ 0x72F10000 - 0x72F48000 | 224.00 KiB | DINPUT8                                  | 6.2.26100.8521       | C:/WINDOWS/SYSTEM32/DINPUT8.dll
+ 0x72F50000 - 0x72FC6000 | 472.00 KiB | DSOUND                                   | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/DSOUND.dll
+ 0x70600000 - 0x7060B000 |  44.00 KiB | HID                                      | 6.2.26100.1          | C:/WINDOWS/SYSTEM32/HID.DLL
+ 0x73F90000 - 0x73FB6000 | 152.00 KiB | IPHLPAPI                                 | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/IPHLPAPI.DLL
+ 0x70240000 - 0x7025A000 | 104.00 KiB | MSACM32                                  | 6.2.26100.7019       | C:/WINDOWS/SYSTEM32/MSACM32.DLL
+ 0x727B0000 - 0x72847000 | 604.00 KiB | MSVCP140                                 | 14.52.37029.0        | C:/WINDOWS/SYSTEM32/MSVCP140.dll
+ 0x74840000 - 0x74894000 | 336.00 KiB | MSWSOCK                                  | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/MSWSOCK.dll
+ 0x70560000 - 0x70572000 |  72.00 KiB | Microsoft.Internal.WarpPal               | Unknown              | C:/WINDOWS/SYSTEM32/Microsoft.Internal.WarpPal.dll
+ 0x6E9C0000 - 0x6E9EF000 | 188.00 KiB | RTWorkQ                                  | 6.2.26100.8972       | C:/WINDOWS/SYSTEM32/RTWorkQ.DLL
+ 0x72DF0000 - 0x72E8E000 | 632.00 KiB | ResampleDmo                              | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/ResampleDmo.DLL
+ 0x70920000 - 0x7092A000 |  40.00 KiB | Secur32                                  | 6.2.26100.7705       | C:/WINDOWS/SYSTEM32/Secur32.dll
+ 0x74140000 - 0x7416C000 | 176.00 KiB | SspiCli                                  | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/SspiCli.dll
+ 0x72C70000 - 0x72C7F000 |  60.00 KiB | UMPDC                                    | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/UMPDC.dll
+ 0x72570000 - 0x72599000 | 164.00 KiB | USERENV                                  | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/USERENV.dll
+ 0x72790000 - 0x727AD000 | 116.00 KiB | VCRUNTIME140                             | 14.52.37029.0        | C:/WINDOWS/SYSTEM32/VCRUNTIME140.dll
+ 0x74020000 - 0x74028000 |  32.00 KiB | VERSION                                  | 6.2.26100.1          | C:/WINDOWS/SYSTEM32/VERSION.dll
+ 0x73BF0000 - 0x73E13000 |   2.14 MiB | WININET                                  | 11.0.26100.9974      | C:/WINDOWS/SYSTEM32/WININET.dll
+ 0x72ED0000 - 0x72F03000 | 204.00 KiB | WINMM                                    | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/WINMM.dll
+ 0x75000000 - 0x75008000 |  32.00 KiB | WSOCK32                                  | 6.2.26100.1          | C:/WINDOWS/SYSTEM32/WSOCK32.dll
+ 0x01D30000 - 0x01D46000 |  88.00 KiB | XINPUT1_3                                | 9.18.944.0           | C:/WINDOWS/SYSTEM32/XINPUT1_3.dll
+ 0x735F0000 - 0x7369F000 | 700.00 KiB | apphelp                                  | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/apphelp.dll
+ 0x6E7A0000 - 0x6E7A9000 |  36.00 KiB | avrt                                     | 6.2.26100.4202       | C:/WINDOWS/SYSTEM32/avrt.dll
+ 0x74030000 - 0x7404C000 | 112.00 KiB | bcrypt                                   | 6.2.26100.9974       | C:/WINDOWS/SYSTEM32/bcrypt.dll
+ 0x74060000 - 0x7409F000 | 252.00 KiB | cfgmgr32                                 | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/cfgmgr32.dll
+ 0x70530000 - 0x7055B000 | 172.00 KiB | cryptnet                                 | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/cryptnet.dll
+ 0x733D0000 - 0x73549000 |   1.47 MiB | d3d9                                     | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/d3d9.dll
+ 0x72FD0000 - 0x73398000 |   3.78 MiB | d3dx9_38                                 | 9.23.949.2378        | C:/WINDOWS/SYSTEM32/d3dx9_38.dll
+ 0x720C0000 - 0x722BF000 |   2.00 MiB | d3dx9_43                                 | 9.29.952.3111        | C:/WINDOWS/SYSTEM32/d3dx9_43.dll
+ 0x707D0000 - 0x70800000 | 192.00 KiB | dbgcore                                  | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/dbgcore.DLL
+ 0x725A0000 - 0x72788000 |   1.91 MiB | dbghelp                                  | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/dbghelp.dll
+ 0x6F610000 - 0x6F7A3000 |   1.57 MiB | dcomp                                    | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/dcomp.dll
+ 0x701E0000 - 0x7022E000 | 312.00 KiB | directxdatabasehelper                    | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/directxdatabasehelper.dll
+ 0x6FB60000 - 0x6FC8C000 |   1.17 MiB | drvstore                                 | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/drvstore.dll
+ 0x733A0000 - 0x733C5000 | 148.00 KiB | dwmapi                                   | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/dwmapi.dll
+ 0x736B0000 - 0x736EB000 | 236.00 KiB | dxcore                                   | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/dxcore.dll
+ 0x72450000 - 0x7255E000 |   1.05 MiB | dxgi                                     | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/dxgi.dll
+ 0x70580000 - 0x7059F000 | 124.00 KiB | gpapi                                    | 6.2.26100.8972       | C:/WINDOWS/SYSTEM32/gpapi.dll
+ 0x6E9B0000 - 0x6E9BB000 |  44.00 KiB | imaadp32                                 | 6.2.26100.1          | C:/WINDOWS/SYSTEM32/imaadp32.acm
+ 0x72960000 - 0x72AD4000 |   1.45 MiB | inputhost                                | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/inputhost.dll
+ 0x74820000 - 0x74835000 |  84.00 KiB | kernel.appcore                           | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/kernel.appcore.dll
+ 0x6EA00000 - 0x6EBB2000 |   1.70 MiB | mfplat                                   | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/mfplat.DLL
+ 0x6E700000 - 0x6E708000 |  32.00 KiB | midimap                                  | 6.2.26100.1882       | C:/WINDOWS/SYSTEM32/midimap.dll
+ 0x6E710000 - 0x6E71B000 |  44.00 KiB | msacm32                                  | 6.2.26100.1882       | C:/WINDOWS/SYSTEM32/msacm32.drv
+ 0x6E9A0000 - 0x6E9AA000 |  40.00 KiB | msadp32                                  | 6.2.26100.1          | C:/WINDOWS/SYSTEM32/msadp32.acm
+ 0x74FE0000 - 0x74FEE000 |  56.00 KiB | msasn1                                   | 6.2.26100.9711       | C:/WINDOWS/SYSTEM32/msasn1.dll
+ 0x73F80000 - 0x73F89000 |  36.00 KiB | msdmo                                    | 6.2.26100.1          | C:/WINDOWS/SYSTEM32/msdmo.dll
+ 0x6E990000 - 0x6E998000 |  32.00 KiB | msg711                                   | 6.2.26100.1          | C:/WINDOWS/SYSTEM32/msg711.acm
+ 0x6E970000 - 0x6E97C000 |  48.00 KiB | msgsm32                                  | 6.2.26100.1882       | C:/WINDOWS/SYSTEM32/msgsm32.acm
+ 0x77580000 - 0x77744000 |   1.77 MiB | ntdll                                    | 6.2.26100.9974       | C:/WINDOWS/SYSTEM32/ntdll.dll
+ 0x73FF0000 - 0x74019000 | 164.00 KiB | ntmarta                                  | 6.2.26100.7019       | C:/WINDOWS/SYSTEM32/ntmarta.dll
+ 0x70260000 - 0x702C8000 | 416.00 KiB | nvapi                                    | 32.0.16.2114         | C:/WINDOWS/SYSTEM32/nvapi.dll
+ 0x72D90000 - 0x72DE5000 | 340.00 KiB | powrprof                                 | 6.2.26100.3912       | C:/WINDOWS/SYSTEM32/powrprof.dll
+ 0x74110000 - 0x7412E000 | 120.00 KiB | profapi                                  | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/profapi.dll
+ 0x705B0000 - 0x705C0000 |  64.00 KiB | resourcepolicyclient                     | 6.2.26100.9974       | C:/WINDOWS/SYSTEM32/resourcepolicyclient.dll
+ 0x70420000 - 0x70522000 |   1.01 MiB | textinputframework                       | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/textinputframework.dll
+ 0x6E750000 - 0x6E78D000 | 244.00 KiB | wdmaud                                   | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/wdmaud.drv
+ 0x6E720000 - 0x6E73C000 | 112.00 KiB | wdmaud2                                  | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/wdmaud2.drv
+ 0x748A0000 - 0x74FCE000 |   7.18 MiB | windows.storage                          | 6.2.26100.9974       | C:/WINDOWS/SYSTEM32/windows.storage.dll
+ 0x72D60000 - 0x72D81000 | 132.00 KiB | winmmbase                                | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/winmmbase.dll
+ 0x745B0000 - 0x746A9000 | 996.00 KiB | wintypes                                 | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/wintypes.dll
+ 0x6E5A0000 - 0x6E601000 | 388.00 KiB | wldp                                     | 6.2.26100.9818       | C:/WINDOWS/SYSTEM32/wldp.dll
+ 0x774E0000 - 0x77566000 | 536.00 KiB | ADVAPI32                                 | 6.2.26100.9974       | C:/WINDOWS/System32/ADVAPI32.dll
+ 0x766A0000 - 0x7675A000 | 744.00 KiB | COMDLG32                                 | 6.2.26100.9974       | C:/WINDOWS/System32/COMDLG32.dll
+ 0x76CA0000 - 0x76DAF000 |   1.06 MiB | CRYPT32                                  | 6.2.26100.9818       | C:/WINDOWS/System32/CRYPT32.dll
+ 0x6FA40000 - 0x6FB54000 |   1.08 MiB | NvMemMapStorage                          | Unknown              | C:/WINDOWS/System32/DriverStore/FileRepository/nvmdi.inf_amd64_c8fe3aa22cae8673/NvMemMapStorage.dll
+ 0x65DB0000 - 0x68A58000 |  44.66 MiB | nvd3dum                                  | 32.0.16.2114         | C:/WINDOWS/System32/DriverStore/FileRepository/nvmdi.inf_amd64_c8fe3aa22cae8673/nvd3dum.dll
+ 0x68BE0000 - 0x6E4A2000 |  88.76 MiB | nvgpucomp32                              | 32.0.16.2114         | C:/WINDOWS/System32/DriverStore/FileRepository/nvmdi.inf_amd64_c8fe3aa22cae8673/nvgpucomp32.dll
+ 0x6FCA0000 - 0x6FD44000 | 656.00 KiB | nvldumd                                  | 32.0.16.2114         | C:/WINDOWS/System32/DriverStore/FileRepository/nvmdi.inf_amd64_c8fe3aa22cae8673/nvldumd.dll
+ 0x6F7B0000 - 0x6F8F5000 |   1.27 MiB | nvppe                                    | 32.0.16.2114         | C:/WINDOWS/System32/DriverStore/FileRepository/nvmdi.inf_amd64_c8fe3aa22cae8673/nvppe.dll
+ 0x753D0000 - 0x753F2000 | 136.00 KiB | GDI32                                    | 6.2.26100.8521       | C:/WINDOWS/System32/GDI32.dll
+ 0x75550000 - 0x75575000 | 148.00 KiB | IMM32                                    | 6.2.26100.9818       | C:/WINDOWS/System32/IMM32.DLL
+ 0x76760000 - 0x76850000 | 960.00 KiB | KERNEL32                                 | 6.2.26100.9974       | C:/WINDOWS/System32/KERNEL32.DLL
+ 0x75A30000 - 0x75D0E000 |   2.87 MiB | KERNELBASE                               | 6.2.26100.9974       | C:/WINDOWS/System32/KERNELBASE.dll
+ 0x702D0000 - 0x7034F000 | 508.00 KiB | MMDevApi                                 | 6.2.26100.9974       | C:/WINDOWS/System32/MMDevApi.dll
+ 0x75010000 - 0x75128000 |   1.09 MiB | MSCTF                                    | 6.2.26100.9974       | C:/WINDOWS/System32/MSCTF.dll
+ 0x754A0000 - 0x75540000 | 640.00 KiB | OLEAUT32                                 | 6.2.26100.9974       | C:/WINDOWS/System32/OLEAUT32.dll
+ 0x77230000 - 0x772EC000 | 752.00 KiB | RPCRT4                                   | 6.2.26100.9974       | C:/WINDOWS/System32/RPCRT4.dll
+ 0x76DD0000 - 0x77221000 |   4.32 MiB | SETUPAPI                                 | 6.2.26100.9818       | C:/WINDOWS/System32/SETUPAPI.dll
+ 0x76020000 - 0x76694000 |   6.45 MiB | SHELL32                                  | 6.2.26100.9974       | C:/WINDOWS/System32/SHELL32.dll
+ 0x768F0000 - 0x76943000 | 332.00 KiB | SHLWAPI                                  | 6.2.26100.9818       | C:/WINDOWS/System32/SHLWAPI.dll
+ 0x76A30000 - 0x76C23000 |   1.95 MiB | USER32                                   | 6.2.26100.9818       | C:/WINDOWS/System32/USER32.dll
+ 0x76C30000 - 0x76C9A000 | 424.00 KiB | WS2_32                                   | 6.2.26100.9818       | C:/WINDOWS/System32/WS2_32.dll
+ 0x769B0000 - 0x76A2A000 | 488.00 KiB | bcryptPrimitives                         | 6.2.26100.9974       | C:/WINDOWS/System32/bcryptPrimitives.dll
+ 0x75130000 - 0x751B9000 | 548.00 KiB | clbcatq                                  | 2001.12.10941.16384  | C:/WINDOWS/System32/clbcatq.dll
+ 0x755A0000 - 0x75838000 |   2.59 MiB | combase                                  | 6.2.26100.9818       | C:/WINDOWS/System32/combase.dll
+ 0x77380000 - 0x7746B000 | 940.00 KiB | gdi32full                                | 6.2.26100.9974       | C:/WINDOWS/System32/gdi32full.dll
+ 0x75580000 - 0x7559B000 | 108.00 KiB | imagehlp                                 | 6.2.26100.4202       | C:/WINDOWS/System32/imagehlp.dll
+ 0x75E30000 - 0x75EB5000 | 532.00 KiB | msvcp_win                                | 6.2.26100.9711       | C:/WINDOWS/System32/msvcp_win.dll
+ 0x75840000 - 0x75907000 | 796.00 KiB | msvcrt                                   | 7.0.26100.9711       | C:/WINDOWS/System32/msvcrt.dll
+ 0x75EC0000 - 0x76015000 |   1.33 MiB | ole32                                    | 6.2.26100.9974       | C:/WINDOWS/System32/ole32.dll
+ 0x77300000 - 0x77306000 |  24.00 KiB | psapi                                    | 6.2.26100.8521       | C:/WINDOWS/System32/psapi.dll
+ 0x76860000 - 0x768E5000 | 532.00 KiB | sechost                                  | 6.2.26100.9818       | C:/WINDOWS/System32/sechost.dll
+ 0x75D20000 - 0x75DF4000 | 848.00 KiB | shcore                                   | 6.2.26100.9818       | C:/WINDOWS/System32/shcore.dll
+ 0x75910000 - 0x75A20000 |   1.06 MiB | ucrtbase                                 | 6.2.26100.9711       | C:/WINDOWS/System32/ucrtbase.dll
+ 0x75E00000 - 0x75E1C000 | 112.00 KiB | win32u                                   | 6.2.26100.9818       | C:/WINDOWS/System32/win32u.dll
+ 0x77470000 - 0x774D8000 | 416.00 KiB | wintrust                                 | 6.2.26100.9818       | C:/WINDOWS/System32/wintrust.dll
+ 0x73550000 - 0x735E1000 | 580.00 KiB | COMCTL32                                 | 5.82.26100.8521      | C:/WINDOWS/WinSxS/x86_microsoft.windows.common-controls_6595b64144ccf1df_5.82.26100.8521_none_cf9e08b68ea73d80/COMCTL32.dll
+ 0x722C0000 - 0x7243E000 |   1.49 MiB | gdiplus                                  | 6.2.26100.9974       | C:/WINDOWS/WinSxS/x86_microsoft.windows.gdiplus_6595b64144ccf1df_1.1.26100.9974_none_b6a59f89523e7088/gdiplus.dll
+ 0x6F0F0000 - 0x6F60C000 |   5.11 MiB | nvapi_impl                               | 32.0.16.2114         | C:/WINDOWS/system32/DriverStore/FileRepository/nvmdi.inf_amd64_c8fe3aa22cae8673/nvapi_impl.dll
+ 0x6F900000 - 0x6FA3B000 |   1.23 MiB | nvspcap                                  | 11.0.9.585           | C:/WINDOWS/system32/nvspcap.dll
+ 0x70360000 - 0x70392000 | 200.00 KiB | rsaenh                                   | 6.2.26100.7705       | C:/WINDOWS/system32/rsaenh.dll
+ 0x71F60000 - 0x71FE1000 | 516.00 KiB | uxtheme                                  | 6.2.26100.9974       | C:/WINDOWS/system32/uxtheme.dll
+ 0x6EBF0000 - 0x6EC31000 | 260.00 KiB | WMASF                                    | 12.0.26100.8737      | C:/Windows/System32/WMASF.DLL
+ 0x6EC40000 - 0x6EE13000 |   1.82 MiB | WMVCore                                  | 12.0.26100.9818      | C:/Windows/System32/WMVCore.DLL
+ 0x6EFD0000 - 0x6F0E1000 |   1.07 MiB | Windows.UI                               | 6.2.26100.9818       | C:/Windows/System32/Windows.UI.dll
+ 0x703F0000 - 0x7040C000 | 112.00 KiB | devenum                                  | 6.2.26100.8115       | C:/Windows/System32/devenum.dll
+ 0x6E950000 - 0x6E966000 |  88.00 KiB | l3codeca                                 | 1.9.0.401            | C:/Windows/System32/l3codeca.acm
+ 0x6E7B0000 - 0x6E8B8000 |   1.03 MiB | mfperfhelper                             | 6.2.26100.1          | C:/Windows/System32/mfperfhelper.dll
+ 0x6EBC0000 - 0x6EBDC000 | 112.00 KiB | mp3dmod                                  | 6.2.26100.9818       | C:/Windows/System32/mp3dmod.dll
+ 0x6E8C0000 - 0x6E942000 | 520.00 KiB | msmpeg2adec                              | 6.2.26100.9818       | C:/Windows/System32/msmpeg2adec.dll
+ 0x703C0000 - 0x703E5000 | 148.00 KiB | qasf                                     | 12.0.26100.8115      | C:/Windows/System32/qasf.dll
+ 0x6EE20000 - 0x6EFCB000 |   1.67 MiB | quartz                                   | 6.2.26100.9818       | C:/Windows/System32/quartz.dll
+
+Total memory allocated to all modules:  293.22 MiB
+Total memory allocated to NVSE plugins:   9.73 MiB
+
+--------------------------------------------------------------------------------
+
+Install: C:\Steam\steamapps\common\Fallout New Vegas
+
+--------------------------------------------------------------------------------
+
+Processed in 469 ms

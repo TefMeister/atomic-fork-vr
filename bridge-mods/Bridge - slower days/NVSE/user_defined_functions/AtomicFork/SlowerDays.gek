@@ -1,0 +1,49 @@
+; Atomic Fork - slower days: the check (called about twice a second by ln_AtomicForkSlowerDays.txt)
+float fAFSDDay
+float fAFSDTwi
+float fAFSDWant
+float fAFSDHour
+float fAFSDRiseB
+float fAFSDRiseE
+float fAFSDSetB
+float fAFSDSetE
+ref rAFSDClimate
+
+begin Function {}
+	let fAFSDDay := GetINIFloat "Main\fDayScale" "AtomicFork\SlowerDays.ini"
+	let fAFSDTwi := GetINIFloat "Main\fTwilightScale" "AtomicFork\SlowerDays.ini"
+	if fAFSDDay <= 0
+		let fAFSDDay := 21
+	endif
+	if fAFSDTwi <= 0
+		let fAFSDTwi := 10.5
+	endif
+	let fAFSDWant := fAFSDDay
+	let rAFSDClimate := GetCurrentClimate
+	if IsFormValid rAFSDClimate
+		let fAFSDHour := GameHour
+		let fAFSDRiseB := GetClimateTraitNumeric rAFSDClimate 0
+		let fAFSDRiseE := GetClimateTraitNumeric rAFSDClimate 1
+		let fAFSDSetB := GetClimateTraitNumeric rAFSDClimate 2
+		let fAFSDSetE := GetClimateTraitNumeric rAFSDClimate 3
+		if fAFSDSetE > 24	; JIP gives the climate's times as minutes (5:00 = 300)
+			let fAFSDRiseB := fAFSDRiseB / 60
+			let fAFSDRiseE := fAFSDRiseE / 60
+			let fAFSDSetB := fAFSDSetB / 60
+			let fAFSDSetE := fAFSDSetE / 60
+		endif
+		if (fAFSDHour >= fAFSDRiseB && fAFSDHour < fAFSDRiseE) || (fAFSDHour >= fAFSDSetB && fAFSDHour < fAFSDSetE)
+			let fAFSDWant := fAFSDTwi
+		endif
+	endif
+	if TimeScale != fAFSDWant
+		set TimeScale to fAFSDWant
+		if GetINIFloat "Main\bLog" "AtomicFork\SlowerDays.ini"
+			PrintC "Atomic Fork slower days: hour %.2f, clock now %.1f" GameHour fAFSDWant
+			SetINIFloat "Status\fHour" GameHour "AtomicFork\SlowerDays_status.ini"
+			SetINIFloat "Status\fClock" fAFSDWant "AtomicFork\SlowerDays_status.ini"
+			SetINIFloat "Status\fDawn" fAFSDRiseB "AtomicFork\SlowerDays_status.ini"
+			SetINIFloat "Status\fDuskEnd" fAFSDSetE "AtomicFork\SlowerDays_status.ini"
+		endif
+	endif
+end
