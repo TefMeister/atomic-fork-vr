@@ -231,3 +231,23 @@ Claim tags: `[verified-live]` seen in the running game, `[measured]` read from f
   the pictures stayed identical to a tenth of a percent, so the check itself is suspect (the game likely does not
   redraw while it is not the front window; the terminal was in front). Next: the same check with the game in front
   (or Tefa at the keyboard), first with the game's own Down, then Right.
+
+**Later the same night (Developer PC, /lm, Opus, flat; Tefa: "all yours to test as long as you need").**
+
+- **The lit word works on the row.** VUI+ marks the chosen word by its height (`_VUI+Highlighted` = the item's y ==
+  the list's `_highlight_y`, list_box_template.xml:39-43, found by the reader), and the list steps Up/Down by y.
+  Our script had put all six words at y 0: all six counted as chosen, and Down had nowhere to go. Now each word sits a
+  hair lower than the one before (y = x * 0.0001, invisible): the first key lights CONTINUE alone and the game's own
+  Down walks CONTINUE -> NEW -> LOAD -> SETTINGS; Enter on SETTINGS opens it `[verified-live 2026-11-21, n=1 each]`.
+- **Left/Right from a script: disproved.** The script sees the arrows (IsKeyPressed: 4 changes for 2 presses,
+  logged), but TapKey and HoldKey (6 frames) of Up/Down never move the menu: they reach the key state, not the
+  menu's own key presses `[verified-live, n=3 runs]`. Taken out of the script. Left/Right on the keyboard need another
+  route (the menu's own xleft/xright item traits, unproven); in the headset it is TTWVR's controller input (FO-017).
+- **The saves broke with the rename, and are mended for the new list.** CONTINUE showed "This save relies on content
+  that is no longer present" naming the four Atomic Fork VR plugins. The saves folder is shared by both lists, so
+  `tools/ingo_saves.py` copied every save (11, dates kept) into `Saves\It Never Gets Old VR\`, gave the copies the new
+  plugin names (save_rename.py's checked rewrite; a second check finds no old name in any copy), and pointed all 90
+  profiles of the new list there (SLocalSavePath in Fallout.ini and FalloutPrefs.ini, a .bak beside each). The old
+  list and the original saves are untouched. CONTINUE now loads straight into the Capital Wasteland with the far view
+  in place `[verified-live 2026-11-21, n=1]`. The timelapse save copy is `NeverGetsOldTimelapse`.
+- Inside Settings the sub-list stands on the left over the painted title: readable but busy (picture sent to Tefa).

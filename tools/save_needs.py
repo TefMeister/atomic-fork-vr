@@ -25,7 +25,8 @@ NAME = re.compile(rb"[\x20-\x7e]{1,250}?\.(?:esm|esp)", re.IGNORECASE)
 
 
 def saves_dir():
-    return os.path.join(os.path.expanduser("~"), "Documents", "My Games", "FalloutNV", "Saves")
+    # since 2026-11-21 the list's own saves folder (ingo_saves.py: every profile's SLocalSavePath points there)
+    return os.path.join(os.path.expanduser("~"), "Documents", "My Games", "FalloutNV", "Saves", "It Never Gets Old VR")
 
 
 def pick_save(part):

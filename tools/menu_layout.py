@@ -38,7 +38,7 @@ ROW_PITCH = 1             # only a flag now: 1 = on the main menu (the rows keep
 DIM_OTHERS = 110          # on the main menu the words NOT chosen are this much darker (of 255): the chosen one stands out without a box
 MENU_Y = 325              # top of the first menu word (in Load and Settings: the list's place on the right)
 ROW_Y = 885              # 2026-11-21 (Tefa): on the main menu's top level the words stand in ONE ROW along the bottom,
-                          # centred, chosen with left and right, so the title in the picture stays clear
+                          # centred, so the title in the picture stays clear; the menu's own Up/Down walk it (Left/Right: see menu_row/)
 ROW_GAP = 60              # space between two words in the row
 ROW_SCRIPTS = os.path.join(HERE, "menu_row")   # our script that lays the row out after MAPMO (copied into the mod)
 MENU_CAP = 36             # height of the menu font's capitals: 36 of the 50-high row leaves a clear gap (Tefa: rows too close at 43)
@@ -119,8 +119,8 @@ LIST_NEW = f"""			<!-- It Never Gets Old: 1 on the main menu's top level (title 
 					<onlyif src="me" trait="_NeverGetsOldLeft"/>
 				</add>
 			</y>
-			<_NGOKeys> 0 </_NGOKeys> <!-- our script's memory: which of left/right was held last frame -->
 			<_NGORowGap> {ROW_GAP} </_NGORowGap>
+
 			<width> 300 </width>"""
 
 INSET_OLD = """					<add>
