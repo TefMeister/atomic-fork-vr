@@ -158,6 +158,7 @@ ITEM_NEW = f"""			<brightness> <copy src="io" trait="brightness"/> </brightness>
 			     chosen word stays bright and the others are dimmed. (Tried 2026-11-19 and dropped: our own row height and
 			     stacking here. MAPMO's script sets every row's height and place itself at the start, so the rows stay 50 apart.) -->
 			<clips> <not src="parent" trait="_NeverGetsOldPitch"/> </clips>
+			<xleft> <ref src="sibling" trait="mouseover"/> </xleft> <!-- Left = the word before (proven 2026-11-21, flat); no "next" source exists for Right: Right = Down -->
 			<user0> 0 </user0> <!-- action mapping visibility: 0=none 1=button text 2=button icon -->"""
 
 BRIGHT_OLD = """				<brightness>

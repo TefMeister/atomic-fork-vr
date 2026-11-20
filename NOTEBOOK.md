@@ -251,3 +251,13 @@ Claim tags: `[verified-live]` seen in the running game, `[measured]` read from f
   list and the original saves are untouched. CONTINUE now loads straight into the Capital Wasteland with the far view
   in place `[verified-live 2026-11-21, n=1]`. The timelapse save copy is `NeverGetsOldTimelapse`.
 - Inside Settings the sub-list stands on the left over the painted title: readable but busy (picture sent to Tefa).
+- **Left works natively.** Each word's own `<xleft>` pointing at the word before it (`src="sibling"`, mouseover)
+  moves the lit word left: LOAD -> NEW -> CONTINUE `[verified-live 2026-11-21, n=1]`. Right has no such source (the
+  menu file can only name the word before), so Right is the game's Down for now. In settings lists Left now steps up.
+- **How TTWVR feeds menus (the reader, static, `engine-research/2026-11-21-reader/`):** a fake Xbox pad through a
+  hooked XInputGetState; in menus whichever VR stick is pushed further becomes the pad's LEFT stick, A/B/Start come
+  from buttons, no D-pad; no keys, no mouse, no pointer or laser on any menu; the main menu is a flat panel
+  (`sFlatMenus` = Start,Loading,Credits) driven by the pad alone `[measured, static]`. So in the headset the stick's
+  down/up walk the row, stick-left should now work through xleft `[inferred]`, and stick-right needs our own small
+  hook: FalloutNV.exe's XInputGetState import, on the main menu's top level only, Y := -X (stick right = Down)
+  `[inferred, not built]`. A pointer would be all-new work.
