@@ -45,3 +45,17 @@ the near part 85,83,62, changing over about 20 px; neither has surface detail (s
   end; the later launches had State-o-matiC watching.
 - A message to another session quoted "take over atomic-fork-vr"; the project guard read it as Tefa's words and gave
   the project to that session (fault list).
+
+## 2026-11-20 morning: the main menu photographed in 16:9 (Tefa asked for a good picture with everything showing)
+
+- Two full-size pictures of the game's own window, 1920 x 1080, `rung-05 interface flat`, in `2026-11-20-pictures/`:
+  `flat - main menu 1920x1080, nothing picked.png` and `... Continue picked.png`. Title, the six words, the Vault Boy
+  mark bottom left and the TTW mark bottom right are all in.
+- **The menu without the box is now seen in the game** `[verified-live 2026-11-20, n=2]`: no highlight box, the picked
+  word bright yellow, the others dimmer.
+- How: the flat profiles ask for 1280 x 720, but OneTweak (borderless, sizes on "autodetect") stretches the window over
+  the whole 3440 x 1440 screen whatever the game's own size says, so a 16:9 picture came out stretched sideways. For
+  this one run OneTweak's window and render size were set to 1920 x 1080 (and the profile's iSize the same); both files
+  were put back from their backups afterwards, and MO2's last profile too.
+- The game's own mouse arrow sits in the middle of the menu: `tools/menu_mouse_park.py` pushes it into the bottom-right
+  corner (relative mouse moves) before `menu_shot.py`.
