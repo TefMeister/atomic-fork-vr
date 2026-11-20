@@ -1,12 +1,15 @@
-"""timelapse.py (2026-11-20, Tefa's 24 h comparison videos) <profile> <label>: start the flat game on <profile> (it loads the newest save by itself), hide the HUD,
+"""timelapse.py <profile> <label> <record seconds> <1 = set the clock to 240 by console, 0 = leave it (slower days set to 240/120)>:
+2026-11-20, Tefa's 24 h comparison videos; records through rec_hq.py (3440x1440, 30 fps, 60 Mbps: the sky's grain survives).
+ start the flat game on <profile> (it loads the newest save by itself), hide the HUD,
 speed time up so 24 game hours take RECORD_S seconds, record the game window with obs-rec.py, then close the game."""
 import os, sys, subprocess, time
 TOOLS = os.path.expanduser("~/github-backups/atomic-fork-vr/tools")
-OBS = os.path.expanduser("~/github-backups/_lanes-next-wt/plugins/lanes/tools/obs-rec.py")
+OBS = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rec_hq.py")
 MO2, GAME = "C:/Modlists/Atomic Fork VR", "C:/Steam/steamapps/common/Fallout New Vegas"
 RECORD_S = 360
 TIMESCALE = round(24 * 3600 / RECORD_S)          # 240: one game day in six minutes
 prof, label = sys.argv[1], sys.argv[2]
+RECORD_S = int(sys.argv[3]); SET_CLOCK = sys.argv[4] == '1'
 def running(n): return n.lower() in subprocess.run(["tasklist"], capture_output=True, text=True).stdout.lower()
 def console(*lines): print(" console", lines, subprocess.run([sys.executable, os.path.join(TOOLS, "console_type.py"), *lines], capture_output=True, text=True).returncode, flush=True)
 assert not running("FalloutNV.exe") and not running("ModOrganizer.exe"), "game or MO2 already running"
@@ -22,13 +25,13 @@ else:
     sys.exit("the save never loaded")
 print("loaded after", round(time.time() - start), "s", flush=True)
 time.sleep(15)
-console("tgm", "tcai", "set timescale to %d" % TIMESCALE)
+console(*(["tgm", "tcai"] + (["set timescale to %d" % TIMESCALE] if SET_CLOCK else [])))
 console("tm")                                         # HUD off, last, so the console is shut before recording
 time.sleep(2)
-print(subprocess.run([sys.executable, OBS, "start", "FalloutNV.exe", label, "--game", "atomic-fork-vr"], capture_output=True, text=True).stdout[-300:], flush=True)
+r = subprocess.run([sys.executable, OBS, "start", "FalloutNV.exe", label, "--game", "atomic-fork-vr"], capture_output=True, text=True); print("START OUT", r.stdout[-400:], "START ERR", r.stderr[-1500:], flush=True)
 time.sleep(RECORD_S + 5)
 print(subprocess.run([sys.executable, OBS, "stop"], capture_output=True, text=True).stdout[-400:], flush=True)
-console("tm", "set timescale to 30")
+console("tm")
 subprocess.run(["taskkill", "/IM", "FalloutNV.exe"], capture_output=True)
 t = time.time()
 while running("FalloutNV.exe") and time.time() - t < 120: time.sleep(2)

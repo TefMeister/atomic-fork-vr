@@ -48,3 +48,14 @@ Dawn and dusk 4x longer was dropped: the Capital Wasteland's own sunrise and sun
 Three mods, same files flat and VR: water fade (needs Shader Loader; tuned to TTW's Capital Wasteland waters), smooth
 sky (an altered copy of Vanilla Plus Tonemapper's three shaders: needs that mod, and **sharing it needs its author's
 permission, or a small patcher that makes the change on the user's own copy**), slower days (xNVSE + JIP).
+
+## Timelapses for the Keeper PC (Tefa: "with good bitrate and all that")
+
+- `tools/timelapse.py` + `tools/rec_hq.py` (a wrapper that runs Lanes' obs-rec.py unchanged at 3440 x 1440, 30 fps,
+  Simple output "Stream" quality at 60 Mbps). Measured grain in a sky frame (game itself 0.83): obs-rec as it is
+  (720p, Small) 0.19; native + OBS "HQ" preset still 0.19; native + fixed 60 Mbps 0.84 `[measured, n=1 each]`. OBS
+  needed a restart after the change. Raised for the Keeper: obs-rec size and bitrate options (owed DEV).
+- Sent as HEVC (NVENC, cq 16), 220 and 336 MB, grain 0.73: `D:\MEGA transfer\Videos\Atomic Fork timelapses\`. The
+  60 Mbps originals are in Tefa's editing folder.
+- Fixes ON clip: water fade + smooth sky + slower days set to 240 / 120 for the recording (same ratio as in play, so
+  dawn and dusk run at half speed in the video); settings put back to 21 / 10.5 afterwards.
