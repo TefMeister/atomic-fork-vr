@@ -56,3 +56,25 @@ mod). Desk only: `rung-05 test P flat water probe` with `Bridge desk test - wate
   instead: done, Desktop folder).
 - After a `--stay` simulator run, the game shows "The Xbox 360 Controller has been disconnected" once VR Bench's hands
   go, and does not close behind it; Enter (its only button, Ok) and it closes in seconds.
+
+## 4. The black hairline (afternoon; Tefa from the Keeper PC: *"the water line is still there, like a black line going through it"*)
+
+The 1-pixel line of section 2 is what Tefa saw in the timelapse. Cause `[measured]`: a gap where the near water's tiles
+meet the far water's; nothing is drawn there, so the lake bed shows.
+
+Found on the way (probes in the water shaders, Save 4, flat):
+- near-water tiles are one cell each, measured from their own corner (local 0..4096);
+- the near water is placed by WATER001.vso, the far water by WATER000.vso (each placement shader tagged the water
+  with its own number);
+- the placement step's depth is in game units for both, but it is depth straight ahead: about 0.57 of the true
+  distance at the edge of an ultrawide view, so the border can show at a depth well under 8192.
+
+Tries (`tools/water_seam.py`, pictures in the Desktop folder `Atomic Fork water line/hairline runs/` and the transfer
+folder): every tile grown 16 units on its far sides: the line mostly gone, but light lines appear where see-through
+near tiles overlap (drawn twice); grown only beyond a depth: no effect (the gate cut the border too); far tiles on one
+side only: no effect (here the far tiles meet the near ones on their start side); **far tiles (WATER000.vso only) on
+all four sides**: 16 units mostly, **64 units: gone**. Along the border, 30 of 52 points dipped before, 3 small ones
+(4-6 levels) after `[measured, n=1]`. WATER000.vso (grown 64) is now part of `Bridge - water fades into the far look`.
+
+The timelapse fixes-ON clip was made again without slower days (Tefa: both at the original speed): the dashed black
+line of the old clip 2 is not in the new one at the start or 200 s in `[measured, n=1 each]`.

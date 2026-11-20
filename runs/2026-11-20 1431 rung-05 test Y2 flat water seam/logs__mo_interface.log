@@ -1,0 +1,22 @@
+[2026-11-20 12:31:13.422 D] command line: '"C:/Modlists/Atomic Fork VR\ModOrganizer.exe" -p "rung-05 test Y2 flat water seam desk" "moshortcut://:Atomic Fork VR"'
+[2026-11-20 12:31:13.423 I] starting Mod Organizer version 2.5.2-ML1.5 revision 9c130cbf in C:/Modlists/Atomic Fork VR, usvfs: 0.5.6.1
+[2026-11-20 12:31:13.423 I] data path: C:/Modlists/Atomic Fork VR
+[2026-11-20 12:31:13.423 I] working directory: C:/Modlists/Atomic Fork VR
+[2026-11-20 12:31:13.423 D] timing: MOApplication setup() 0 ms
+[2026-11-20 12:31:13.890 I] using game plugin 'TTW' ('TTW', variant Steam, steam id '22380') at C:/Steam/steamapps/common/Fallout New Vegas
+[2026-11-20 12:31:14.100 W] not saving lists during directory update
+[2026-11-20 12:31:14.532 I] [common_log.py:20] [RootBuilder] Generating root mod build data.
+[2026-11-20 12:31:14.617 I] [common_log.py:20] [RootBuilder] Updating cache.
+[2026-11-20 12:31:14.644 I] [common_log.py:20] [RootBuilder] Checking for updates to backup files.
+[2026-11-20 12:31:14.672 I] [common_log.py:20] [RootBuilder] Deploying files for Copy mode.
+[2026-11-20 12:31:14.721 I] [common_log.py:20] [RootBuilder] Deploying files for Link mode.
+[2026-11-20 12:31:14.721 I] [common_log.py:20] [RootBuilder] Saving build data.
+[2026-11-20 12:31:14.722 I] [common_log.py:20] [RootBuilder] Build complete!
+[2026-11-20 12:31:14.723 I] [common_log.py:20] [RootBuilder] Build exists, generating usvfs mappings.
+[2026-11-20 12:31:14.723 I] [common_log.py:20] [RootBuilder] Usvfs mappings generated!
+[2026-11-20 12:31:54.988 I] [common_log.py:20] [RootBuilder] Build exists, updating mod files.
+[2026-11-20 12:31:55.124 I] [common_log.py:20] [RootBuilder] Sync complete!
+[2026-11-20 12:31:55.124 I] [common_log.py:20] [RootBuilder] Clearing deployed files and links.
+[2026-11-20 12:31:55.147 I] [common_log.py:20] [RootBuilder] Restoring files from backup.
+[2026-11-20 12:31:55.180 I] [common_log.py:20] [RootBuilder] Cleaning up remaining files.
+[2026-11-20 12:31:55.180 I] [common_log.py:20] [RootBuilder] Clear complete!
