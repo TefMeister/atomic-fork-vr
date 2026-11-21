@@ -1,4 +1,4 @@
-# Credits — public research for ba-ttr-vr-bridge
+# Credits — public research for it-never-gets-old-vr (earlier ba-ttr-vr-bridge, then atomic-fork-vr)
 
 Every source this research lane has drawn on, credited by name. If you should be credited here and are not, or you
 are a rights holder who wants something corrected or removed, open an issue on this repository and it will be fixed
