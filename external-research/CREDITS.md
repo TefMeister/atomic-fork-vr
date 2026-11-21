@@ -19,3 +19,8 @@ promptly.
 - **df4l**, FNVVR Reborn (release notes v0.1.0 to v0.17.0) — https://github.com/df4l/FNVVR
 - **ModdingLinked** (the Viva New Vegas guide's maintainers), the commented Stewie's Tweaks INIs — https://github.com/ModdingLinked/Stewie-Tweaks-INIs
 - **lStewieAl**, lStewieAl's Tweaks and Engine Fixes — https://www.nexusmods.com/newvegas/mods/66347
+
+## Sources (2026-11-21)
+
+- **df4l**, FNVVR Reborn (release notes v0.18.0 to v0.20.0) — https://github.com/df4l/FNVVR
+- **Matthew Adams**, KeenGamer, news of TTWVR's release (2026-11-18) — https://www.keengamer.com/articles/news/the-fallout-a-tale-of-two-realities-vr-mod-for-the-fallout-game-is-out-now/
